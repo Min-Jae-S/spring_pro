@@ -27,10 +27,10 @@
     			<td>작성일</td>
     			<td>조회수</td>
     		</tr>
-    		<c:forEach var="board" items="${list}">
+    		<c:forEach var="board" items="${list}"> 
     		<tr>
     			<td>${board.idx}</td>
-    			<td>${board.title}</td>
+				<td>${board.title}</td>
     			<td>${board.content}</td>
     			<td>${board.writer}</td>
     			<td>${board.indate}</td>
