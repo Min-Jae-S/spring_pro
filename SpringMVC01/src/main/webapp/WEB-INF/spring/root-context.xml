@@ -8,22 +8,22 @@
 	<!-- Root Context: defines shared resources visible to all other web components -->
 	
 	<!-- DB 접속정보(Oracle) -->
-	<!--  
 	<bean id="hikariConfig" class="com.zaxxer.hikari.HikariConfig">
 		<property name="driverClassName" value="oracle.jdbc.driver.OracleDriver"/>
 		<property name="jdbcUrl" value="jdbc:oracle:thin:@127.0.0.1:1521:xe"/>
-		<property name="username" value="hr"/>
-		<property name="password" value="hr"/>
+		<property name="username" value="hr2"/>
+		<property name="password" value="1234"/>
 	</bean>
-	-->
 
 	<!-- DB 접속정보(MySQL) -->
+	<!--  
 	<bean id="hikariConfig" class="com.zaxxer.hikari.HikariConfig">
 		<property name="driverClassName" value="com.mysql.jdbc.Driver"/>
 		<property name="jdbcUrl" value="jdbc:mysql://localhost:3306/com?serverTimezone=UTC"/>
 		<property name="username" value="com"/>
 		<property name="password" value="com01"/>
 	</bean>
+	-->
 	
 	<!-- HikariDataSource(Connection POOL 객체) -->
 	<bean id="dataSource" class="com.zaxxer.hikari.HikariDataSource" destroy-method="close">
