@@ -18,27 +18,28 @@
   <div class="panel panel-default">
     <div class="panel-heading">BOARD</div>
     <div class="panel-body">
-    	<table class="table table-bordered table-hover">
-    		<tr>
-    			<td>번호</td>
-    			<td>제목</td>
-    			<td>작성내용</td>
-    			<td>작성자</td>
-    			<td>작성일</td>
-    			<td>조회수</td>
-    		</tr>
-    		<c:forEach var="board" items="${list}"> 
-    		<tr>
-    			<td>${board.idx}</td>
-				<td><a href="boardContent.do?idx=${board.idx}">${board.title}</a></td>
-    			<td>${board.content}</td>
-    			<td>${board.writer}</td>
-    			<td>${board.indate}</td>
-    			<td>${board.count}</td>
-    		</tr>
-    		</c:forEach>
-    	</table>
-    	<a href="boardForm.do" class="btn btn-primary">글쓰기</a>
+    	<form action="boardInsert.do" method="post">
+	    	<table class="table">
+	    		<tr>
+	    			<td>제목</td>
+	    			<td><input type="text" name="title" class="form-control"></td>
+	    		</tr>
+	    		<tr>
+	    			<td>내용</td>
+	    			<td><textarea name="content" rows="7" class="form-control" style="resize: none;"></textarea></td>
+	    		</tr>
+	    		<tr>
+	    			<td>작성자</td>
+	    			<td><input type="text" name="writer" class="form-control"></td>
+	    		</tr>
+	    		<tr>
+	    			<td colspan="2" align="center">
+	    				<button type="submit" class="btn btn-success">등록</button>
+	    				<button type="reset" class="btn btn-warning">취소</button>
+	    			</td>
+	    		</tr>
+	    	</table>
+    	</form>
     </div>
     <div class="panel-footer">인프런_스프1탄_서민재</div>
   </div>

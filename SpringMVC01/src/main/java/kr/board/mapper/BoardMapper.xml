@@ -6,5 +6,26 @@
 		SELECT * FROM myboard ORDER BY idx DESC
 	</select>
 
+	<insert id="boardInsert" parameterType="kr.board.entity.Board">
+		INSERT INTO myboard (
+			idx,
+			title,
+			content,
+			writer
+		) VALUES (
+			myboard_seq.nextval,
+			#{title},
+			#{content},
+			#{writer}
+		)
+	</insert>
+	
+	<select id="boardContent" resultType="kr.board.entity.Board">
+		SELECT * FROM myboard WHERE idx = #{idx}
+	</select>
+	
+	<delete id="boardDelete">
+		DELETE FROM myboard WHERE idx = #{idx}
+	</delete>
 
 </mapper>
