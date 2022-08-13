@@ -27,7 +27,6 @@ public class BoardController {
 	public String boardList(Model model) {
 		
 		List<Board> list = mapper.getLists();
-		
 		model.addAttribute("list", list);
 		
 		return "boardList"; // /WEB-INF/view/boardList.jsp --> forward
@@ -49,8 +48,9 @@ public class BoardController {
 	@GetMapping("/boardContent.do")
 	public String boardContent(@RequestParam("idx") int idx, Model model) {
 		Board board = mapper.boardContent(idx);
-		
 		model.addAttribute("board", board);
+
+		mapper.boardCount(idx);
 		
 		return "boardContent";
 	}
@@ -59,6 +59,21 @@ public class BoardController {
 	public String boardDelete(@PathVariable("idx") int idx) {
 		mapper.boardDelete(idx);
 		
-		return "redirect:/boardList.do"; // redirect
+		return "redirect:/boardList.do";
+	}
+	
+	@GetMapping("/boardUpdateForm.do/{idx}")
+	public String boardUpdateForm(@PathVariable("idx") int idx, Model model) {
+		Board board = mapper.boardContent(idx);
+		model.addAttribute("board", board);
+		
+		return "boardUpdateForm";
+	}
+	
+	@PostMapping("/boardUpdate.do")
+	public String boardUpdate(Board board) { // idx, title, content
+		mapper.boardUpdate(board);
+		
+		return "redirect:/boardList.do";
 	}
 }

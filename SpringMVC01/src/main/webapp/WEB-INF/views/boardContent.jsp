@@ -41,7 +41,7 @@
     		</tr>
     		<tr>
     			<td colspan="2" align="center">
-    				<a href="" class="btn btn-primary">수정화면</a>
+    				<a href="boardUpdateForm.do/${board.idx}" class="btn btn-primary">수정화면</a>
     				<a href="boardDelete.do/${board.idx}" class="btn btn-warning">삭제</a>
     				<a href="boardList.do" class="btn btn-info">목록</a>
     			</td>

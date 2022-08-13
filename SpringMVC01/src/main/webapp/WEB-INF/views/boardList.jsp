@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -33,7 +34,7 @@
 				<td><a href="boardContent.do?idx=${board.idx}">${board.title}</a></td>
     			<td>${board.content}</td>
     			<td>${board.writer}</td>
-    			<td>${board.indate}</td>
+    			<td>${fn:split(board.indate, " ")[0]}</td>
     			<td>${board.count}</td>
     		</tr>
     		</c:forEach>
