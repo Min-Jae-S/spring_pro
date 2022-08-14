@@ -70,9 +70,9 @@
   	}
   	
   	function goInsert() {
-  		//var title = $("title").val();
-  		//var content = $("content").val();
-  		//var wrtier = $("writer").val();
+  		//var title = $("#title").val();
+  		//var content = $("#content").val();
+  		//var writer = $("#writer").val();
   		
   		var formData = $("#insertForm").serialize();
   		
@@ -85,6 +85,10 @@
   				alert('error');
   			}
   		});
+  		
+  		$("#title").val("");
+  		$("#content").val("");
+  		$("#writer").val("");
   	}
   </script>
 </head>
@@ -96,7 +100,7 @@
     <div class="panel-heading">BOARD</div>
     <div class="panel-body" id="boardList"></div>
     <div class="panel-body" id="writeForm" style="display: none;">
-    	<form id="insertForm" method="post">
+    	<form id="insertForm">
 	    	<table class="table">
 	    		<tr>
 	    			<td>제목</td>
@@ -108,11 +112,11 @@
 	    		</tr>
 	    		<tr>
 	    			<td>작성자</td>
-	    			<td><input type="text" it="writer" name="writer" class="form-control"></td>
+	    			<td><input type="text" id="writer" name="writer" class="form-control"></td>
 	    		</tr>
 	    		<tr>
 	    			<td colspan="2" align="center">
-	    				<button type="submit" class="btn btn-success" onclick="goInsert()">등록</button>
+	    				<button type="button" class="btn btn-success" onclick="goInsert()">등록</button>
 	    				<button type="reset" class="btn btn-warning">취소</button>
 	    				<button type="button" class="btn btn-info" onclick="goList()">목록</button>
 	    			</td>
