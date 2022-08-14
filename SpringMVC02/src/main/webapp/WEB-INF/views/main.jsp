@@ -40,10 +40,20 @@
   		$.each(data, function(index, obj) { // obj = {"idx":5, "title":제목, "writer":작성자, ...}
 	  		listHtml += "<tr>";
 	  		listHtml += "<td>" + obj.idx  + "</td>";
-	  		listHtml += "<td>" + obj.title + "</td>";
+	  		listHtml += "<td><a href='javascript:goContent(" + obj.idx + ")'>" + obj.title + "</a></td>";
 	  		listHtml += "<td>" + obj.writer + "</td>";
 	  		listHtml += "<td>" + obj.indate + "</td>";
 	  		listHtml += "<td>" + obj.count + "</td>";
+	  		listHtml += "</tr>";
+	  		
+	  		listHtml += "<tr style='display: none' id='content" + obj.idx + "'>";
+	  		listHtml += "<td>내용</td>";
+	  		listHtml += "<td colspan='4'>";
+	  		listHtml += "<textarea rows='7' class='form-control' style='resize: none' readonly>" + obj.content + "</textarea>";
+	  		listHtml += "<br/>";
+	  		listHtml += "<button class='btn btn-success'>수정화면</button>&nbsp;";
+	  		listHtml += "<button class='btn btn-warning' onclick='goDelete(" + obj.idx + ")'>삭제</button>";
+	  		listHtml += "</td>";
 	  		listHtml += "</tr>";
   		});
   		listHtml += "<tr>";
@@ -54,7 +64,6 @@
   		listHtml += "</table>";
   		
   		$('#boardList').html(listHtml);
-  		
   		$('#boardList').css('display', 'block');
   		$('#writeForm').css('display', 'none');
   	}
@@ -86,9 +95,31 @@
   			}
   		});
   		
-  		$("#title").val("");
-  		$("#content").val("");
-  		$("#writer").val("");
+  		// form 초기화 = 취소 버튼 클릭
+  		//$("#title").val("");
+  		//$("#content").val("");
+  		//$("#writer").val("");
+  		$("#btnReset").trigger("click");
+  	}
+  	
+  	function goContent(idx) {
+  		if($('#content' + idx).css('display') == 'none') {
+  			$('#content' + idx).css('display', 'table-row');
+  		} else {
+  			$('#content' + idx).css('display', 'none');
+  		}
+  	}
+  	
+  	function goDelete(idx) {
+  		$.ajax({
+  			url : 'boardDelete.do',
+  			type : 'get',
+  			data : {"idx" : idx},
+  			success : loadList,
+  			error : function() {
+  				alert('error');
+  			}
+  		});
   	}
   </script>
 </head>
@@ -117,7 +148,7 @@
 	    		<tr>
 	    			<td colspan="2" align="center">
 	    				<button type="button" class="btn btn-success" onclick="goInsert()">등록</button>
-	    				<button type="reset" class="btn btn-warning">취소</button>
+	    				<button type="reset" class="btn btn-warning" id="btnReset">취소</button>
 	    				<button type="button" class="btn btn-info" onclick="goList()">목록</button>
 	    			</td>
 	    		</tr>
