@@ -40,18 +40,18 @@
   		$.each(data, function(index, obj) { // obj = {"idx":5, "title":제목, "writer":작성자, ...}
 	  		listHtml += "<tr>";
 	  		listHtml += "<td>" + obj.idx  + "</td>";
-	  		listHtml += "<td><a href='javascript:goContent(" + obj.idx + ")'>" + obj.title + "</a></td>";
+	  		listHtml += "<td id='tdTitle" + obj.idx + "'><a href='javascript:goContent(" + obj.idx + ")'>" + obj.title + "</a></td>";
 	  		listHtml += "<td>" + obj.writer + "</td>";
 	  		listHtml += "<td>" + obj.indate + "</td>";
 	  		listHtml += "<td>" + obj.count + "</td>";
 	  		listHtml += "</tr>";
 	  		
-	  		listHtml += "<tr style='display: none' id='content" + obj.idx + "'>";
+	  		listHtml += "<tr style='display: none' id='tr" + obj.idx + "'>";
 	  		listHtml += "<td>내용</td>";
 	  		listHtml += "<td colspan='4'>";
-	  		listHtml += "<textarea rows='7' class='form-control' style='resize: none' readonly>" + obj.content + "</textarea>";
+	  		listHtml += "<textarea rows='7' class='form-control' style='resize: none' readonly id='taContent" + obj.idx + "'>" + obj.content + "</textarea>";
 	  		listHtml += "<br/>";
-	  		listHtml += "<button class='btn btn-success'>수정화면</button>&nbsp;";
+	  		listHtml += "<span id='btnUpdateForm" + obj.idx +"'><button class='btn btn-success' onclick='goUpdateForm(" + obj.idx + ")'>수정화면</button></span>&nbsp;";
 	  		listHtml += "<button class='btn btn-warning' onclick='goDelete(" + obj.idx + ")'>삭제</button>";
 	  		listHtml += "</td>";
 	  		listHtml += "</tr>";
@@ -103,10 +103,11 @@
   	}
   	
   	function goContent(idx) {
-  		if($('#content' + idx).css('display') == 'none') {
-  			$('#content' + idx).css('display', 'table-row');
+  		if($('#tr' + idx).css('display') == 'none') {
+  			$('#taContent' + idx).attr('readonly', true);
+  			$('#tr' + idx).css('display', 'table-row');
   		} else {
-  			$('#content' + idx).css('display', 'none');
+  			$('#tr' + idx).css('display', 'none');
   		}
   	}
   	
@@ -120,6 +121,17 @@
   				alert('error');
   			}
   		});
+  	}
+  	
+  	function goUpdateForm(idx) {
+  		$('#taContent' + idx).attr('readonly', false);
+  		
+  		var oldTitle = $('#tdTitle' + idx).text();
+  		var newInput = "<input type='text' class='form-control' value='" + oldTitle + "'>";
+  		$('#tdTitle' + idx).html(newInput);
+  		
+  		var newButton = "<button class='btn btn-primary'>수정</button>";
+  		$('#btnUpdateForm' + idx).html(newButton);
   	}
   </script>
 </head>
