@@ -18,7 +18,7 @@
   	
   	function loadList() {
   		$.ajax({
-  			url : 'boardList.do',
+  			url : 'board/all',
   			type : 'get',
   			dataType : 'json',
   			success : makeView,
@@ -42,14 +42,14 @@
 	  		listHtml += "<td>" + obj.idx  + "</td>";
 	  		listHtml += "<td id='tdTitle" + obj.idx + "'><a href='javascript:goContent(" + obj.idx + ")'>" + obj.title + "</a></td>";
 	  		listHtml += "<td>" + obj.writer + "</td>";
-	  		listHtml += "<td>" + obj.indate + "</td>";
-	  		listHtml += "<td>" + obj.count + "</td>";
+	  		listHtml += "<td>" + obj.indate.split(' ')[0] + "</td>";
+	  		listHtml += "<td id='tdCount"+ obj.idx +"'>" + obj.count + "</td>";
 	  		listHtml += "</tr>";
 	  		
 	  		listHtml += "<tr style='display: none' id='tr" + obj.idx + "'>";
 	  		listHtml += "<td>내용</td>";
 	  		listHtml += "<td colspan='4'>";
-	  		listHtml += "<textarea rows='7' class='form-control' style='resize: none' readonly id='taContent" + obj.idx + "'>" + obj.content + "</textarea>";
+	  		listHtml += "<textarea rows='7' class='form-control' style='resize: none' readonly id='taContent" + obj.idx + "'></textarea>";
 	  		listHtml += "<br/>";
 	  		listHtml += "<span id='btnUpdateForm" + obj.idx +"'><button class='btn btn-success' onclick='goUpdateForm(" + obj.idx + ")'>수정화면</button></span>&nbsp;";
 	  		listHtml += "<button class='btn btn-warning' onclick='goDelete(" + obj.idx + ")'>삭제</button>";
@@ -86,7 +86,7 @@
   		var formData = $("#insertForm").serialize();
   		
   		$.ajax({
-  			url : 'boardInsert.do',
+  			url : 'board/new',
   			type : 'post',
   			data : formData,
   			success : loadList,
@@ -104,18 +104,39 @@
   	
   	function goContent(idx) {
   		if($('#tr' + idx).css('display') == 'none') {
-  			$('#taContent' + idx).attr('readonly', true);
-  			$('#tr' + idx).css('display', 'table-row');
+  			$.ajax({
+  				url : "board/" + idx,
+  				type : "get",
+  				dataType : "json",
+  				success : function(data) {
+  					$('#taContent' + idx).val(data.content);
+  					$('#taContent' + idx).attr('readonly', true);
+  		  			$('#tr' + idx).css('display', 'table-row');	
+  				},
+  				error : function() {
+  					alert('error');
+  				}
+  			});
   		} else {
   			$('#tr' + idx).css('display', 'none');
+  			$.ajax({
+  				url : "board/count/" + idx,
+  				type : "put",
+  				dataType : "json",
+  				success : function(data) {
+  					$('#tdCount' + idx).text(data.count);
+  				},
+  				error : function() {
+  					alert('error');
+  				}
+  			});
   		}
   	}
   	
   	function goDelete(idx) {
   		$.ajax({
-  			url : 'boardDelete.do',
-  			type : 'get',
-  			data : {"idx" : idx},
+  			url : 'board/' + idx,
+  			type : 'delete',
   			success : loadList,
   			error : function() {
   				alert('error');
@@ -127,11 +148,31 @@
   		$('#taContent' + idx).attr('readonly', false);
   		
   		var oldTitle = $('#tdTitle' + idx).text();
-  		var newInput = "<input type='text' class='form-control' value='" + oldTitle + "'>";
+  		var newInput = "<input type='text' id='inputTitle"+ idx + "' class='form-control' value='" + oldTitle + "'>";
   		$('#tdTitle' + idx).html(newInput);
   		
-  		var newButton = "<button class='btn btn-primary'>수정</button>";
+  		var newButton = "<button class='btn btn-primary' onclick='goUpdate("+ idx +")'>수정</button>";
   		$('#btnUpdateForm' + idx).html(newButton);
+  	}
+  	
+  	function goUpdate(idx) {
+  		var title = $('#inputTitle' + idx).val();
+  		var content = $('#taContent' + idx).val();
+
+  		$.ajax({
+  			url : "board/update",
+  			type : "put",
+  			contentType : "application/json;charset=utf-8",
+  			data : JSON.stringify({
+  				"idx" : idx,
+  				"title" : title,
+  				"content" : content
+  			}),
+  			success : loadList,
+  			error : function() {
+  				alert('error');
+  			}
+  		});
   	}
   </script>
 </head>
