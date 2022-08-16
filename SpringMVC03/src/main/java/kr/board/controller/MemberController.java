@@ -57,7 +57,7 @@ public class MemberController {
 		
 		/*
 		if(!memPassword1.equals(memPassword2)) {
-			rttr.addFlashAttribute("msgType", "시패 메세지");
+			rttr.addFlashAttribute("msgType", "실패 메세지");
 			rttr.addFlashAttribute("msg", "비밀번호가 다릅니다.");
 			return "redirect:/";
 		}
@@ -79,5 +79,50 @@ public class MemberController {
 			rttr.addFlashAttribute("msg", "회원가입에 실패하였습니다.");
 			return "redirect:/memJoin.do";
 		}
+	}
+	
+	@GetMapping("/memLogout.do")
+	public String memLogout(HttpSession session) {
+		session.invalidate();
+		
+		return "redirect:/";
+	}
+	
+	@GetMapping("/memLoginForm.do")
+	public String memLoginForm() {
+		return "member/loginForm";
+	}
+	
+	@PostMapping("/memLogin")
+	public String memLogin(Member member, HttpSession session, RedirectAttributes rttr) {
+		if(member.getMemId() == null || member.getMemId().trim().equals("") ||
+		   member.getMemPassword() == null || member.getMemPassword().trim().equals("")) {
+			rttr.addFlashAttribute("msgType", "실패 메세지");
+			rttr.addFlashAttribute("msg", "모든 내용을 입력해주세요.");
+			return "redirect:/memLoginForm.do";
+		}
+		
+		Member tempMember = memberMapper.memLogin(member);
+		if(tempMember != null) {
+			rttr.addFlashAttribute("msgType", "성공 메세지");
+			rttr.addFlashAttribute("msg", "로그인에 성공했습니다.");
+			session.setAttribute("member", tempMember);
+			return "redirect:/";
+		} else {
+			rttr.addFlashAttribute("msgType", "실패 메세지");
+			rttr.addFlashAttribute("msg", "로그인에 실패했습니다. 다시 로그인 해주세요.");
+			return "redirect:/memLoginForm.do";
+		}
+	}
+	
+	@GetMapping("memUpdateForm.do")
+	public String memUpdateForm(HttpSession session) {
+		return "member/updateForm";
+	}
+	
+	@PostMapping("memUpdate.do")
+	public String memUpdate(Member member) {
+		
+		return "";
 	}
 }

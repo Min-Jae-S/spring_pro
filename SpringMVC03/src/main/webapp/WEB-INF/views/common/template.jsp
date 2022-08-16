@@ -14,10 +14,9 @@
 </head>
 <body>
 
-<c:import url="/WEB-INF/views/common/header.jsp"/>
-
 <div class="container">
-  <h2>Spring MVC03</h2>
+  <c:import url="/WEB-INF/views/common/header.jsp"/>
+  <h3>Spring MVC03</h3><br/>
   <div class="panel panel-default">
     <div class="panel-heading">Panel Heading</div>
     <div class="panel-body">Panel Content</div>

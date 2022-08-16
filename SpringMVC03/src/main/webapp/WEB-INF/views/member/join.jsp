@@ -75,7 +75,7 @@
 
 <div class="container">
   <c:import url="/WEB-INF/views/common/header.jsp"/>
-  <h2>Spring MVC03</h2>
+  <h3>Spring MVC03</h3>
   <div class="panel panel-default">
     <div class="panel-heading">회원가입</div>
     <div class="panel-body">
@@ -136,46 +136,45 @@
     		</table>
     	</form>
     </div>
-    
-    <!-- 아이디 중복확인 메세지(Modal) -->
-	<div id="checkIdMessageModal" class="modal fade" role="dialog">
-	  <div class="modal-dialog">
-	    <!-- Modal content-->
-	    <div id="checkType" class="modal-content panel-info">
-	      <div class="modal-header panel-heading">
-	        <button type="button" class="close" data-dismiss="modal">&times;</button>
-	        <h4 class="modal-title" style="font-weight: bold;">아이디 중복확인</h4>
-	      </div>
-	      <div class="modal-body">
-	        <p id="checkMessage" style="font-weight: bold;"></p>
-	      </div>
-	      <div class="modal-footer">
-	        <button type="button" class="btn btn-default" data-dismiss="modal">확인</button>
-	      </div>
-	    </div>
-	  </div>
-	</div>
-
-    <!-- 회원가입 실패 메세지(Modal) -->
-	<div id="registerFailMessageModal" class="modal fade" role="dialog">
-	  <div class="modal-dialog">
-	    <!-- Modal content-->
-	    <div class="modal-content panel-danger">
-	      <div class="modal-header panel-heading">
-	        <button type="button" class="close" data-dismiss="modal">&times;</button>
-	        <h4 class="modal-title" style="font-weight: bold;">${msgType}</h4>
-	      </div>
-	      <div class="modal-body">
-	        <p style="font-weight: bold;">${msg}</p>
-	      </div>
-	      <div class="modal-footer">
-	        <button type="button" class="btn btn-default" data-dismiss="modal">확인</button>
-	      </div>
-	    </div>
-	  </div>
-	</div>
-    
     <div class="panel-footer">인프런_스프1탄_서민재</div>
+  </div>
+</div>
+
+<!-- 아이디 중복확인 메세지(Modal) -->
+<div id="checkIdMessageModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <!-- Modal content-->
+    <div id="checkType" class="modal-content panel-info">
+      <div class="modal-header panel-heading">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title" style="font-weight: bold;">아이디 중복확인</h4>
+      </div>
+      <div class="modal-body">
+        <p id="checkMessage" style="font-weight: bold;"></p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">확인</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 회원가입 실패 메세지(Modal) -->
+<div id="registerFailMessageModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <!-- Modal content-->
+    <div class="modal-content panel-danger">
+      <div class="modal-header panel-heading">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title" style="font-weight: bold;">${msgType}</h4>
+      </div>
+      <div class="modal-body">
+        <p style="font-weight: bold;">${msg}</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">확인</button>
+      </div>
+    </div>
   </div>
 </div>
 

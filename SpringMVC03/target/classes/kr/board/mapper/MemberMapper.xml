@@ -26,6 +26,11 @@
 			#{memEmail},
 			#{memProfile, jdbcType=VARCHAR}
 		)
-	</insert>	
+	</insert>
+	
+	<select id="memLogin" parameterType="kr.board.entity.Member" resultType="kr.board.entity.Member">
+		SELECT * FROM mem_tbl
+		WHERE memId = #{memId} AND memPassword = #{memPassword}
+	</select>
 	
 </mapper>

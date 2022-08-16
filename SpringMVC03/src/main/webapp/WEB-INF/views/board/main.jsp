@@ -180,9 +180,9 @@
 
 <div class="container">
   <c:import url="/WEB-INF/views/common/header.jsp"/>
-  <h2>Spring MVC03</h2>
+  <h3>Spring MVC03</h3><br/>
   <div class="panel panel-default">
-    <div class="panel-heading">BOARD</div>
+    <div class="panel-heading">게시판</div>
     <div class="panel-body" id="boardList"></div>
     <div class="panel-body" id="writeForm" style="display: none;">
     	<form id="insertForm">

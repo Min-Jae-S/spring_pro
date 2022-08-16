@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<c:set var="contextPath" value="${pageContext.request.contextPath}"/> 
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -23,9 +24,39 @@
 
 <div class="container">
   <c:import url="/WEB-INF/views/common/header.jsp"/>
-  <h3>Spring MVC03</h3><br/>
-  <p>In this example, the navigation bar is hidden on small screens and replaced by a button in the top right corner (try to re-size this window).
-  <p>Only when the button is clicked, the navigation bar will be displayed.</p>
+  <c:if test="${empty sessionScope.member}">
+	  <h3>Spring MVC03</h3><br/>
+  </c:if>
+  <c:if test="${!empty sessionScope.member}">
+	  <h3><b>${sessionScope.member.memId}</b>님 방문을 환영합니다.</h3><br/>
+  </c:if>
+  <div class="panel panel-default">
+    <div style="text-align: center;">
+    	<img src="${contextPath}/resources/images/main_cat.jpg" style="width: 60%; height: 400px;">
+    </div>
+    <div class="panel-body">
+    <ul class="nav nav-pills">
+	  <li class="active"><a data-toggle="pill" href="#home">Home</a></li>
+	  <li><a data-toggle="pill" href="#menu1">게시판</a></li>
+	  <li><a data-toggle="pill" href="#menu2">공지사항</a></li>
+	</ul>
+	
+	<div class="tab-content">
+	  <div id="home" class="tab-pane fade in active">
+	    <h3>HOME</h3>
+	    <p>Some content.</p>
+	  </div>
+	  <div id="menu1" class="tab-pane fade">
+	    <h3>게시판</h3>
+	    <p>Some content in menu 1.</p>
+	  </div>
+	  <div id="menu2" class="tab-pane fade">
+	    <h3>공지사항</h3>
+	    <p>Some content in menu 2.</p>
+	  </div>
+	</div>
+    <div class="panel-footer">인프런_스프1탄_서민재</div>
+  </div>
 </div>
 
 <!-- 회원가입 성공 메세지(Modal) -->
