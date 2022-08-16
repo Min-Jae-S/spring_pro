@@ -4,7 +4,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>kr.board</groupId>
 	<artifactId>controller</artifactId>
-	<name>SpringMVC01</name>
+	<name>SpringMVC02</name>
 	<packaging>war</packaging>
 	<version>1.0.0-BUILD-SNAPSHOT</version>
 	<properties>
