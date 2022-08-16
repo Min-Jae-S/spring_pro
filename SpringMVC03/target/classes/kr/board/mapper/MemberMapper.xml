@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="kr.board.mapper.MemberMapper">
+	
+	<select id="memCheckId" resultType="kr.board.entity.Member">
+		SELECT * FROM mem_tbl WHERE memId = #{memId}
+	</select>
+	
+	<insert id="memRegister" parameterType="kr.board.entity.Member">
+		INSERT INTO mem_tbl (
+			memIdx,
+			memId,
+			memPassword,
+			memName,
+			memAge,
+			memGender,
+			memEmail,
+			memProfile
+		) VALUES (
+			mem_tbl_seq.nextval,
+			#{memId},
+			#{memPassword},
+			#{memName},
+			#{memAge},
+			#{memGender},
+			#{memEmail},
+			#{memProfile, jdbcType=VARCHAR}
+		)
+	</insert>	
+	
+</mapper>
