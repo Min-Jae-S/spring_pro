@@ -49,7 +49,7 @@
   		
   		if(memPassword1 != memPassword2) {
   			$('span[name=passwordMessage]').html('비밀번호가 일치하지 않습니다.');
-  			$('#memPassword').val("");
+  			//$('#memPassword').val("");
   		} else {
   			$('span[name=passwordMessage]').html('');
   			$('#memPassword').val(memPassword1);
@@ -83,34 +83,34 @@
     		<input type="hidden" id="memPassword" name="memPassword">
     		<table class="table table-bordered" style="text-align: center; border: 1px solid #dddddd;">
     			<tr>
-    				<td style="width: 110px; vertical-align: middle;">아이디</td>
+    				<td style="width: 110px; vertical-align: middle; font-weight: bold;">아이디</td>
     				<td><input id="memId" name="memId" class="form-control" type="test" maxlength="20" placeholder="아이디를 입력하세요."></td>
     				<td style="width: 110px;"><button type="button" class="btn btn-primary" onclick="checkId()">중복확인</button></td>
     			</tr>
     			<tr>
-    				<td style="width: 110px; vertical-align: middle;">비밀번호</td>
+    				<td style="width: 110px; vertical-align: middle; font-weight: bold;">비밀번호</td>
     				<td colspan="2">
     					<input id="memPassword1" name="memPassword1" onkeyup="checkPassword()" class="form-control" type="password" maxlength="20" placeholder="비밀번호를 입력하세요.">
     					<span name="passwordMessage" class="pull-left" style="color: red; font-size: 12px;"></span>
     				</td>
     			</tr>
     			<tr>
-    				<td style="width: 110px; vertical-align: middle;">비밀번호 확인</td>
+    				<td style="width: 110px; vertical-align: middle; font-weight: bold;">비밀번호 확인</td>
     				<td colspan="2">
     					<input id="memPassword2" name="memPassword2" onkeyup="checkPassword()" class="form-control" type="password" maxlength="20" placeholder="비밀번호를 확인하세요.">
     					<span name="passwordMessage" class="pull-left" style="color: red; font-size: 12px;"></span>
     				</td>
     			</tr>
     			<tr>
-    				<td style="width: 110px; vertical-align: middle;">이름</td>
+    				<td style="width: 110px; vertical-align: middle; font-weight: bold;">이름</td>
     				<td colspan="2"><input id="memName" name="memName" class="form-control" type="text" maxlength="20" placeholder="이름을 입력하세요."></td>
     			</tr>
     			<tr>
-    				<td style="width: 110px; vertical-align: middle;">나이</td>
+    				<td style="width: 110px; vertical-align: middle; font-weight: bold;">나이</td>
     				<td colspan="2"><input id="memAge" name="memAge" class="form-control" type="text" maxlength="20" placeholder="나이를 입력하세요."></td>
     			</tr>
     			<tr>
-    				<td style="width: 110px; vertical-align: middle;">성별</td>
+    				<td style="width: 110px; vertical-align: middle; font-weight: bold;">성별</td>
     				<td colspan="2">
     					<div class="form-group" style="text-align: center; margin: 0 auto;">
     						<div class="btn-group" data-toggle="buttons">
@@ -125,7 +125,7 @@
     				</td>
     			</tr>
     			<tr>
-    				<td style="width: 110px; vertical-align: middle;">이메일</td>
+    				<td style="width: 110px; vertical-align: middle; font-weight: bold;">이메일</td>
     				<td colspan="2"><input id="memEmail" name="memEmail" class="form-control" type="text" maxlength="20" placeholder="이메일을 입력하세요."></td>
     			</tr>
     			<tr>

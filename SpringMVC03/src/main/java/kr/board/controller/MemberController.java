@@ -20,9 +20,9 @@ public class MemberController {
 	@Autowired
 	MemberMapper memberMapper;
 	
-	@RequestMapping("/memJoin.do")
-	public String memJoin() {
-		return "member/join";
+	@RequestMapping("/memRegisterForm.do")
+	public String memRegisterForm() {
+		return "member/registerForm";
 	}
 	
 	@GetMapping("/memCheckId.do")
@@ -46,22 +46,22 @@ public class MemberController {
 		   member.getMemName() == null || member.getMemName().trim().equals("") ||
 		   member.getMemAge() == 0 ||
 		   member.getMemGender() == null || member.getMemGender().trim().equals("") ||
-		   member.getMemEmail() == null || member.getMemEmail().trim().equals("")) {
+		   member.getMemEmail() == null || member.getMemEmail().trim().equals("") || 
+		   memPassword1 == null || memPassword1.trim().equals("") || 
+		   memPassword2 == null || memPassword2.trim().equals("")) {
 			
 			// 누락 메세지를 갖고 가기 ==> Model, HttpServletRequest에 객체바인딩X, 새로운 request객체가 생성되므로
 			// RedirectAttributes로 객체바인딩을 하자
 			rttr.addFlashAttribute("msgType", "실패 메세지");
 			rttr.addFlashAttribute("msg", "모든 내용을 입력하세요.");
-			return "redirect:/memJoin.do"; // ${msgType}, ${msg}
+			return "redirect:/memRegisterForm.do"; // ${msgType}, ${msg}
 		}
 		
-		/*
 		if(!memPassword1.equals(memPassword2)) {
 			rttr.addFlashAttribute("msgType", "실패 메세지");
 			rttr.addFlashAttribute("msg", "비밀번호가 다릅니다.");
-			return "redirect:/";
+			return "redirect:/memRegisterForm.do";
 		}
-		*/
 		
 		//member.setMemProfile("");
 		// 회원정보를 DB에 저장
@@ -77,7 +77,7 @@ public class MemberController {
 		} else {
 			rttr.addFlashAttribute("msgType", "실패 메세지");
 			rttr.addFlashAttribute("msg", "회원가입에 실패하였습니다.");
-			return "redirect:/memJoin.do";
+			return "redirect:/memRegisterForm.do";
 		}
 	}
 	
@@ -93,7 +93,7 @@ public class MemberController {
 		return "member/loginForm";
 	}
 	
-	@PostMapping("/memLogin")
+	@PostMapping("/memLogin.do")
 	public String memLogin(Member member, HttpSession session, RedirectAttributes rttr) {
 		if(member.getMemId() == null || member.getMemId().trim().equals("") ||
 		   member.getMemPassword() == null || member.getMemPassword().trim().equals("")) {
@@ -115,14 +115,57 @@ public class MemberController {
 		}
 	}
 	
-	@GetMapping("memUpdateForm.do")
+	@GetMapping("/memUpdateForm.do")
 	public String memUpdateForm(HttpSession session) {
 		return "member/updateForm";
 	}
 	
-	@PostMapping("memUpdate.do")
-	public String memUpdate(Member member) {
+	@PostMapping("/memUpdate.do")
+	public String memUpdate(Member member, RedirectAttributes rttr,
+							String memPassword1, String memPassword2, HttpSession session) {
+		System.out.println("memUpdate: " + member);
+		if(member.getMemId() == null || member.getMemId().trim().equals("") ||
+		   member.getMemPassword() == null || member.getMemPassword().trim().equals("") ||
+		   member.getMemName() == null || member.getMemName().trim().equals("") ||
+		   member.getMemAge() == 0 ||
+		   member.getMemGender() == null || member.getMemGender().trim().equals("") ||
+		   member.getMemEmail() == null || member.getMemEmail().trim().equals("") || 
+		   memPassword1 == null || memPassword1.trim().equals("") || 
+		   memPassword2 == null || memPassword2.trim().equals("")) {
+					
+			rttr.addFlashAttribute("msgType", "실패 메세지");
+			rttr.addFlashAttribute("msg", "모든 내용을 입력하세요.");
+			return "redirect:/memUpdateForm.do"; // ${msgType}, ${msg}
+		}
 		
+		if(!memPassword1.equals(memPassword2)) {
+			rttr.addFlashAttribute("msgType", "실패 메세지");
+			rttr.addFlashAttribute("msg", "비밀번호가 다릅니다.");
+			return "redirect:/memUpdateForm.do";
+		}
+		
+		// 회원정보 수정
+		int result = memberMapper.memUpdate(member);
+		
+		if(result == 1) {
+			rttr.addFlashAttribute("msgType", "성공 메세지");
+			rttr.addFlashAttribute("msg", "회원정보가 정상적으로 수정되었습니다.");
+			session.setAttribute("member", member);
+			return "redirect:/memUpdateForm.do";
+		} else {
+			rttr.addFlashAttribute("msgType", "실패 메세지");
+			rttr.addFlashAttribute("msg", "회원정보 수정에 실패하였습니다.");
+			return "redirect:/memUpdateForm.do";
+		}
+	}
+	
+	@GetMapping("/memImageForm.do")
+	public String memImageForm() {
+		return "member/imageForm";
+	}
+	
+	@PostMapping("/memImage.do")
+	public String memImage() {
 		return "";
 	}
 }

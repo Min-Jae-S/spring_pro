@@ -33,4 +33,17 @@
 		WHERE memId = #{memId} AND memPassword = #{memPassword}
 	</select>
 	
+	<update id="memUpdate" parameterType="kr.board.entity.Member">
+		UPDATE
+			mem_tbl
+		SET
+			memPassword = #{memPassword},
+			memName = #{memName},
+			memAge = #{memAge},
+			memGender = #{memGender},
+			memEmail = #{memEmail}
+		WHERE
+			memId = #{memId}
+	</update>
+	
 </mapper>

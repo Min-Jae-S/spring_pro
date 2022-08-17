@@ -24,26 +24,29 @@
   <c:import url="/WEB-INF/views/common/header.jsp"/>
   <h3>Spring MVC03</h3><br/>
   <div class="panel panel-default">
-    <div class="panel-heading">로그인 화면</div>
+    <div class="panel-heading">회원사진 등록</div>
     <div class="panel-body">
-	  <form class="form-horizontal" action="${contextPath}/memLogin.do" method="post">
-	    <div class="form-group">
-	      <label class="control-label col-sm-2" for="memId">아이디</label>
-	      <div class="col-sm-10">
-	        <input type="text" class="form-control" id="memId" placeholder="아이디를 입력하세요." name="memId">
-	      </div>
-	    </div>
-	    <div class="form-group">
-	      <label class="control-label col-sm-2" for="memPassword">비밀번호</label>
-	      <div class="col-sm-10">          
-	        <input type="password" class="form-control" id="memPassword" placeholder="비밀번호를 입력하세요." name="memPassword">
-	      </div>
-	    </div>
-	    <div class="form-group">        
-	      <div class="col-sm-offset-2 col-sm-10">
-	        <button type="submit" class="btn btn-primary">로그인</button>
-	      </div>
-	    </div>
+	  <form action="${contextPath}/memImageUpdate.do" method="post" enctype="multipart/form-data">
+    	<table class="table table-bordered" style="text-align: center; border: 1px solid #dddddd;">
+    		<tr>
+    			<td style="width: 110px; vertical-align: middle; font-weight: bold;">아이디</td>
+   				<td><input type="text" class="form-control" id="memId" name="memId" value="${sessionScope.member.memId}" readonly></td>
+    		</tr>
+    		<tr>
+    			<td style="width: 110px; vertical-align: middle; font-weight: bold;">사진 업로드</td>
+   				<td colspan="2">
+   					<span class="btn btn-default">
+   						이미지를 업로드하세요.
+   						<input type="file" name="memProfile">
+   					</span>
+   				</td>
+    		</tr>
+    		<tr>
+    			<td colspan="2" style="text-align: left;">
+    				<input type="submit" class="btn btn-primary" value="등록">
+    			</td>
+    		</tr>
+    	</table>
 	  </form>
     </div>
     <div class="panel-footer">인프런_스프1탄_서민재</div>

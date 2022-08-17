@@ -24,15 +24,23 @@
 
 <div class="container">
   <c:import url="/WEB-INF/views/common/header.jsp"/>
-  <c:if test="${empty sessionScope.member}">
-	  <h3>Spring MVC03</h3><br/>
-  </c:if>
-  <c:if test="${!empty sessionScope.member}">
-	  <h3><b>${sessionScope.member.memId}</b>님 방문을 환영합니다.</h3><br/>
-  </c:if>
+  <div style="margin-bottom: 15px;">
+	  <c:if test="${empty sessionScope.member}">
+		  <h3>Spring MVC03</h3>
+	  </c:if>
+	  <c:if test="${!empty sessionScope.member}">
+	  	<c:if test="${empty sessionScope.member.memProfile}">
+	  		<img src="${contextPath}/resources/images/person.png" style="width : 50px; height: 50px; margin-right: 10px">
+	  	</c:if>
+	  	<c:if test="${!empty sessionScope.member.memProfile}">
+	  		<img src="${contextPath}/resources/upload/${sessionScope.member.memProfile}" style="width : 50px; height: 50px; margin-right: 10px">
+	  	</c:if>
+		<label>${sessionScope.member.memId}님 방문을 환영합니다.</label>
+	  </c:if>
+  </div>
   <div class="panel panel-default">
     <div style="text-align: center;">
-    	<img src="${contextPath}/resources/images/main_cat.jpg" style="width: 60%; height: 400px;">
+    	<img src="${contextPath}/resources/images/main_mokoko2.jpg" style="width: 100%;">
     </div>
     <div class="panel-body">
     <ul class="nav nav-pills">
