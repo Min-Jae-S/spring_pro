@@ -64,14 +64,14 @@
     			<tr>
     				<td style="width: 110px; vertical-align: middle;">비밀번호</td>
     				<td colspan="2">
-    					<input id="memPassword1" name="memPassword1" onkeyup="checkPassword()" class="form-control" type="password" maxlength="20" placeholder="비밀번호를 입력하세요." value="${sessionScope.member.memPassword}">
+    					<input id="memPassword1" name="memPassword1" onkeyup="checkPassword()" class="form-control" type="password" maxlength="20" placeholder="비밀번호를 입력하세요.">
     					<span name="passwordMessage" class="pull-left" style="color: red; font-size: 12px;"></span>
     				</td>
     			</tr>
     			<tr>
     				<td style="width: 110px; vertical-align: middle;">비밀번호 확인</td>
     				<td colspan="2">
-    					<input id="memPassword2" name="memPassword2" onkeyup="checkPassword()" class="form-control" type="password" maxlength="20" placeholder="비밀번호를 확인하세요." value="${sessionScope.member.memPassword}">
+    					<input id="memPassword2" name="memPassword2" onkeyup="checkPassword()" class="form-control" type="password" maxlength="20" placeholder="비밀번호를 확인하세요.">
     					<span name="passwordMessage" class="pull-left" style="color: red; font-size: 12px;"></span>
     				</td>
     			</tr>
