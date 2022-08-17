@@ -39,29 +39,28 @@
 	  </c:if>
   </div>
   <div class="panel panel-default">
-    <div style="text-align: center;">
-    	<img src="${contextPath}/resources/images/main_mokoko2.jpg" style="width: 100%;">
-    </div>
+    <img src="${contextPath}/resources/images/main_mokoko_skyblue.png" style="width: 100%;">
     <div class="panel-body">
-    <ul class="nav nav-pills">
-	  <li class="active"><a data-toggle="pill" href="#home">Home</a></li>
-	  <li><a data-toggle="pill" href="#menu1">게시판</a></li>
-	  <li><a data-toggle="pill" href="#menu2">공지사항</a></li>
-	</ul>
+	    <ul class="nav nav-pills">
+		  <li class="active"><a data-toggle="pill" href="#home">Home</a></li>
+		  <li><a data-toggle="pill" href="#menu1">게시판</a></li>
+		  <li><a data-toggle="pill" href="#menu2">공지사항</a></li>
+		</ul>
 	
-	<div class="tab-content">
-	  <div id="home" class="tab-pane fade in active">
-	    <h3>HOME</h3>
-	    <p>Some content.</p>
-	  </div>
-	  <div id="menu1" class="tab-pane fade">
-	    <h3>게시판</h3>
-	    <p>Some content in menu 1.</p>
-	  </div>
-	  <div id="menu2" class="tab-pane fade">
-	    <h3>공지사항</h3>
-	    <p>Some content in menu 2.</p>
-	  </div>
+		<div class="tab-content">
+		  <div id="home" class="tab-pane fade in active">
+		    <h3>HOME</h3>
+		    <p>Some content.</p>
+		  </div>
+		  <div id="menu1" class="tab-pane fade">
+		    <h3>게시판</h3>
+		    <p>Some content in menu 1.</p>
+		  </div>
+		  <div id="menu2" class="tab-pane fade">
+		    <h3>공지사항</h3>
+		    <p>Some content in menu 2.</p>
+		  </div>
+		</div>
 	</div>
     <div class="panel-footer">인프런_스프1탄_서민재</div>
   </div>

@@ -24,9 +24,9 @@
   <c:import url="/WEB-INF/views/common/header.jsp"/>
   <h3>Spring MVC03</h3><br/>
   <div class="panel panel-default">
-    <div class="panel-heading">로그인 화면</div>
+    <div class="panel-heading"><strong>로그인 화면</strong></div>
     <div class="panel-body">
-	  <form class="form-horizontal" action="${contextPath}/memLogin.do" method="post">
+	  <form class="form-horizontal" action="${contextPath}/memLogin.do" method="post" style="margin-top: 15px;">
 	    <div class="form-group">
 	      <label class="control-label col-sm-2" for="memId">아이디</label>
 	      <div class="col-sm-10">

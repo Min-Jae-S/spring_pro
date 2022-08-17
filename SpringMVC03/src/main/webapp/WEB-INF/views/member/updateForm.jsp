@@ -57,11 +57,11 @@
   <c:import url="/WEB-INF/views/common/header.jsp"/>
   <h3>Spring MVC03</h3>
   <div class="panel panel-default">
-    <div class="panel-heading">회원정보 수정 화면</div>
-    <div class="panel-body">
+    <div class="panel-heading"><strong>회원정보 수정 화면</strong></div>
+    <div class="panel-body" style="vertical-align: middle">
     	<form action="${contextPath}/memUpdate.do" method="post" name="updateForm" id="updateForm">
     		<input type="hidden" id="memPassword" name="memPassword" value="${sessionScope.member.memPassword}">
-    		<table class="table table-bordered" style="text-align: center; border: 1px solid #dddddd;">
+    		<table class="table table-bordered" style="text-align: center; border: 1px solid #dddddd; margin-top: 20px;">
     			<tr>
     				<td style="width: 110px; vertical-align: middle; font-weight: bold;">아이디</td>
     				<td><input id="memId" name="memId" class="form-control" type="test" maxlength="20" value="${sessionScope.member.memId}" readonly></td>
@@ -93,11 +93,11 @@
     				<td colspan="2">
     					<div class="form-group" style="text-align: center; margin: 0 auto;">
     						<div class="btn-group" data-toggle="buttons">
-    							<label class="btn btn-primary ${sessionScope.member.memGender eq '남자' ? 'active' : ''}">
+    							<label class="btn btn-default ${sessionScope.member.memGender eq '남자' ? 'active' : ''}">
     								<input type="radio" name="memGender" autocomplete="off" value="남자"
     									${sessionScope.member.memGender eq '남자' ? 'checked' : ''}>남자
     							</label>
-    							<label class="btn btn-primary ${sessionScope.member.memGender eq '여자' ? 'active' : ''}">
+    							<label class="btn btn-default ${sessionScope.member.memGender eq '여자' ? 'active' : ''}">
     								<input type="radio" name="memGender" autocomplete="off" value="여자" 
     									${sessionScope.member.memGender eq '여자' ? 'checked' : ''}>여자
     							</label>

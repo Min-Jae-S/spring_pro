@@ -30,7 +30,7 @@
   	
   	function makeView(data) { // data = [{index=0}, {index=1}, {index=2}, ...]
   		var listHtml = "<table class='table table-bordered'>";
-  		listHtml += "<tr>";
+  		listHtml += "<tr style='text-align: center; font-weight: bold;'>";
   		listHtml += "<td>번호</td>";
   		listHtml += "<td>제목</td>";
   		listHtml += "<td>작성자</td>";
@@ -47,7 +47,7 @@
 	  		listHtml += "</tr>";
 	  		
 	  		listHtml += "<tr style='display: none' id='tr" + obj.idx + "'>";
-	  		listHtml += "<td>내용</td>";
+	  		listHtml += "<td style='text-align: center; vertical-align: middle;'>내용</td>";
 	  		listHtml += "<td colspan='4'>";
 	  		listHtml += "<textarea rows='7' class='form-control' style='resize: none' readonly id='taContent" + obj.idx + "'></textarea>";
 	  		listHtml += "<br/>";
@@ -182,7 +182,7 @@
   <c:import url="/WEB-INF/views/common/header.jsp"/>
   <h3>Spring MVC03</h3><br/>
   <div class="panel panel-default">
-    <div class="panel-heading">게시판</div>
+    <div class="panel-heading"><strong>게시판</strong></div>
     <div class="panel-body" id="boardList"></div>
     <div class="panel-body" id="writeForm" style="display: none;">
     	<form id="insertForm">

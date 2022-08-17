@@ -24,10 +24,10 @@
   <c:import url="/WEB-INF/views/common/header.jsp"/>
   <h3>Spring MVC03</h3><br/>
   <div class="panel panel-default">
-    <div class="panel-heading">회원사진 등록</div>
+    <div class="panel-heading"><strong>회원사진 등록</strong></div>
     <div class="panel-body">
 	  <form action="${contextPath}/memImageUpdate.do" method="post" enctype="multipart/form-data">
-    	<table class="table table-bordered" style="text-align: center; border: 1px solid #dddddd;">
+    	<table class="table table-bordered" style="text-align: center; border: 1px solid #dddddd; margin-top: 20px;">
     		<tr>
     			<td style="width: 110px; vertical-align: middle; font-weight: bold;">아이디</td>
    				<td><input type="text" class="form-control" id="memId" name="memId" value="${sessionScope.member.memId}" readonly></td>
