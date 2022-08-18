@@ -168,6 +168,13 @@
 			<version>2.9.8</version>
 		</dependency>
 		
+		<!-- cos.jar API -->		
+		<dependency>
+		    <groupId>com.servlets</groupId>
+		    <artifactId>cos</artifactId>
+		    <version>09May2002</version>
+		</dependency>
+		
 	</dependencies>
     <build>
         <plugins>

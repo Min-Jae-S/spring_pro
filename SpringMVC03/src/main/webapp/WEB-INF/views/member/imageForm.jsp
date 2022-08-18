@@ -14,7 +14,7 @@
   <script>
   	$(document).ready(function() {
   		if(${!empty msgType}) {
-  			$('#loginFailMessageModal').modal('show');
+  			$('#uploadFailMessageModal').modal('show');
   		}
   	});
   </script>
@@ -26,7 +26,7 @@
   <div class="panel panel-default">
     <div class="panel-heading"><strong>회원사진 등록</strong></div>
     <div class="panel-body">
-	  <form action="${contextPath}/memImageUpdate.do" method="post" enctype="multipart/form-data">
+	  <form action="${contextPath}/memImageUpload.do" method="post" enctype="multipart/form-data">
     	<table class="table table-bordered" style="text-align: center; border: 1px solid #dddddd; margin-top: 20px;">
     		<tr>
     			<td style="width: 110px; vertical-align: middle; font-weight: bold;">아이디</td>
@@ -53,8 +53,8 @@
   </div>
 </div>
 
-<!-- 로그인 실패 메세지(Modal) -->
-<div id="loginFailMessageModal" class="modal fade" role="dialog">
+<!-- 업로드 실패 메세지(Modal) -->
+<div id="uploadFailMessageModal" class="modal fade" role="dialog">
   <div class="modal-dialog">
     <!-- Modal content-->
     <div class="modal-content panel-danger">

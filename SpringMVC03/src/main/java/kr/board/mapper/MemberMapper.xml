@@ -2,8 +2,8 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="kr.board.mapper.MemberMapper">
 	
-	<select id="memCheckId" resultType="kr.board.entity.Member">
-		SELECT * FROM mem_tbl WHERE memId = #{memId}
+	<select id="memCheckId" resultType="java.lang.String">
+		SELECT memName FROM mem_tbl WHERE memId = #{memId}
 	</select>
 	
 	<insert id="memRegister" parameterType="kr.board.entity.Member">
@@ -45,5 +45,15 @@
 		WHERE
 			memId = #{memId}
 	</update>
+	
+	<!--
+	<select id="getMember" resultType="kr.board.entity.Member">
+		SELECT * FROM mem_tbl WHERE memId = #{memId}
+	</select>
+	-->
+	
+	<select id="getProfile" resultType="java.lang.String">
+		SELECT memProfile FROM mem_tbl WHERE memId = #{memId}
+	</select>
 	
 </mapper>
