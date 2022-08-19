@@ -14,7 +14,7 @@
   <script>
   	$(document).ready(function() {
   		if(${!empty msgType}) {
-  			$('#registerSuccessMessageModal').modal('show');
+  			$('#messageModal').modal('show');
   		}
   	});
   </script>
@@ -66,8 +66,8 @@
   </div>
 </div>
 
-<!-- 회원가입 성공 메세지(Modal) -->
-<div id="registerSuccessMessageModal" class="modal fade" role="dialog">
+<!-- 회원가입 성공, 프로필 사진 수정 메세지(Modal) -->
+<div id="messageModal" class="modal fade" role="dialog">
   <div class="modal-dialog">
     <!-- Modal content-->
     <div class="modal-content panel-success">

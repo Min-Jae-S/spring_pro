@@ -63,12 +63,14 @@ public class MemberController {
 			// RedirectAttributes로 객체바인딩을 하자
 			rttr.addFlashAttribute("msgType", "실패 메세지");
 			rttr.addFlashAttribute("msg", "모든 내용을 입력하세요.");
+			
 			return "redirect:/memRegisterForm.do"; // ${msgType}, ${msg}
 		}
 		
 		if(!memPassword1.equals(memPassword2)) {
 			rttr.addFlashAttribute("msgType", "실패 메세지");
 			rttr.addFlashAttribute("msg", "비밀번호가 다릅니다.");
+			
 			return "redirect:/memRegisterForm.do";
 		}
 		
@@ -82,10 +84,12 @@ public class MemberController {
 			
 			// 회원가입에 성공하면 로그인 처리하기
 			session.setAttribute("member", member);
+			
 			return "redirect:/";
 		} else {
 			rttr.addFlashAttribute("msgType", "실패 메세지");
 			rttr.addFlashAttribute("msg", "회원가입에 실패하였습니다.");
+			
 			return "redirect:/memRegisterForm.do";
 		}
 	}
@@ -108,6 +112,7 @@ public class MemberController {
 		   member.getMemPassword() == null || member.getMemPassword().trim().equals("")) {
 			rttr.addFlashAttribute("msgType", "실패 메세지");
 			rttr.addFlashAttribute("msg", "모든 내용을 입력해주세요.");
+			
 			return "redirect:/memLoginForm.do";
 		}
 		
@@ -116,10 +121,12 @@ public class MemberController {
 			rttr.addFlashAttribute("msgType", "성공 메세지");
 			rttr.addFlashAttribute("msg", "로그인에 성공했습니다.");
 			session.setAttribute("member", tempMember);
+			
 			return "redirect:/";
 		} else {
 			rttr.addFlashAttribute("msgType", "실패 메세지");
 			rttr.addFlashAttribute("msg", "로그인에 실패했습니다. 다시 로그인 해주세요.");
+			
 			return "redirect:/memLoginForm.do";
 		}
 	}
@@ -144,12 +151,14 @@ public class MemberController {
 					
 			rttr.addFlashAttribute("msgType", "실패 메세지");
 			rttr.addFlashAttribute("msg", "모든 내용을 입력하세요.");
+			
 			return "redirect:/memUpdateForm.do"; // ${msgType}, ${msg}
 		}
 		
 		if(!memPassword1.equals(memPassword2)) {
 			rttr.addFlashAttribute("msgType", "실패 메세지");
 			rttr.addFlashAttribute("msg", "비밀번호가 다릅니다.");
+			
 			return "redirect:/memUpdateForm.do";
 		}
 		
@@ -160,10 +169,12 @@ public class MemberController {
 			rttr.addFlashAttribute("msgType", "성공 메세지");
 			rttr.addFlashAttribute("msg", "회원정보가 정상적으로 수정되었습니다.");
 			session.setAttribute("member", member);
+			
 			return "redirect:/memUpdateForm.do";
 		} else {
 			rttr.addFlashAttribute("msgType", "실패 메세지");
 			rttr.addFlashAttribute("msg", "회원정보 수정에 실패하였습니다.");
+			
 			return "redirect:/memUpdateForm.do";
 		}
 	}
@@ -173,9 +184,10 @@ public class MemberController {
 		return "member/imageForm";
 	}
 	
-	// 회원사진 업로드(1.upload 폴더에 파일 저장, 2.DB에 파일 이름 저장)
+	// 회원사진 업로드(1.upload 폴더에 파일 저장,  2.DB에 파일 이름 저장)
 	@PostMapping("/memImageUpload.do")
-	public String memImageUpload(HttpServletRequest request, RedirectAttributes rttr) {
+	public String memImageUpload(HttpServletRequest request, RedirectAttributes rttr,
+								 HttpSession session) {
 		MultipartRequest multi = null;
 		
 		// C:\\Users\\User\\git\\spring_pro\\SpringMVC03\\src\\main\\webapp\\resources\\upload
@@ -183,13 +195,15 @@ public class MemberController {
 		String savePath = request.getRealPath("resources/upload");
 		System.out.println("savePath : " + savePath);
 		int fileMaxSize = 10*1024*1024; // 10MB
-		
+	
 		try {
 			multi = new MultipartRequest(request, savePath, fileMaxSize, "UTF-8", new DefaultFileRenamePolicy());
+			System.out.println("new MultipartRequest() created...");
 		} catch (Exception e) {
 			e.printStackTrace();
 			rttr.addFlashAttribute("msgType", "실패 메세지");
 			rttr.addFlashAttribute("msg", "파일의 크기는 10MB를 초과할 수 없습니다.");
+			
 			return "redirect:/memImageForm.do";
 		}
 		
@@ -198,11 +212,11 @@ public class MemberController {
 
 		if(file != null) { // 업로드가 된 상태
 			// 이미지 파일(png, jpg, gif) 체크
-			String fileName = file.getName();
-			String ext = fileName.substring(fileName.lastIndexOf(".") + 1).toUpperCase();
+			String newProfile = file.getName();
+			String ext = newProfile.substring(newProfile.lastIndexOf(".") + 1).toUpperCase();
 			
 			if(ext.equals("PNG") || ext.equals("JPG") || ext.equals("GIF")) {
-				String oldProfile = memberMapper.getProfile(memId);
+				String oldProfile = memberMapper.getMember(memId).getMemProfile();
 				File oldFile = new File(savePath + File.separator + oldProfile);
 				
 				if(oldFile.exists()) {
@@ -214,12 +228,20 @@ public class MemberController {
 				}
 				rttr.addFlashAttribute("msgType", "실패 메세지");
 				rttr.addFlashAttribute("msg", "이미지 파일(PNG, JPG, GIF)만 업로드 가능합니다.");
+				
 				return "redirect:/memImageForm.do";
 			}
+			
+			// 새로운 이미지를 DB에 업데이트
+			memberMapper.memProfileUpdate(memId, newProfile);
+			
+			Member member = memberMapper.getMember(memId);
+			session.setAttribute("member", member);
 		}
 		
-		// 새로운 이미지를 DB에 업데이트
+		rttr.addFlashAttribute("msgType", "성공 메세지");
+		rttr.addFlashAttribute("msg", "저장되었습니다.");
 		
-		return "";
+		return "redirect:/";
 	}
 }

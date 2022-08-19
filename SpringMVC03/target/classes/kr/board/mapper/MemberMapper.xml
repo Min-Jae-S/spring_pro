@@ -46,14 +46,17 @@
 			memId = #{memId}
 	</update>
 	
-	<!--
 	<select id="getMember" resultType="kr.board.entity.Member">
 		SELECT * FROM mem_tbl WHERE memId = #{memId}
 	</select>
-	-->
 	
-	<select id="getProfile" resultType="java.lang.String">
-		SELECT memProfile FROM mem_tbl WHERE memId = #{memId}
-	</select>
+	<update id="memProfileUpdate">
+		UPDATE
+			mem_tbl
+		SET
+			memProfile = #{memProfile}
+		WHERE
+			memId = #{memId}
+	</update>
 	
 </mapper>

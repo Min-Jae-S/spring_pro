@@ -1,6 +1,7 @@
 package kr.board.mapper;
 
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 
 import kr.board.entity.Member;
 
@@ -15,7 +16,8 @@ public interface MemberMapper {
 	
 	public int memUpdate(Member member);
 	
-	//public Member getMember(String memId);
-	public String getProfile(String memId);
+	public Member getMember(String memId);
+	
+	public void memProfileUpdate(@Param("memId") String memId, @Param("memProfile") String memProfile);
 	
 }
