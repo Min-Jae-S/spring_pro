@@ -193,12 +193,10 @@ public class MemberController {
 		// C:\\Users\\User\\git\\spring_pro\\SpringMVC03\\src\\main\\webapp\\resources\\upload
 		// C:\\eGovFrame-4.0.0\\workspace.edu\\.metadata\\.plugins\\org.eclipse.wst.server.core\\tmp0\\wtpwebapps\\SpringMVC03\\resources\\upload
 		String savePath = request.getRealPath("resources/upload");
-		System.out.println("savePath : " + savePath);
 		int fileMaxSize = 10*1024*1024; // 10MB
 	
 		try {
 			multi = new MultipartRequest(request, savePath, fileMaxSize, "UTF-8", new DefaultFileRenamePolicy());
-			System.out.println("new MultipartRequest() created...");
 		} catch (Exception e) {
 			e.printStackTrace();
 			rttr.addFlashAttribute("msgType", "실패 메세지");

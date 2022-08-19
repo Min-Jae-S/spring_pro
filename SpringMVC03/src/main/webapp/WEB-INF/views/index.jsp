@@ -24,20 +24,6 @@
 
 <div class="container">
   <c:import url="/WEB-INF/views/common/header.jsp"/>
-  <div style="margin-bottom: 15px;">
-	  <c:if test="${empty sessionScope.member}">
-		  <h3>Spring MVC03</h3>
-	  </c:if>
-	  <c:if test="${!empty sessionScope.member}">
-	  	<c:if test="${empty sessionScope.member.memProfile}">
-	  		<img src="${contextPath}/resources/images/person.png" style="width : 50px; height: 50px; margin-right: 10px">
-	  	</c:if>
-	  	<c:if test="${!empty sessionScope.member.memProfile}">
-	  		<img src="${contextPath}/resources/upload/${sessionScope.member.memProfile}" style="width : 50px; height: 50px; margin-right: 10px">
-	  	</c:if>
-		<label>${sessionScope.member.memId}님 방문을 환영합니다.</label>
-	  </c:if>
-  </div>
   <div class="panel panel-default">
     <img src="${contextPath}/resources/images/main_mokoko_skyblue.png" style="width: 100%;">
     <div class="panel-body">

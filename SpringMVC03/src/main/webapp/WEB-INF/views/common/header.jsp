@@ -29,6 +29,12 @@
         <li><a href="${contextPath}/memUpdateForm.do"><span class="glyphicon glyphicon-wrench"></span>&nbsp;&nbsp;회원정보 수정</a></li>
         <li><a href="${contextPath}/memImageForm.do"><span class="glyphicon glyphicon-picture"></span>&nbsp;&nbsp;사진 등록</a></li>
         <li><a href="${contextPath}/memLogout.do"><span class="glyphicon glyphicon-log-out"></span>&nbsp;&nbsp;로그아웃</a></li>
+	  	<c:if test="${empty sessionScope.member.memProfile}">
+	  		<li><img src="${contextPath}/resources/images/person.png" class="img-circle" style="width : 30px; height: 30px; margin: 10px"><span style="color: white">${sessionScope.member.memId} 님</span></li>
+	  	</c:if>
+	  	<c:if test="${!empty sessionScope.member.memProfile}">
+	  		<li><img src="${contextPath}/resources/upload/${sessionScope.member.memProfile}" class="img-circle" style="width : 30px; height: 30px; margin: 10px"><span style="color: white">${sessionScope.member.memId} 님</span></li>
+	  	</c:if>
       </ul>
       </c:if>
     </div>

@@ -50,17 +50,22 @@
 	  		listHtml += "<td style='text-align: center; vertical-align: middle;'>내용</td>";
 	  		listHtml += "<td colspan='4'>";
 	  		listHtml += "<textarea rows='7' class='form-control' style='resize: none' readonly id='taContent" + obj.idx + "'></textarea>";
-	  		listHtml += "<br/>";
-	  		listHtml += "<span id='btnUpdateForm" + obj.idx +"'><button class='btn btn-success' onclick='goUpdateForm(" + obj.idx + ")'>수정화면</button></span>&nbsp;";
-	  		listHtml += "<button class='btn btn-warning' onclick='goDelete(" + obj.idx + ")'>삭제</button>";
+	  		if("${sessionScope.member.memId}" == obj.writerId) {
+		  		listHtml += "<br/>";
+		  		listHtml += "<span id='btnUpdateForm" + obj.idx +"'><button class='btn btn-success' onclick='goUpdateForm(" + obj.idx + ")'>수정화면</button></span>&nbsp;";
+		  		listHtml += "<button class='btn btn-warning' onclick='goDelete(" + obj.idx + ")'>삭제</button>";
+	  		}
 	  		listHtml += "</td>";
 	  		listHtml += "</tr>";
   		});
-  		listHtml += "<tr>";
-  		listHtml += "<td colspan='5'>";
-  		listHtml += "<button class='btn btn-primary' onclick='goWriteForm()'>글쓰기</button>";
-  		listHtml += "</td>";
-  		listHtml += "</tr>";
+  		
+  		if(${!empty sessionScope.member}) {
+	  		listHtml += "<tr>";
+	  		listHtml += "<td colspan='5'>";
+	  		listHtml += "<button class='btn btn-primary' onclick='goWriteForm()'>글쓰기</button>";
+	  		listHtml += "</td>";
+	  		listHtml += "</tr>";
+  		}
   		listHtml += "</table>";
   		
   		$('#boardList').html(listHtml);
@@ -186,6 +191,7 @@
     <div class="panel-body" id="boardList"></div>
     <div class="panel-body" id="writeForm" style="display: none;">
     	<form id="insertForm">
+    		<input type="hidden" name="writerId" value="${sessionScope.member.memId}">
 	    	<table class="table">
 	    		<tr>
 	    			<td>제목</td>
@@ -197,7 +203,7 @@
 	    		</tr>
 	    		<tr>
 	    			<td>작성자</td>
-	    			<td><input type="text" id="writer" name="writer" class="form-control"></td>
+	    			<td><input type="text" id="writer" name="writer" class="form-control" value="${sessionScope.member.memName}" readonly></td>
 	    		</tr>
 	    		<tr>
 	    			<td colspan="2" align="center">

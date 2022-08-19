@@ -11,12 +11,14 @@
 			idx,
 			title,
 			content,
-			writer
+			writer,
+			writerId
 		) VALUES (
 			myboard_seq.nextval,
 			#{title},
 			#{content},
-			#{writer}
+			#{writer},
+			#{writerId}
 		)
 	</insert>
 	

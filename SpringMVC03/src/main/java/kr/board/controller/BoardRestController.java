@@ -32,6 +32,7 @@ public class BoardRestController {
 	
 	@PostMapping("/new")
 	public void boardInsert(Board board) {
+		System.out.println("boardInsert : " + board);
 		boardMapper.boardInsert(board);
 	}
 	
@@ -42,7 +43,7 @@ public class BoardRestController {
 	
 	@PutMapping("/update")
 	public void boardUpdate(@RequestBody Board board) {
-		//System.out.println("boardUpdate: " + board);
+		System.out.println("boardUpdate : " + board);
 		boardMapper.boardUpdate(board);
 	}
 	
