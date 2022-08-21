@@ -34,7 +34,7 @@ public class TestController {
 		// JSON --> Java Object
 		User user2 = objectMapper.readValue(JSON, User.class);
 		System.out.println("<< Java Object >>");
-		System.out.println(user2);
+		System.out.println("User : " + user2);
 		
 		return "test/test_jackson";
 	}

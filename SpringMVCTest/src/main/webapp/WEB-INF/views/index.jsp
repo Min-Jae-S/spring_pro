@@ -52,7 +52,11 @@
   		
   		// JSON --> Obj
   		$('#btnToObj').on("click", function() {
+  			var json = '{"name" : "Smith", "age" : 30}';
   			
+  			var obj = JSON.parse(json);
+  			console.log("obj");
+  			console.log(obj);
   		});
   		
   		// Send Data
