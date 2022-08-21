@@ -108,8 +108,8 @@
 		<button class="btn btn-primary" type="button" id="btnToObj">JSON --> Object</button>
 	</div>
 	<div style="margin-top: 20px;">
-	   	<button class="btn btn-primary" type="button" id="btnSend">Send Data</button>
-	   	<button class="btn btn-primary" type="button" id="btnGet">Get Data</button>
+	   	<button class="btn btn-warning" type="button" id="btnSend">Send Data</button>
+	   	<button class="btn btn-warning" type="button" id="btnGet">Get Data</button>
 	</div>
 </div>
 
