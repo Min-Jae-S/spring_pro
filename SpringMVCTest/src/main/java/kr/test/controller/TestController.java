@@ -13,13 +13,13 @@ import kr.test.entity.User;
 @Controller
 public class TestController {
 	
-	@RequestMapping("/")
-	public String main() {
-		return "index";
+	@RequestMapping("/testJackson")
+	public String testJackson() {
+		return "test/test_jackson";
 	}
 
-	@RequestMapping("/testJackson")
-	public @ResponseBody String testJackson() throws Exception {
+	@RequestMapping("/objectMapper")
+	public @ResponseBody String objectMapper() throws Exception {
 		ObjectMapper objectMapper = new ObjectMapper();
 		User user1 = new User("ID1", "PW1", 30, true);
 		
@@ -27,25 +27,24 @@ public class TestController {
 		String JSON = objectMapper.writerWithDefaultPrettyPrinter().writeValueAsString(user1);
 		System.out.println("<< JSON >>");
 		System.out.println(JSON);
+		System.out.println();
 		
 		// JSON --> Java Object
 		User user2 = objectMapper.readValue(JSON, User.class);
 		System.out.println("<< Java Object >>");
 		System.out.println(user2);
+		System.out.println();
 		
 		return JSON;
 	}
 	
 	@RequestMapping("/getData")
 	@ResponseBody
-	public String getData(@RequestBody User user) {
+	public void getData(@RequestBody User user) {
 		System.out.println("getData : " + user);
 		
 		//ObjectMapper objectMapper = new ObjectMapper();
-		//User user = objectMapper.readValue(json, User.class);
-		//System.out.println(user);
-		
-		return "success";
+		//User user = objectMapper.readValue(data, User.class);
 	}
 	
 	@RequestMapping("/sendData")
