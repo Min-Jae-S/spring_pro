@@ -10,7 +10,7 @@ public class MainClass {
 		// TODO Auto-generated method stub
 
 		ObjectMapper mapper = new ObjectMapper();
-		User user1 = new User("아이디1", "패스워드", 30, true);
+		User user1 = new User("아이디1", "패스워드1", 30, true);
 		
         // Java Obejct --> JSON
 		String JSON = mapper.writerWithDefaultPrettyPrinter().writeValueAsString(user1);
