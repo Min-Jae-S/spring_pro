@@ -19,32 +19,33 @@ public class TestController {
 	}
 
 	@RequestMapping("/testJackson")
-	public String testJackson() throws Exception {
-		
+	public @ResponseBody String testJackson() throws Exception {
 		ObjectMapper objectMapper = new ObjectMapper();
-		User user1 = new User("아이디1", "패스워드1", 30, true);
+		User user1 = new User("ID1", "PW1", 30, true);
 		
 		// Java Obejct --> JSON
 		String JSON = objectMapper.writerWithDefaultPrettyPrinter().writeValueAsString(user1);
 		System.out.println("<< JSON >>");
 		System.out.println(JSON);
 		
-		System.out.println();
-		
 		// JSON --> Java Object
 		User user2 = objectMapper.readValue(JSON, User.class);
 		System.out.println("<< Java Object >>");
-		System.out.println("User : " + user2);
+		System.out.println(user2);
 		
-		return "test/test_jackson";
+		return JSON;
 	}
 	
 	@RequestMapping("/getData")
 	@ResponseBody
-	public String getData(User user) {
-		System.out.println("User : " + user);
+	public String getData(@RequestBody User user) {
+		System.out.println("getData : " + user);
 		
-		return "getData success";
+		//ObjectMapper objectMapper = new ObjectMapper();
+		//User user = objectMapper.readValue(json, User.class);
+		//System.out.println(user);
+		
+		return "success";
 	}
 	
 	@RequestMapping("/sendData")

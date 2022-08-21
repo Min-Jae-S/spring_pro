@@ -14,39 +14,14 @@
   <script>
   	$(document).ready(function(){
 		
-  		// Object
-  		$('#btnObj').on("click", function() {
+  		// Object --> JSON
+  		$('#btnToJson').on("click", function() {
   			var obj = {
-				name : "John",
-				age : 30
-  			};
-  			console.log("obj");
-  			console.log(obj);
-  		});
-  		
-  		// JSON
-  		$('#btnJSON').on("click", function() {
-  			var obj = {
-				name : "John",
+  				name : "John",
   				age : 30
   	  		};
   			
   			var json = JSON.stringify(obj);
-  			console.log("json");
-  			console.log(json);
-  		});
-  		
-  		// Obj --> JSON
-  		$('#btnToJson').on("click", function() {
-  			var formData = {
-  				userId : $('input[name=userId]').val(),
-  				userPassword : $('input[name=userPassword]').val(),
-  				userAge : $('input[name=userAge]').val(),
-  				userAgree : $('input[name=userAgree]:checked').val()
-  			};
-  			
-  			var json = JSON.stringify(formData);
-  			console.log("json");
   			console.log(json);
   		});
   		
@@ -55,29 +30,21 @@
   			var json = '{"name" : "Smith", "age" : 30}';
   			
   			var obj = JSON.parse(json);
-  			console.log("obj");
   			console.log(obj);
   		});
   		
   		// Send Data
   		$('#btnSend').on("click", function() {
-  			var formData = {
-  				userId : $('input[name=userId]').val(),
-  				userPassword : $('input[name=userPassword]').val(),
-  				userAge : $('input[name=userAge]').val(),
-  				userAgree : $('input[name=userAgree]:checked').val()
-  			};
-  			console.log(formData);
-  			
-  			var json = JSON.stringify(formData);
-  			console.log(json);
-  			
   			$.ajax({
   				url : '${contextPath}/getData',
   				type : 'POST',
   				contentType: 'application/json; charset=utf-8',
-  				data : json,
-  				//data: formData,
+  				data : JSON.stringify({
+  					userId : $('#userId').val(),
+  	  				userPassword : $('#userPassword').val(),
+  	  				userAge : $('#userAge').val(),
+  	  				userAgree : $('input[name=userAgree]:checked').val()
+  				}),
   				success : function(data) { 
   					console.log(data);
   				},
@@ -98,8 +65,11 @@
   			});
   		});
   		
-  		
   	});
+  	
+  	function test_jackson() {
+  		;
+  	}
   </script>
   <style>
   	table {
@@ -114,24 +84,20 @@
 <body>
 
 <div class="container">
-	<div style="margin-top: 20px;">
-	    <button class="btn btn-primary" type="button" id="btnObj">Object</button>
-	    <button class="btn btn-primary" type="button" id="btnJSON">JSON</button>
-	</div>
-	<div style="margin-top: 20px;">
-		<form id="frm">
+	<div style="margin-top: 40px;">
+		<form>
 			<table class="table table-bordered">
 				<tr>
 					<td>아이디</td>
-					<td><input class="form-control" type="text" name="userId"></td>
+					<td><input class="form-control" type="text" id="userId" name="userId"></td>
 				</tr>
 				<tr>
 					<td>비밀번호</td>
-					<td><input class="form-control" type="password" name="userPassword"></td>
+					<td><input class="form-control" type="password" id="userPassword" name="userPassword"></td>
 				</tr>
 				<tr>
 					<td>나이</td>
-					<td><input class="form-control" type="text" name="userAge"></td>
+					<td><input class="form-control" type="text" id="userAge" name="userAge"></td>
 				</tr>
 				<tr>
 					<td>동의여부</td>
@@ -142,6 +108,9 @@
 				</tr>
 			</table>
 		</form>
+	</div>
+	<div style="margin-top: 20px;">
+	   	<button class="btn btn-primary" type="button" onclick="location.href='${contextPath}/testJackson'">test_jackson</button>
 	</div>
 	<div style="margin-top: 20px;">
 	   	<button class="btn btn-primary" type="button" id="btnToJson">Obejct --> JSON</button>
