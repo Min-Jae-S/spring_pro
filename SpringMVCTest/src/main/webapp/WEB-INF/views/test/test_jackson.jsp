@@ -33,8 +33,8 @@
   			console.log(obj);
   		});
   		
-  		// Send Data
-  		$('#btnSend').on("click", function() {
+  		// Send Data(POST)
+  		$('#btnSendPOST').on("click", function() {
   			$.ajax({
   				url : '${contextPath}/getData',
   				type : 'POST',
@@ -45,6 +45,22 @@
   	  				userAge : $('#userAge').val(),
   	  				userAgree : $('input[name=userAgree]:checked').val()
   				}),
+  				success : function() { alert('success'); },
+  				error : function() { alert('error'); }
+  			});
+  		});
+
+  		// Send Data(GET)
+  		$('#btnSendGET').on("click", function() {
+  			$.ajax({
+  				url : '${contextPath}/getData',
+  				type : 'GET',
+  				data : {
+  					userId : $('#userId').val(),
+  	  				userPassword : $('#userPassword').val(),
+  	  				userAge : $('#userAge').val(),
+  	  				userAgree : $('input[name=userAgree]:checked').val()
+  				},
   				success : function() { alert('success'); },
   				error : function() { alert('error'); }
   			});
@@ -108,7 +124,8 @@
 		<button class="btn btn-primary" type="button" id="btnToObj">JSON --> Object</button>
 	</div>
 	<div style="margin-top: 20px;">
-	   	<button class="btn btn-warning" type="button" id="btnSend">Send Data</button>
+	   	<button class="btn btn-warning" type="button" id="btnSendPOST">Send Data(POST)</button>
+	   	<button class="btn btn-warning" type="button" id="btnSendGET">Send Data(GET)</button>
 	   	<button class="btn btn-warning" type="button" id="btnGet">Get Data</button>
 	</div>
 </div>

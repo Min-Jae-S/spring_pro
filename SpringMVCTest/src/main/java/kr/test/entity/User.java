@@ -11,7 +11,7 @@ public class User {
 	private boolean UserAgree;
 	
 	public User() {
-		
+
 	}
 	
 	public User(String userId, String userPassword, int userAge, boolean userAgree) {

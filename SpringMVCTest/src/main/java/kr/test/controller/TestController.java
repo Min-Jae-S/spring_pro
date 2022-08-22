@@ -1,8 +1,13 @@
 package kr.test.controller;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -38,13 +43,19 @@ public class TestController {
 		return JSON;
 	}
 	
-	@RequestMapping("/getData")
+	@PostMapping("/getData")
 	@ResponseBody
-	public void getData(@RequestBody User user) {
-		System.out.println("getData : " + user);
+	public void getDataPOST(@RequestBody User user) {
+		System.out.println("getDataPOST : " + user);
 		
 		//ObjectMapper objectMapper = new ObjectMapper();
 		//User user = objectMapper.readValue(data, User.class);
+	}
+
+	@GetMapping("/getData")
+	@ResponseBody
+	public void getDataGET(User user) {
+		System.out.println("getDataGET : " + user);
 	}
 	
 	@RequestMapping("/sendData")
