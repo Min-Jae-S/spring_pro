@@ -9,7 +9,7 @@
 	
 	<!-- DB 접속정보(Oracle) -->
 	<bean id="hikariConfig" class="com.zaxxer.hikari.HikariConfig">
-		<property name="driverClassName" value="oracle.jdbc.driver.OracleDriver"/>
+		<property name="driverClassName" value="oracle.jdbc.OracleDriver"/>
 		<property name="jdbcUrl" value="jdbc:oracle:thin:@127.0.0.1:1521:xe"/>
 		<property name="username" value="hr2"/>
 		<property name="password" value="1234"/>

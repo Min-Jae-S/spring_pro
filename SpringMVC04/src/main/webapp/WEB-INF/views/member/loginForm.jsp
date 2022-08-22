@@ -5,7 +5,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>Bootstrap Example</title>
+  <title>Spring MVC04</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
@@ -22,7 +22,7 @@
 <body>
 <div class="container">
   <c:import url="/WEB-INF/views/common/header.jsp"/>
-  <h3>Spring MVC03</h3><br/>
+  <h3>Spring MVC04</h3><br/>
   <div class="panel panel-default">
     <div class="panel-heading"><strong>로그인 화면</strong></div>
     <div class="panel-body">

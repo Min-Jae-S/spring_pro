@@ -190,8 +190,8 @@ public class MemberController {
 								 HttpSession session) {
 		MultipartRequest multi = null;
 		
-		// C:\\Users\\User\\git\\spring_pro\\SpringMVC03\\src\\main\\webapp\\resources\\upload
-		// C:\\eGovFrame-4.0.0\\workspace.edu\\.metadata\\.plugins\\org.eclipse.wst.server.core\\tmp0\\wtpwebapps\\SpringMVC03\\resources\\upload
+		// C:\\Users\\User\\git\\spring_pro\\SpringMVC04\\src\\main\\webapp\\resources\\upload
+		// C:\\eGovFrame-4.0.0\\workspace.edu\\.metadata\\.plugins\\org.eclipse.wst.server.core\\tmp0\\wtpwebapps\\SpringMVC04\\resources\\upload
 		String savePath = request.getRealPath("resources/upload");
 		int fileMaxSize = 10*1024*1024; // 10MB
 	
