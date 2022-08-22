@@ -8,7 +8,6 @@ public class MainClass {
 
 	public static void main(String[] args) throws Exception {
 		// TODO Auto-generated method stub
-
 		ObjectMapper mapper = new ObjectMapper();
 		User user1 = new User("아이디1", "패스워드1", 30, true);
 		
