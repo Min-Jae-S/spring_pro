@@ -21,6 +21,7 @@
 </head>
 <body>
 <%-- <jsp:include page="common/header.jsp"/> --%>
+<%-- <c:import url="/WEB-INF/views/common/header.jsp"/> --%>
 
 <div class="container">
   <c:import url="/WEB-INF/views/common/header.jsp"/>
