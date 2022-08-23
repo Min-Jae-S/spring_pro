@@ -26,7 +26,7 @@
   <div class="panel panel-default">
     <div class="panel-heading"><strong>회원사진 등록</strong></div>
     <div class="panel-body">
-	  <form action="${contextPath}/memImageUpload.do" method="post" enctype="multipart/form-data">
+	  <form action="${contextPath}/memImageUpload.do?${_csrf.parameterName}=${_csrf.token}" method="post" enctype="multipart/form-data">
     	<table class="table table-bordered" style="text-align: center; border: 1px solid #dddddd; margin-top: 20px;">
     		<tr>
     			<td style="width: 110px; vertical-align: middle; font-weight: bold;">아이디</td>

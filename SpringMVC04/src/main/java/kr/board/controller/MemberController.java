@@ -168,9 +168,11 @@ public class MemberController {
 		if(result == 1) {
 			rttr.addFlashAttribute("msgType", "성공 메세지");
 			rttr.addFlashAttribute("msg", "회원정보가 정상적으로 수정되었습니다.");
-			session.setAttribute("member", member);
 			
-			return "redirect:/memUpdateForm.do";
+			Member DBmember = memberMapper.getMember(member.getMemId());
+			session.setAttribute("member", DBmember);
+			
+			return "redirect:/";
 		} else {
 			rttr.addFlashAttribute("msgType", "실패 메세지");
 			rttr.addFlashAttribute("msg", "회원정보 수정에 실패하였습니다.");

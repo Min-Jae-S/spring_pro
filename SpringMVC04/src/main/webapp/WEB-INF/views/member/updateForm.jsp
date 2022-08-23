@@ -60,6 +60,7 @@
     <div class="panel-heading"><strong>회원정보 수정 화면</strong></div>
     <div class="panel-body" style="vertical-align: middle">
     	<form action="${contextPath}/memUpdate.do" method="post" name="updateForm" id="updateForm">
+    		<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
     		<input type="hidden" id="memPassword" name="memPassword" value="${sessionScope.member.memPassword}">
     		<table class="table table-bordered" style="text-align: center; border: 1px solid #dddddd; margin-top: 20px;">
     			<tr>

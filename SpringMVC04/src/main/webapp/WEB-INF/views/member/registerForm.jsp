@@ -19,12 +19,10 @@
   	});
   	
   	function checkId() {
-  		var memId = $('#memId').val();
-  		
   		$.ajax({
   			url : '${contextPath}/memCheckId.do',
   			type : 'get',
-  			data : {"memId" : memId},
+  			data : { 'memId' : $('#memId').val() },
   			success : function(result) {
   				// result == 1 ? '사용가능' : '중복 OR 공백입력'
   				if(result == 1) {
@@ -80,6 +78,7 @@
     <div class="panel-heading"><strong>회원가입</strong></div>
     <div class="panel-body">
     	<form action="${contextPath}/memRegister.do" method="post" name="registerForm" id="registerForm">
+    		<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
     		<input type="hidden" id="memPassword" name="memPassword">
     		<table class="table table-bordered" style="text-align: center; border: 1px solid #dddddd; margin-top: 20px;">
     			<tr>

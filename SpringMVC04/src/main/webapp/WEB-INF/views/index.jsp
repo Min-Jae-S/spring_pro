@@ -52,7 +52,7 @@
   </div>
 </div>
 
-<!-- 회원가입 성공, 프로필 사진 수정 메세지(Modal) -->
+<!-- 회원가입 성공, 회원수정 성공, 프로필 사진 수정 성공 메세지(Modal) -->
 <div id="messageModal" class="modal fade" role="dialog">
   <div class="modal-dialog">
     <!-- Modal content-->
