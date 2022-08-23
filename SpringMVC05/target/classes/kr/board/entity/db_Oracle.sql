@@ -29,6 +29,8 @@ select * from myboard order by idx desc;
 drop table myboard cascade constraints;
 drop sequence myboard_seq;
 
+------------------------------------------------------------------------
+---- Spring Security ---------------------------------------------------
 create table member_tbl (
 	memIdx 			number, 
 	memId 			varchar2(20) not null constraint MEMBER_PK primary key,

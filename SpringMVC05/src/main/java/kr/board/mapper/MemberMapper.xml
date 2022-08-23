@@ -49,7 +49,7 @@
 			memId = #{memId}
 	</update>
 	
-	<!-- 수정 : 회원정보 + 권한정보 -->
+	<!-- 추가 : 회원정보 + 권한정보 -->
 	<select id="getMember" resultType="kr.board.entity.Member">
 		SELECT * FROM member_tbl WHERE memId = #{memId}
 	</select>

@@ -106,7 +106,7 @@ public class MemberController {
 			rttr.addFlashAttribute("msg", "회원가입에 성공하였습니다.");
 			
 			// 회원가입에 성공하면 로그인 처리하기
-			// 수정 : getMember() --> 회원정보 + 권한정보
+			// 추가 : getMember() --> 회원정보 + 권한정보
 			Member DBmember = memberMapper.getMember(member.getMemId());
 			session.setAttribute("member", DBmember);
 			
