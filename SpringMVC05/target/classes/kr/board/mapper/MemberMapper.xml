@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="kr.board.mapper.MemberMapper">
+	
+	<select id="memCheckId" resultType="java.lang.String">
+		SELECT memName FROM member_tbl WHERE memId = #{memId}
+	</select>
+	
+	<insert id="memRegister" parameterType="kr.board.entity.Member">
+		<selectKey resultType="java.lang.Integer" keyProperty="memIdx" order="BEFORE">
+			SELECT NVL(MAX(memIdx), 0) + 1 FROM member_tbl
+		</selectKey>
+		INSERT INTO member_tbl (
+			memIdx,
+			memId,
+			memPassword,
+			memName,
+			memAge,
+			memGender,
+			memEmail,
+			memProfile
+		) VALUES (
+			#{memIdx},
+			#{memId},
+			#{memPassword},
+			#{memName},
+			#{memAge},
+			#{memGender},
+			#{memEmail},
+			#{memProfile, jdbcType=VARCHAR}
+		)
+	</insert>
+	
+	<select id="memLogin" parameterType="kr.board.entity.Member" resultType="kr.board.entity.Member">
+		SELECT * FROM member_tbl
+		WHERE memId = #{memId} AND memPassword = #{memPassword}
+	</select>
+	
+	<update id="memUpdate" parameterType="kr.board.entity.Member">
+		UPDATE
+			member_tbl
+		SET
+			memPassword = #{memPassword},
+			memName = #{memName},
+			memAge = #{memAge},
+			memGender = #{memGender},
+			memEmail = #{memEmail}
+		WHERE
+			memId = #{memId}
+	</update>
+	
+	<!-- 수정 : 회원정보 + 권한정보 -->
+	<select id="getMember" resultType="kr.board.entity.Member">
+		SELECT * FROM member_tbl WHERE memId = #{memId}
+	</select>
+	
+	<update id="memProfileUpdate">
+		UPDATE
+			member_tbl
+		SET
+			memProfile = #{memProfile}
+		WHERE
+			memId = #{memId}
+	</update>
+	
+	<insert id="insertAuth" parameterType="kr.board.entity.Auth">
+		INSERT INTO auth_tbl (
+			authIdx,
+			memId,
+			auth
+		) VALUES (
+			auth_tbl_seq.nextval
+			#{memId},
+			#{auth}
+		)
+	</insert>
+	
+</mapper>
