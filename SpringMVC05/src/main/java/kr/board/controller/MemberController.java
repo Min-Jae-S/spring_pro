@@ -103,7 +103,7 @@ public class MemberController {
 			rttr.addFlashAttribute("msg", "회원가입에 성공하였습니다.");
 			
 			// 회원가입에 성공하면 로그인 처리하기
-			// 추가 : getMember() --> 회원정보 + 권한정보
+			// 추가 : getMember(String memId) --> 회원정보 + 권한정보
 			Member DBmember = memberMapper.getMember(member.getMemId());
 			session.setAttribute("member", DBmember);
 			
@@ -138,15 +138,20 @@ public class MemberController {
 			return "redirect:/memLoginForm.do";
 		}
 		
-		Member tempMember = memberMapper.memLogin(member);
+		// 수정 : memLogin(Member member) --> getMember(String memId)
+		//Member tempMember = memberMapper.memLogin(member);
+		Member DBmember = memberMapper.getMember(member.getMemId());
+		String rawPassword = member.getMemPassword();
+		String encodedPassword = DBmember.getMemPassword();
 		
-		if(tempMember != null) {
+		// 추가 : 비밀번호 일치 여부 
+		if(DBmember != null && passwordEncoder.matches(rawPassword, encodedPassword)) {
 			rttr.addFlashAttribute("msgType", "성공 메세지");
 			rttr.addFlashAttribute("msg", "로그인에 성공했습니다.");
-			session.setAttribute("member", tempMember);
+			session.setAttribute("member", DBmember);
 			
 			return "redirect:/";
-		} else {
+		} else { // 아이디가 존재하지 않거나 비밀번호가 일치하지 않는 경우
 			rttr.addFlashAttribute("msgType", "실패 메세지");
 			rttr.addFlashAttribute("msg", "로그인에 실패했습니다. 다시 로그인 해주세요.");
 			
@@ -258,8 +263,8 @@ public class MemberController {
 			// 새로운 이미지를 DB에 업데이트
 			memberMapper.memProfileUpdate(memId, newProfile);
 			
-			Member member = memberMapper.getMember(memId);
-			session.setAttribute("member", member);
+			Member DBmember = memberMapper.getMember(memId);
+			session.setAttribute("member", DBmember);
 		}
 		
 		rttr.addFlashAttribute("msgType", "성공 메세지");

@@ -49,12 +49,12 @@
 		)
 	</insert>
 	
-	<select id="memLogin" parameterType="kr.board.entity.Member" resultType="kr.board.entity.Member">
+	<!-- <select id="memLogin" parameterType="kr.board.entity.Member" resultType="kr.board.entity.Member">
 		SELECT * FROM 
 			member_tbl
 		WHERE 
-			memId = #{memId} AND memPassword = #{memPassword}
-	</select>
+			memId = #{memId} 
+	</select> -->
 	
 	<update id="memUpdate" parameterType="kr.board.entity.Member">
 		UPDATE

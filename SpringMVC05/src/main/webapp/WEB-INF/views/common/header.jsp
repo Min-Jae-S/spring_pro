@@ -34,7 +34,7 @@
         	<img src="${contextPath}/resources/images/person.png" class="img-circle" style="width : 30px; height: 30px; margin: 10px">
         	</c:if>
         	<c:if test="${!empty sessionScope.member.memProfile}">
-        	<img src="${contextPath}/resources/images/person.png" class="img-circle" style="width : 30px; height: 30px; margin: 10px">
+        	<img src="${contextPath}/resources/upload/${sessionScope.member.memProfile}" class="img-circle" style="width : 30px; height: 30px; margin: 10px">
         	</c:if>
         	<span style="color: white;">${sessionScope.member.memId} 님
 	  			(
