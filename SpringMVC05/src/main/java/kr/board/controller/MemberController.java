@@ -92,14 +92,11 @@ public class MemberController {
 		if(result == 1) {
 			// 추가 : 권한 테이블에 회원의 권한을 저장하기
 			for(Auth auth : member.getAuthList()) {
-				System.out.println("auth : " + auth);
-
 				if(auth.getAuth() != null) {
-					Auth tempAuth = new Auth();
-					tempAuth.setMemId(member.getMemId());	// 회원 아이디
-					tempAuth.setAuth(auth.getAuth());		// 회원 권한
+					auth.setMemId(member.getMemId());	// 회원 아이디
+					auth.setAuth(auth.getAuth());		// 회원 권한
 					
-					memberMapper.insertAuth(tempAuth);
+					memberMapper.authInsert(auth);
 				}
 			}
 			rttr.addFlashAttribute("msgType", "성공 메세지");

@@ -2,6 +2,24 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="kr.board.mapper.MemberMapper">
 	
+	<resultMap type="kr.board.entity.Member" id="memberMap">
+		<id property="memIdx" column="memIdx"/>
+		<result property="memId" column="memId"/>
+		<result property="memPassword" column="memPassword"/>
+		<result property="memName" column="memName"/>
+		<result property="memAge" column="memAge"/>
+		<result property="memGender" column="memGender"/>
+		<result property="memEmail" column="memEmail"/>
+		<result property="memProfile" column="memProfile"/>
+		<collection property="authList" resultMap="authMap"/>
+	</resultMap>
+	
+	<resultMap type="kr.board.entity.Auth" id="authMap">
+		<id property="authIdx" column="authIdx"/>
+		<result property="memId" column="memId"/>
+		<result property="auth" column="auth"/>
+	</resultMap>
+	
 	<select id="memCheckId" resultType="java.lang.String">
 		SELECT memName FROM member_tbl WHERE memId = #{memId}
 	</select>
@@ -32,8 +50,10 @@
 	</insert>
 	
 	<select id="memLogin" parameterType="kr.board.entity.Member" resultType="kr.board.entity.Member">
-		SELECT * FROM member_tbl
-		WHERE memId = #{memId} AND memPassword = #{memPassword}
+		SELECT * FROM 
+			member_tbl
+		WHERE 
+			memId = #{memId} AND memPassword = #{memPassword}
 	</select>
 	
 	<update id="memUpdate" parameterType="kr.board.entity.Member">
@@ -50,8 +70,19 @@
 	</update>
 	
 	<!-- 추가 : 회원정보 + 권한정보 -->
-	<select id="getMember" resultType="kr.board.entity.Member">
-		SELECT * FROM member_tbl WHERE memId = #{memId}
+	<select id="getMember" resultMap="memberMap">
+		SELECT * FROM 
+			member_tbl member LEFT OUTER JOIN auth_tbl auth 
+		ON
+  			member.memId = auth.memId
+  		<!-- USING(memId) -->
+  		WHERE 
+  			member.memId = #{memID}
+
+		<!-- SELECT * FROM 
+			member_tbl member, auth_tbl auth
+		WHERE 
+			member.memId = auth.memId AND member.memId = #{memId} -->
 	</select>
 	
 	<update id="memProfileUpdate">
@@ -63,13 +94,13 @@
 			memId = #{memId}
 	</update>
 	
-	<insert id="insertAuth" parameterType="kr.board.entity.Auth">
+	<insert id="authInsert" parameterType="kr.board.entity.Auth">
 		INSERT INTO auth_tbl (
 			authIdx,
 			memId,
 			auth
 		) VALUES (
-			auth_tbl_seq.nextval
+			auth_tbl_seq.nextval,
 			#{memId},
 			#{auth}
 		)

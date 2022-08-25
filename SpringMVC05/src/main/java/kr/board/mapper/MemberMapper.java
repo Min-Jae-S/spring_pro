@@ -21,6 +21,6 @@ public interface MemberMapper {
 	
 	public void memProfileUpdate(@Param("memId") String memId, @Param("memProfile") String memProfile);
 	
-	public void insertAuth(Auth auth);
+	public void authInsert(Auth auth);
 	
 }
