@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <c:set var="contextPath" value="${pageContext.request.contextPath}"/>    
 <!DOCTYPE html>
 <html lang="en">
@@ -95,12 +96,10 @@
     					<div class="form-group" style="text-align: center; margin: 0 auto;">
     						<div class="btn-group" data-toggle="buttons">
     							<label class="btn btn-default ${sessionScope.member.memGender eq '남자' ? 'active' : ''}">
-    								<input type="radio" name="memGender" autocomplete="off" value="남자"
-    									${sessionScope.member.memGender eq '남자' ? 'checked' : ''}>남자
+    								<input type="radio" name="memGender" autocomplete="off" value="남자" ${sessionScope.member.memGender eq '남자' ? 'checked' : ''}>남자
     							</label>
     							<label class="btn btn-default ${sessionScope.member.memGender eq '여자' ? 'active' : ''}">
-    								<input type="radio" name="memGender" autocomplete="off" value="여자" 
-    									${sessionScope.member.memGender eq '여자' ? 'checked' : ''}>여자
+    								<input type="radio" name="memGender" autocomplete="off" value="여자" ${sessionScope.member.memGender eq '여자' ? 'checked' : ''}>여자
     							</label>
     							<%-- 
     							<label class="btn btn-primary <c:if test="${sessionScope.member.memGender eq '남자'}">active</c:if>">
@@ -119,6 +118,20 @@
     			<tr>
     				<td style="width: 110px; vertical-align: middle; font-weight: bold;">이메일</td>
     				<td colspan="2"><input id="memEmail" name="memEmail" class="form-control" type="text" maxlength="20" placeholder="이메일을 입력하세요." value="${sessionScope.member.memEmail}"></td>
+    			</tr>
+    			<!-- 추가 : 선택한 권한 체크박스에 출력 -->
+    			<tr>
+    				<td style="width: 110px; vertical-align: middle; font-weight: bold;">사용자 권한</td>
+    				<td colspan="2">
+    					<c:forEach items="${sessionScope.member.authList}" var="obj">
+    						<c:if test="${obj.auth eq 'ROLE_USER'}"><c:set var="userCheck" value="checked"/></c:if>
+    						<c:if test="${obj.auth eq 'ROLE_MANAGER'}"><c:set var="managerCheck" value="checked"/></c:if>
+    						<c:if test="${obj.auth eq 'ROLE_ADMIN'}"><c:set var="aduminCheck" value="checked"/></c:if>
+    					</c:forEach>
+		    			<label class="checkbox-inline"><input type="checkbox" name="authList[0].auth" value="ROLE_USER" ${userCheck}>ROLE_USER</label>
+    					<label class="checkbox-inline"><input type="checkbox" name="authList[1].auth" value="ROLE_MANAGER" ${managerCheck}>ROLE_MANAGER</label>
+    					<label class="checkbox-inline"><input type="checkbox" name="authList[2].auth" value="ROLE_ADMIN" ${aduminCheck}>ROLE_ADMIN</label>
+    				</td>
     			</tr>
     			<tr>
     				<td colspan="3" style="text-align: left; vertical-align: middle;">

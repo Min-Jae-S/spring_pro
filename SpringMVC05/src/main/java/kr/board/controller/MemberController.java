@@ -62,9 +62,9 @@ public class MemberController {
 		   member.getMemAge() == 0 || 
 		   member.getMemGender() == null || member.getMemGender().trim().equals("") ||
 		   member.getMemEmail() == null || member.getMemEmail().trim().equals("") ||
-		   member.getAuthList() == null || member.getAuthList().size() == 0 ||
 		   memPassword1 == null || memPassword1.trim().equals("") || 
-		   memPassword2 == null || memPassword2.trim().equals("")) {
+		   memPassword2 == null || memPassword2.trim().equals("") ||
+		   member.getAuthList() == null || member.getAuthList().size() == 0) {
 			
 			// 누락 메세지를 갖고 가기 ==> Model, HttpServletRequest에 객체바인딩X, 새로운 request객체가 생성되므로
 			// RedirectAttributes로 객체바인딩을 하자
@@ -95,7 +95,6 @@ public class MemberController {
 				if(auth.getAuth() != null) {
 					auth.setMemId(member.getMemId());	// 회원 아이디
 					auth.setAuth(auth.getAuth());		// 회원 권한
-					
 					memberMapper.authInsert(auth);
 				}
 			}
@@ -141,22 +140,25 @@ public class MemberController {
 		// 수정 : memLogin(Member member) --> getMember(String memId)
 		//Member tempMember = memberMapper.memLogin(member);
 		Member DBmember = memberMapper.getMember(member.getMemId());
-		String rawPassword = member.getMemPassword();
-		String encodedPassword = DBmember.getMemPassword();
 		
-		// 추가 : 비밀번호 일치 여부 
-		if(DBmember != null && passwordEncoder.matches(rawPassword, encodedPassword)) {
-			rttr.addFlashAttribute("msgType", "성공 메세지");
-			rttr.addFlashAttribute("msg", "로그인에 성공했습니다.");
-			session.setAttribute("member", DBmember);
+		if(DBmember != null) {
+			String rawPassword = member.getMemPassword();
+			String encodedPassword = DBmember.getMemPassword();
 			
-			return "redirect:/";
-		} else { // 아이디가 존재하지 않거나 비밀번호가 일치하지 않는 경우
-			rttr.addFlashAttribute("msgType", "실패 메세지");
-			rttr.addFlashAttribute("msg", "로그인에 실패했습니다. 다시 로그인 해주세요.");
-			
-			return "redirect:/memLoginForm.do";
+			// 추가 : 비밀번호 일치 여부 
+			if(passwordEncoder.matches(rawPassword, encodedPassword)) {
+				rttr.addFlashAttribute("msgType", "성공 메세지");
+				rttr.addFlashAttribute("msg", "로그인에 성공했습니다.");
+				session.setAttribute("member", DBmember);
+				
+				return "redirect:/";
+			}
 		}
+		// 아이디가 존재하지 않거나 비밀번호가 일치하지 않는 경우
+		rttr.addFlashAttribute("msgType", "실패 메세지");
+		rttr.addFlashAttribute("msg", "로그인에 실패했습니다. 다시 로그인 해주세요.");
+			
+		return "redirect:/memLoginForm.do";
 	}
 	
 	@GetMapping("/memUpdateForm.do")
@@ -175,8 +177,10 @@ public class MemberController {
 		   member.getMemGender() == null || member.getMemGender().trim().equals("") ||
 		   member.getMemEmail() == null || member.getMemEmail().trim().equals("") || 
 		   memPassword1 == null || memPassword1.trim().equals("") || 
-		   memPassword2 == null || memPassword2.trim().equals("")) {
-					
+		   memPassword2 == null || memPassword2.trim().equals("") ||
+		   member.getAuthList() == null || member.getAuthList().size() == 0) {
+			
+			System.out.println("member.getAuthList() : " + member.getAuthList());
 			rttr.addFlashAttribute("msgType", "실패 메세지");
 			rttr.addFlashAttribute("msg", "모든 내용을 입력하세요.");
 			
@@ -191,9 +195,25 @@ public class MemberController {
 		}
 		
 		// 회원정보 수정
+		// 추가 : 비밀번호 암호화(BCryptPasswordEncoder)
+		String encryptPassword = passwordEncoder.encode(member.getMemPassword());
+		member.setMemPassword(encryptPassword);
+		
 		int result = memberMapper.memUpdate(member);
 		
 		if(result == 1) {
+			// 추가 : 기존 권한을 삭제하고 
+			memberMapper.authDelete(member.getMemId());
+			
+			// 추가 : 새로운 권한을 저장
+			for(Auth auth : member.getAuthList()) {
+				if(auth.getAuth() != null) {
+					auth.setMemId(member.getMemId());	// 회원 아이디
+					auth.setAuth(auth.getAuth());		// 회원 권한
+					memberMapper.authInsert(auth);
+				}
+			}
+			
 			rttr.addFlashAttribute("msgType", "성공 메세지");
 			rttr.addFlashAttribute("msg", "회원정보가 정상적으로 수정되었습니다.");
 			
