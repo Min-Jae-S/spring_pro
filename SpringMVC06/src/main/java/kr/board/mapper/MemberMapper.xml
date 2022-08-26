@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="kr.board.mapper.MemberMapper">
+	
+	<resultMap type="kr.board.entity.Member" id="memberMap">
+		<id property="memIdx" column="memIdx"/>
+		<result property="memId" column="memId"/>
+		<result property="memPassword" column="memPassword"/>
+		<result property="memName" column="memName"/>
+		<result property="memAge" column="memAge"/>
+		<result property="memGender" column="memGender"/>
+		<result property="memEmail" column="memEmail"/>
+		<result property="memProfile" column="memProfile"/>
+		<collection property="authList" resultMap="authMap"/>
+	</resultMap>
+	
+	<resultMap type="kr.board.entity.Auth" id="authMap">
+		<id property="authIdx" column="authIdx"/>
+		<result property="memId" column="memId"/>
+		<result property="auth" column="auth"/>
+	</resultMap>
+	
+	<select id="memCheckId" resultType="java.lang.String">
+		SELECT memName FROM member_tbl WHERE memId = #{memId}
+	</select>
+	
+	<insert id="memRegister" parameterType="kr.board.entity.Member">
+		<selectKey resultType="java.lang.Integer" keyProperty="memIdx" order="BEFORE">
+			SELECT NVL(MAX(memIdx), 0) + 1 FROM member_tbl
+		</selectKey>
+		INSERT INTO member_tbl (
+			memIdx,
+			memId,
+			memPassword,
+			memName,
+			memAge,
+			memGender,
+			memEmail,
+			memProfile
+		) VALUES (
+			#{memIdx},
+			#{memId},
+			#{memPassword},
+			#{memName},
+			#{memAge},
+			#{memGender},
+			#{memEmail},
+			#{memProfile, jdbcType=VARCHAR}
+		)
+	</insert>
+	
+	<!-- <select id="memLogin" parameterType="kr.board.entity.Member" resultType="kr.board.entity.Member">
+		SELECT * FROM 
+			member_tbl
+		WHERE 
+			memId = #{memId} 
+	</select> -->
+	
+	<update id="memUpdate" parameterType="kr.board.entity.Member">
+		UPDATE
+			member_tbl
+		SET
+			memPassword = #{memPassword},
+			memName = #{memName},
+			memAge = #{memAge},
+			memGender = #{memGender},
+			memEmail = #{memEmail}
+		WHERE
+			memId = #{memId}
+	</update>
+	
+	<!-- 추가 : 회원정보 + 권한정보 -->
+	<select id="getMember" resultMap="memberMap">
+		SELECT * FROM 
+			member_tbl member LEFT OUTER JOIN auth_tbl auth 
+		ON
+  			member.memId = auth.memId
+  		<!-- USING(memId) -->
+  		WHERE 
+  			member.memId = #{memID}
+
+		<!-- SELECT * FROM 
+			member_tbl member, auth_tbl auth
+		WHERE 
+			member.memId = auth.memId AND member.memId = #{memId} -->
+	</select>
+	
+	<update id="memProfileUpdate">
+		UPDATE
+			member_tbl
+		SET
+			memProfile = #{memProfile}
+		WHERE
+			memId = #{memId}
+	</update>
+	
+	<insert id="authInsert" parameterType="kr.board.entity.Auth">
+		INSERT INTO auth_tbl (
+			authIdx,
+			memId,
+			auth
+		) VALUES (
+			auth_tbl_seq.nextval,
+			#{memId},
+			#{auth}
+		)
+	</insert>
+	
+	<delete id="authDelete">
+		DELETE FROM 
+			auth_tbl
+		WHERE
+			memId = #{memId}
+	</delete>
+	
+</mapper>
