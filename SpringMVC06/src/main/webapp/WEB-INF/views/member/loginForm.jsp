@@ -13,7 +13,10 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
   <script>
   	$(document).ready(function() {
-  		if(${!empty msgType}) {
+  		// http://localhost:8888/mvc06/memLoginForm.do?error
+  		if(${param.error != null}) {
+  			$('.modal-title').text('실패 메세지');
+  			$('.modal-body p').text('아이디와 비밀번호를 확인해주세요.');
   			$('#loginFailMessageModal').modal('show');
   		}
   	});
@@ -31,13 +34,13 @@
 	    <div class="form-group">
 	      <label class="control-label col-sm-2" for="memId">아이디</label>
 	      <div class="col-sm-10">
-	        <input type="text" class="form-control" id="memId" placeholder="아이디를 입력하세요." name="memId">
+	        <input type="text" class="form-control" id="memId" name="username" placeholder="아이디를 입력하세요.">
 	      </div>
 	    </div>
 	    <div class="form-group">
 	      <label class="control-label col-sm-2" for="memPassword">비밀번호</label>
 	      <div class="col-sm-10">          
-	        <input type="password" class="form-control" id="memPassword" placeholder="비밀번호를 입력하세요." name="memPassword">
+	        <input type="password" class="form-control" id="memPassword" name="password" placeholder="비밀번호를 입력하세요.">
 	      </div>
 	    </div>
 	    <div class="form-group">        
@@ -58,10 +61,10 @@
     <div class="modal-content panel-danger">
       <div class="modal-header panel-heading">
         <button type="button" class="close" data-dismiss="modal">&times;</button>
-        <h4 class="modal-title" style="font-weight: bold;">${msgType}</h4>
+        <h4 class="modal-title" style="font-weight: bold;"></h4>
       </div>
       <div class="modal-body">
-        <p style="font-weight: bold;">${msg}</p>
+        <p style="font-weight: bold;"></p>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">확인</button>

@@ -50,9 +50,9 @@ create table auth_tbl (
 );
 
 create sequence auth_tbl_seq
-start with 0
+start with 1
 increment by 1
-minvalue 0;
+minvalue 1;
 
 drop table member_tbl;
 drop table auth_tbl;
