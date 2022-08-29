@@ -35,6 +35,7 @@ public class MemberController {
 	
 	@RequestMapping("/memRegisterForm.do")
 	public String memRegisterForm() {
+		
 		return "member/registerForm";
 	}
 	
@@ -124,6 +125,7 @@ public class MemberController {
 	
 	@GetMapping("/memLoginForm.do")
 	public String memLoginForm() {
+		
 		return "member/loginForm";
 	}
 	
@@ -163,6 +165,7 @@ public class MemberController {
 	
 	@GetMapping("/memUpdateForm.do")
 	public String memUpdateForm(HttpSession session) {
+		
 		return "member/updateForm";
 	}
 	
@@ -295,6 +298,7 @@ public class MemberController {
 	
 	@GetMapping("/access-denied")
 	public String showAccessDenied() {
+		
 		return "access-denied";
 	}
 }
