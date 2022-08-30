@@ -14,7 +14,7 @@
   <script>
   	$(document).ready(function() {
   		if(${!empty msgType}) { 
-  			$('#registerFailMessageModal').modal('show');
+  			$('#messageModal').modal('show');
   		}
   	});
   	
@@ -168,7 +168,7 @@
 </div>
 
 <!-- 회원가입 실패 메세지(Modal) -->
-<div id="registerFailMessageModal" class="modal fade" role="dialog">
+<div id="messageModal" class="modal fade" role="dialog">
   <div class="modal-dialog">
     <!-- Modal content-->
     <div class="modal-content panel-danger">

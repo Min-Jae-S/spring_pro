@@ -1,7 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %> 
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
+<c:set var="memberUser" value="${sessionScope.SPRING_SECURITY_CONTEXT.authentication.principal}"/>
+<c:set var="auth" value="${sessionScope.SPRING_SECURITY_CONTEXT.authentication.authorities}"/>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -53,7 +56,7 @@
 	  		listHtml += "<td style='text-align: center; vertical-align: middle;'>내용</td>";
 	  		listHtml += "<td colspan='4'>";
 	  		listHtml += "<textarea rows='7' class='form-control' style='resize: none' readonly id='taContent" + obj.idx + "'></textarea>";
-	  		if("${sessionScope.member.memId}" == obj.writerId) {
+	  		if("${memberUser.member.memId}" == obj.writerId) {
 		  		listHtml += "<br/>";
 		  		listHtml += "<span id='btnUpdateForm" + obj.idx +"'><button class='btn btn-success' onclick='goUpdateForm(" + obj.idx + ")'>수정화면</button></span>&nbsp;";
 		  		listHtml += "<button class='btn btn-warning' onclick='goDelete(" + obj.idx + ")'>삭제</button>";
@@ -62,7 +65,7 @@
 	  		listHtml += "</tr>";
   		});
   		
-  		if(${!empty sessionScope.member}) {
+  		if(${!empty memberUser.member}) {
 	  		listHtml += "<tr>";
 	  		listHtml += "<td colspan='5'>";
 	  		listHtml += "<button class='btn btn-primary' onclick='goWriteForm()'>글쓰기</button>";
@@ -206,7 +209,7 @@
     <div class="panel-body" id="boardList"></div>
     <div class="panel-body" id="writeForm" style="display: none;">
     	<form id="insertForm">
-    		<input type="hidden" name="writerId" value="${sessionScope.member.memId}">
+    		<input type="hidden" name="writerId" value="${memberUser.member.memId}">
 	    	<table class="table">
 	    		<tr>
 	    			<td>제목</td>
@@ -218,7 +221,7 @@
 	    		</tr>
 	    		<tr>
 	    			<td>작성자</td>
-	    			<td><input type="text" id="writer" name="writer" class="form-control" value="${sessionScope.member.memName}" readonly></td>
+	    			<td><input type="text" id="writer" name="writer" class="form-control" value="${memberUser.member.memName}" readonly></td>
 	    		</tr>
 	    		<tr>
 	    			<td colspan="2" align="center">

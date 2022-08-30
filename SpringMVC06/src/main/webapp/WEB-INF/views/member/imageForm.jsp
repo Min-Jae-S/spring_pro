@@ -1,7 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<c:set var="contextPath" value="${pageContext.request.contextPath}"/>    
+<c:set var="contextPath" value="${pageContext.request.contextPath}"/>
+<c:set var="memberUser" value="${sessionScope.SPRING_SECURITY_CONTEXT.authentication.principal}"/>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -14,7 +15,7 @@
   <script>
   	$(document).ready(function() {
   		if(${!empty msgType}) {
-  			$('#uploadFailMessageModal').modal('show');
+  			$('#messageModal').modal('show');
   		}
   	});
   </script>
@@ -30,7 +31,7 @@
     	<table class="table table-bordered" style="text-align: center; border: 1px solid #dddddd; margin-top: 20px;">
     		<tr>
     			<td style="width: 110px; vertical-align: middle; font-weight: bold;">아이디</td>
-   				<td><input type="text" class="form-control" id="memId" name="memId" value="${sessionScope.member.memId}" readonly></td>
+   				<td><input type="text" class="form-control" id="memId" name="memId" value="${memberUser.member.memId}" readonly></td>
     		</tr>
     		<tr>
     			<td style="width: 110px; vertical-align: middle; font-weight: bold;">사진 업로드</td>
@@ -54,7 +55,7 @@
 </div>
 
 <!-- 업로드 실패 메세지(Modal) -->
-<div id="uploadFailMessageModal" class="modal fade" role="dialog">
+<div id="messageModal" class="modal fade" role="dialog">
   <div class="modal-dialog">
     <!-- Modal content-->
     <div class="modal-content panel-danger">

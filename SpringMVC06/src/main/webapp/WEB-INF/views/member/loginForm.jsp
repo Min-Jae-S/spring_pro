@@ -15,9 +15,15 @@
   	$(document).ready(function() {
   		// http://localhost:8888/mvc06/memLoginForm.do?error
   		if(${param.error != null}) {
+  			$('#messageType').attr('class', 'modal-content panel-danger');
   			$('.modal-title').text('실패 메세지');
   			$('.modal-body p').text('아이디와 비밀번호를 확인해주세요.');
-  			$('#loginFailMessageModal').modal('show');
+  			$('#messageModal').modal('show');
+  		}
+  		
+  		if(${!empty msgType}) {
+  			$('#messageType').attr('class', 'modal-content panel-success');
+  			$('#messageModal').modal('show');
   		}
   	});
   </script>
@@ -54,17 +60,17 @@
   </div>
 </div>
 
-<!-- 로그인 실패 메세지(Modal) -->
-<div id="loginFailMessageModal" class="modal fade" role="dialog">
+<!-- 로그인 실패 메세지, 회원가입 성공 메세지 -->
+<div id="messageModal" class="modal fade" role="dialog">
   <div class="modal-dialog">
     <!-- Modal content-->
-    <div class="modal-content panel-danger">
+    <div id="messageType" class="modal-content panel-danger">
       <div class="modal-header panel-heading">
         <button type="button" class="close" data-dismiss="modal">&times;</button>
-        <h4 class="modal-title" style="font-weight: bold;"></h4>
+        <h4 class="modal-title" style="font-weight: bold;">${msgType}</h4>
       </div>
       <div class="modal-body">
-        <p style="font-weight: bold;"></p>
+        <p style="font-weight: bold;">${msg}</p>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">확인</button>

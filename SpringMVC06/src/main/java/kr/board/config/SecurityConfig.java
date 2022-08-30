@@ -51,7 +51,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 				.logoutSuccessUrl("/")
 				.and()
 			.exceptionHandling().accessDeniedPage("/access-denied");
-			
 	}
 	
 	// 패스워드 인코딩 Bean 등록

@@ -102,12 +102,7 @@ public class MemberController {
 			rttr.addFlashAttribute("msgType", "성공 메세지");
 			rttr.addFlashAttribute("msg", "회원가입에 성공하였습니다.");
 			
-			// 회원가입에 성공하면 로그인 처리하기
-			// 추가 : getMember(String memId) --> 회원정보 + 권한정보
-			Member DBmember = memberMapper.getMember(member.getMemId());
-			session.setAttribute("member", DBmember);
-			
-			return "redirect:/";
+			return "redirect:/memLoginForm.do";
 		} else {
 			rttr.addFlashAttribute("msgType", "실패 메세지");
 			rttr.addFlashAttribute("msg", "회원가입에 실패하였습니다.");
@@ -116,19 +111,13 @@ public class MemberController {
 		}
 	}
 	
-	@GetMapping("/memLogout.do")
-	public String memLogout(HttpSession session) {
-		session.invalidate();
-		
-		return "redirect:/";
-	}
-	
 	@GetMapping("/memLoginForm.do")
 	public String memLoginForm() {
 		
 		return "member/loginForm";
 	}
 	
+	/*
 	@PostMapping("/memLogin.do")
 	public String memLogin(Member member, HttpSession session, RedirectAttributes rttr) {
 		if(member.getMemId() == null || member.getMemId().trim().equals("") ||
@@ -162,9 +151,10 @@ public class MemberController {
 			
 		return "redirect:/memLoginForm.do";
 	}
+	*/
 	
 	@GetMapping("/memUpdateForm.do")
-	public String memUpdateForm(HttpSession session) {
+	public String memUpdateForm() {
 		
 		return "member/updateForm";
 	}
