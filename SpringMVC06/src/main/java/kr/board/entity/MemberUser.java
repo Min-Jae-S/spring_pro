@@ -23,7 +23,8 @@ public class MemberUser extends User {
 
 	public MemberUser(Member member) { 
 		// List<Auth> --> Collection<SimpleGrantedAuthority> // Collection<? extends GrantedAuthority> 
-		// stream()를 통해 바이트열로 변환
+		// stream()를 통해 바이트열(binary)로 변환
+		// SimpleGrantedAuthority --> 권한정보를 문자열로 저장
 		super(member.getMemId(), member.getMemPassword(), 
 			  member.getAuthList()
 					.stream()
