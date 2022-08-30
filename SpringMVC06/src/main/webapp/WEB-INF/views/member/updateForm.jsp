@@ -4,6 +4,7 @@
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <c:set var="contextPath" value="${pageContext.request.contextPath}"/>
 <c:set var="memberUser" value="${sessionScope.SPRING_SECURITY_CONTEXT.authentication.principal}"/>
+<c:set var="auth" value="${sessionScope.SPRING_SECURITY_CONTEXT.authentication.authorities}"/>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -16,7 +17,7 @@
   <script>
   	$(document).ready(function() {
   		
-  		//console.log('${memberUser}');
+  		//console.log('${sessionScope.SPRING_SECURITY_CONTEXT.authentication.principal}');
   		//console.log('${sessionScope.SPRING_SECURITY_CONTEXT.authentication.authorities}');
   		
   		if(${!empty msgType}) {
@@ -162,7 +163,7 @@
 <div id="updateMessageModal" class="modal fade" role="dialog">
   <div class="modal-dialog">
     <!-- Modal content-->
-    <div id="messageType" class="modal-content panel-info">
+    <div id="messageType" class="modal-conten">
       <div class="modal-header panel-heading">
         <button type="button" class="close" data-dismiss="modal">&times;</button>
         <h4 class="modal-title" style="font-weight: bold;">${msgType}</h4>

@@ -3,8 +3,8 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <c:set var="contextPath" value="${pageContext.request.contextPath}"/>
-<c:set var="memberUser" value="${SPRING_SECURITY_CONTEXT.authentication.principal}"/>
-<c:set var="auth" value="${SPRING_SECURITY_CONTEXT.authentication.authorities}"/>
+<c:set var="memberUser" value="${sessionScope.SPRING_SECURITY_CONTEXT.authentication.principal}"/>
+<c:set var="auth" value="${sessionScope.SPRING_SECURITY_CONTEXT.authentication.authorities}"/>
 <script>
 	var csrfHeaderName = "${_csrf.headerName}";
 	var csrfTokenValue = "${_csrf.token}";

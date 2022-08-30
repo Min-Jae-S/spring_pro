@@ -152,7 +152,7 @@
 <div id="checkIdMessageModal" class="modal fade" role="dialog">
   <div class="modal-dialog">
     <!-- Modal content-->
-    <div id="checkType" class="modal-content panel-info">
+    <div id="checkType" class="modal-content">
       <div class="modal-header panel-heading">
         <button type="button" class="close" data-dismiss="modal">&times;</button>
         <h4 class="modal-title" style="font-weight: bold;">아이디 중복확인</h4>
