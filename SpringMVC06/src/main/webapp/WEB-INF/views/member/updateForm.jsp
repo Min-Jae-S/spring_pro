@@ -119,10 +119,10 @@
     			<tr>
     				<td style="width: 110px; vertical-align: middle; font-weight: bold;">사용자 권한</td>
     				<td colspan="2">
-    					<%-- <c:forEach items="${auth}" var="obj">
+    					<%-- <c:forEach items="${memberUser.member.authList}" var="obj">
     						<c:if test="${obj.auth eq 'ROLE_USER'}"><c:set var="userCheck" value="checked"/></c:if>
     						<c:if test="${obj.auth eq 'ROLE_MANAGER'}"><c:set var="managerCheck" value="checked"/></c:if>
-    						<c:if test="${obj.auth eq 'ROLE_ADMIN'}"><c:set var="aduminCheck" value="checked"/></c:if>
+    						<c:if test="${obj.auth eq 'ROLE_ADMIN'}"><c:set var="adminCheck" value="checked"/></c:if>
     					</c:forEach> 
 		    			<label class="checkbox-inline">
 		    				<input type="checkbox" name="authList[0].auth" value="ROLE_USER" ${userCheck}>ROLE_USER
@@ -131,7 +131,7 @@
     						<input type="checkbox" name="authList[1].auth" value="ROLE_MANAGER" ${managerCheck}>ROLE_MANAGER
     					</label>
     					<label class="checkbox-inline">
-    						<input type="checkbox" name="authList[2].auth" value="ROLE_ADMIN" ${aduminCheck}>ROLE_ADMIN\
+    						<input type="checkbox" name="authList[2].auth" value="ROLE_ADMIN" ${adminCheck}>ROLE_ADMIN\
     					</label> --%>
 		    			<label class="checkbox-inline">
 		    				<input type="checkbox" name="authList[0].auth" value="ROLE_USER"
