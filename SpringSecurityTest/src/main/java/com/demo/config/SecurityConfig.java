@@ -12,25 +12,28 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.csrf.CsrfFilter;
 import org.springframework.web.filter.CharacterEncodingFilter;
 
+import com.demo.service.UserDetailsServiceImpl;
+
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
-//	@Bean
-//	public UserDetailsService userDatailsServiceImpl() {
-//		return new UserDetailsServiceImpl();
-//	}
-//	
-//	// UserDetailsService, PasswordEncoder 등록
-//	@Override
-//	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-//		auth.userDetailsService(userDatailsServiceImpl()).passwordEncoder(passwordEncoder());
-//	}
-	
 	@Bean
 	public PasswordEncoder passwordEncoder() {
 		return new BCryptPasswordEncoder();
 	}
+
+	@Bean
+	public UserDetailsService userDatailsServiceImpl() {
+		return new UserDetailsServiceImpl();
+	}
+	
+	// AuthenticationProvider가 PasswordEncoder와 UserDetailsService를 사용한다.
+	@Override
+	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+		auth.userDetailsService(userDatailsServiceImpl()).passwordEncoder(passwordEncoder());
+	}
+	
 	
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {

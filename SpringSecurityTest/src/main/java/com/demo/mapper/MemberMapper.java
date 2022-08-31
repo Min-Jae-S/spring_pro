@@ -12,4 +12,6 @@ public interface MemberMapper {
 	public void insertMember(MemberVO memberVO);
 	
 	public List<MemberVO> getMemberList();
+	
+	public MemberVO checkLogin(String memberId);
 }

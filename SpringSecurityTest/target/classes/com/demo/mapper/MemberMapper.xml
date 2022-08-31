@@ -12,14 +12,14 @@
 	</resultMap>
 	
 	<insert id="insertMember" parameterType="com.demo.entity.MemberVO">
-		INSERT INTO test_tbl (
+		INSERT INTO members_tbl (
 			member_idx,
 			member_id,
 			member_password,
 			member_email,
 			member_role
 		) VALUES (
-			test_tbl_seq.NEXTVAL,
+			members_tbl_seq.NEXTVAL,
 			#{memberId},
 			#{memberPassword},
 			#{memberEmail},
@@ -28,7 +28,11 @@
 	</insert>
 	
 	<select id="getMemberList" resultMap="result">
-		SELECT * FROM test_tbl ORDER BY member_idx DESC
+		SELECT * FROM members_tbl ORDER BY member_idx DESC
+	</select>
+	
+	<select id="checkLogin" parameterType="java.lang.String" resultMap="result">
+		SELECT * FROM members_tbl WHERE member_id = #{memberId}
 	</select>
 
 </mapper>

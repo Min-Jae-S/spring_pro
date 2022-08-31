@@ -6,18 +6,26 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
+import com.demo.entity.CustomUserDetails;
+import com.demo.entity.MemberVO;
 import com.demo.mapper.MemberMapper;
 
 @Service
-public class UserDetailServiceImpl implements UserDetailsService {
+public class UserDetailsServiceImpl implements UserDetailsService {
 	
 	@Autowired
 	private MemberMapper memberMapper;
 	
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-		// TODO Auto-generated method stub
-		return null;
+		MemberVO memberVO = memberMapper.checkLogin(username);
+		
+		if(memberVO != null) {
+			return new CustomUserDetails(memberVO);
+		} else {
+			throw new UsernameNotFoundException("this user does not exist.");
+		}
+			
 	}
 
 }

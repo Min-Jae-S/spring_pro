@@ -38,7 +38,7 @@ public class MemberController {
 	
 	@PostMapping("/join")
 	public String join(MemberVO memberVO) {
-		log.info(memberVO.toString());
+		log.info("join : " + memberVO);
 		
 		String rawPassword = memberVO.getMemberPassword();
 		String encPassword = passwordEncoder.encode(rawPassword);
@@ -52,7 +52,7 @@ public class MemberController {
 	@GetMapping("/memberList")
 	public String getMemberList(Model model) {
 		List<MemberVO> list = memberMapper.getMemberList();
-		log.info(list.toString());
+		log.info("list : " + list);
 		
 		model.addAttribute("list", list);
 		

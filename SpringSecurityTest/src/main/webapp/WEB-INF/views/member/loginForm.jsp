@@ -28,7 +28,7 @@
       <input type="password" class="form-control" id="memberPassword" placeholder="비밀번호를 입력하세요." name="memberPassword">
     </div>
 	<br>
-    <button type="submit" class="btn btn-primary">로그인 하기</button>
+    <button type="submit" class="btn btn-primary">로그인</button>
     <a href="${contextPath}/" class="btn btn-info">HOME</a>
   </form>
 </div>

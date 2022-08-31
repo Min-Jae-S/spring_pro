@@ -16,7 +16,7 @@
 <body>
 
 <div class="container pt-5">
-  <h3><strong>회원 가입</strong></h3>
+  <h3><strong>회원가입</strong></h3>
   <br>
   <form action="${contextPath}/member/join" method="post">
     <div class="form-group">
@@ -47,7 +47,7 @@
 	  </label>
 	</div> 
 	<hr><br>
-    <button type="submit" class="btn btn-primary">가입 하기</button>
+    <button type="submit" class="btn btn-primary">가입</button>
     <a href="${contextPath}/" class="btn btn-info">HOME</a>
   </form>
 </div>

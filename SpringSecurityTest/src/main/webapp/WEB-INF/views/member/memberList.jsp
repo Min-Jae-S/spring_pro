@@ -15,7 +15,7 @@
 </head>
 <body>
 <div class="container pt-5">
-  <h3><strong>회원 관리</strong></h3>
+  <h3><strong>회원관리</strong></h3>
   <br>
   <table class="table table-bordered">
     <thead class="thead-dark">
