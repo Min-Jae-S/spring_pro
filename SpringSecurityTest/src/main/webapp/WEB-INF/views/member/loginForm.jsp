@@ -18,7 +18,7 @@
 <div class="container pt-5">
   <h3><strong>로그인</strong></h3>
   <br>
-  <form action="${contextPath}/member/login" method="POST">
+  <form action="${contextPath}/member/login" method="post">
     <div class="form-group">
       <label for="memberId">아이디:</label>
       <input type="text" class="form-control" id="memberId" placeholder="아이디를 입력하세요." name="memberId">
