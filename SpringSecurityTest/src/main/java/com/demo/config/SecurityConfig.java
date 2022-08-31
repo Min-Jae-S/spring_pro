@@ -27,22 +27,40 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 //		auth.userDetailsService(userDatailsServiceImpl()).passwordEncoder(passwordEncoder());
 //	}
 	
-	@Override
-	protected void configure(HttpSecurity http) throws Exception {
-//		CharacterEncodingFilter filter = new CharacterEncodingFilter();
-//		filter.setEncoding("UTF-8");
-//		filter.setForceEncoding(true);
-//		http.addFilterBefore(filter, CsrfFilter.class);
-
-		http.authorizeRequests()
-				.antMatchers("/all").permitAll()
-				.antMatchers("/member").access("hasRole('ROLE_MEMBER')")
-				.antMatchers("/admin").access("hasRole('ROLE_ADMIN')");
+	@Bean
+	public PasswordEncoder passwordEncoder() {
+		return new BCryptPasswordEncoder();
 	}
 	
-	// 패스워드 인코딩 Bean 등록
-//	@Bean
-//	public PasswordEncoder passwordEncoder() {
-//		return new BCryptPasswordEncoder();
-//	}
+	@Override
+	protected void configure(HttpSecurity http) throws Exception {
+		//super.configure(http);
+		
+		/*
+		CharacterEncodingFilter filter = new CharacterEncodingFilter();
+		filter.setEncoding("UTF-8");
+		filter.setForceEncoding(true);
+		http.addFilterBefore(filter, CsrfFilter.class);
+		*/
+
+		http
+			.csrf().disable()
+			.authorizeRequests()
+				.antMatchers("/user").hasRole("USER")
+				.antMatchers("/manager").hasRole("MANAGER or ADMIN")
+				.antMatchers("/admin").hasRole("ADMIN")
+				.anyRequest().permitAll()
+				.and()
+			.formLogin()
+				.loginPage("/member/loginForm")
+				.usernameParameter("memberId")
+				.passwordParameter("memberPassword")
+				.loginProcessingUrl("/member/login")
+				.permitAll()
+				.and()
+			.exceptionHandling()
+				.accessDeniedPage("/member/access-denied");
+	}
+	
+	
 }
