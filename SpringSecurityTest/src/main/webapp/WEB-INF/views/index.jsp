@@ -15,9 +15,11 @@
 </head>
 <body>
 	<div class='container pt-5'>
-		<h3>Hello World!</h3>
+		<h3>HOME</h3>
 		<br>
-		<a href="${contextPath}/member/loginForm" class="btn btn-primary">로그인</a>
+		<a href="${contextPath}/member/joinForm" class="btn btn-primary">회원가입</a>
+		<a href="${contextPath}/member/loginForm" class="btn btn-secondary">로그인</a>
+		<a href="${contextPath}/member/memberList" class="btn btn-warning">회원관리</a>
 	</div>
 </body>
 </html>

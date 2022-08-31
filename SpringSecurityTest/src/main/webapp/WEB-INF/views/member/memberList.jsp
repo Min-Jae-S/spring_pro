@@ -14,24 +14,31 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
 </head>
 <body>
-
 <div class="container pt-5">
-  <h3><strong>로그인</strong></h3>
+  <h3><strong>회원 관리</strong></h3>
   <br>
-  <form action="${contextPath}/member/login" method="POST">
-    <div class="form-group">
-      <label for="memberId">아이디:</label>
-      <input type="text" class="form-control" id="memberId" placeholder="아이디를 입력하세요." name="memberId">
-    </div>
-    <div class="form-group">
-      <label for="memberPassword">비밀번호:</label>
-      <input type="password" class="form-control" id="memberPassword" placeholder="비밀번호를 입력하세요." name="memberPassword">
-    </div>
-	<br>
-    <button type="submit" class="btn btn-primary">로그인 하기</button>
-    <a href="${contextPath}/" class="btn btn-info">HOME</a>
-  </form>
+  <table class="table table-bordered">
+    <thead class="thead-dark">
+      <tr>
+        <th>번호</th>
+        <th>아이디</th>
+        <th>이메일</th>
+        <th>권한</th>
+      </tr>
+    </thead>
+    <tbody>
+      <c:forEach items="${list}" var="memberVO">
+      <tr>
+        <td><c:out value="${memberVO.memberIdx}"/></td>
+        <td><c:out value="${memberVO.memberId}"/></td>
+        <td><c:out value="${memberVO.memberEmail}"/></td>
+        <td><c:out value="${memberVO.memberRole}"/></td>
+      </tr>
+      </c:forEach>
+    </tbody>
+  </table>
+  <br>
+  <a href="${contextPath}/" class="btn btn-info">HOME</a>
 </div>
-
 </body>
 </html>

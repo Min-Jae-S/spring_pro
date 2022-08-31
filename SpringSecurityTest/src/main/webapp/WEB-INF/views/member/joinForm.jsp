@@ -16,9 +16,9 @@
 <body>
 
 <div class="container pt-5">
-  <h3><strong>회원가입</strong></h3>
+  <h3><strong>회원 가입</strong></h3>
   <br>
-  <form action="${contextPath}/join" method="POST">
+  <form action="${contextPath}/member/join" method="post">
     <div class="form-group">
       <label for="memberId">아이디:</label>
       <input type="text" class="form-control" id="memberId" placeholder="아이디를 입력하세요." name="memberId">
@@ -47,7 +47,8 @@
 	  </label>
 	</div> 
 	<hr><br>
-    <button type="submit" class="btn btn-primary">Submit</button>
+    <button type="submit" class="btn btn-primary">가입 하기</button>
+    <a href="${contextPath}/" class="btn btn-info">HOME</a>
   </form>
 </div>
 
