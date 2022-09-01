@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
 <c:set var="contextPath" value="${pageContext.request.contextPath}"/>
+<c:set var="principal" value="${sessionScope.SPRING_SECURITY_CONTEXT.authentication.principal}" />
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -20,37 +21,38 @@
 			<br>
 			<form action="${contextPath}/member/join" method="POST">
 				<div class="form-group">
-					<label for="memberId">아이디</label> 
-					<input type="text"class="form-control" id="memberId" name="memberId" placeholder="아이디를 입력하세요.">
+					<label for="memberId">아이디:</label> 
+					<input type="text" class="form-control" id="memberId" name="memberId" placeholder="아이디를 입력하세요.">
 				</div>
 				<div class="form-group">
-					<label for="memberPassword">비밀번호</label>
+					<label for="memberPassword">비밀번호:</label>
 					<input type="password" class="form-control" id="memberPassword" name="memberPassword" placeholder="비밀번호를 입력하세요.">
 				</div>
 				<div class="form-group">
-					<label for="memberName">이름</label> 
+					<label for="memberName">이름:</label> 
 					<input type="text" class="form-control" id="memberName" name="memberName" placeholder="이름을 입력하세요.">
 				</div>
 				<div class="form-group">
-					<label for="memberEmail">이메일</label> 
+					<label for="memberEmail">이메일:</label> 
 					<input type="text" class="form-control" id="memberEmail" name="memberEmail" placeholder="이메일을 입력하세요.">
 				</div>
-					<div class="form-check-inline">
-						<label class="form-check-label">
-							<input type="radio" class="form-check-input" name="memberRole" value="ROLE_USER" checked>일반회원
-						</label>
-					</div>
-					<div class="form-check-inline">
-						<label class="form-check-label">
-							<input type="radio" class="form-check-input" name="memberRole" value="ROLE_MANAGER">매니저
-						</label>
-					</div>
-					<div class="form-check-inline">
-						<label class="form-check-label">
-							<input type="radio" class="form-check-input" name="memberRole" value="ROLE_ADMIN">관리자
-						</label>
-					</div>
+				<div class="form-check-inline">
+					<label class="form-check-label">
+						<input type="radio" class="form-check-input" name="memberRole" value="USER" checked>일반회원
+					</label>
+				</div>
+				<div class="form-check-inline">
+					<label class="form-check-label">
+						<input type="radio" class="form-check-input" name="memberRole" value="MANAGER">매니저
+					</label>
+				</div>
+				<div class="form-check-inline">
+					<label class="form-check-label">
+						<input type="radio" class="form-check-input" name="memberRole" value="ADMIN">관리자
+					</label>
+				</div>
 				<hr>
+				<br>
 				<button type="submit" class="btn btn-primary">가입</button>
 			</form>
 		</div>

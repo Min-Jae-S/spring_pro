@@ -13,6 +13,7 @@ import com.demo.mapper.MemberMapper;
 import lombok.extern.log4j.Log4j;
 
 @Log4j
+@Service
 public class UserDetailsServiceImpl implements UserDetailsService {
 	
 	@Autowired

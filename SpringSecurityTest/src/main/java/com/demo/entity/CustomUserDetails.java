@@ -15,7 +15,7 @@ public class CustomUserDetails implements UserDetails {
 
 	// Composition
 	private MemberVO memberVO;
-	
+
 	public CustomUserDetails(MemberVO memberVO) {
 		this.memberVO = memberVO;
 	}
@@ -24,7 +24,7 @@ public class CustomUserDetails implements UserDetails {
 	public Collection<? extends GrantedAuthority> getAuthorities() {
 		Collection<GrantedAuthority> collect = new ArrayList<>();
 		collect.add(new SimpleGrantedAuthority(memberVO.getMemberRole()));
-		
+
 		return collect;
 	}
 
@@ -57,6 +57,8 @@ public class CustomUserDetails implements UserDetails {
 	public boolean isEnabled() {
 		return true;
 	}
-	
-	
+
+	public MemberVO getMemberVO() {
+		return memberVO;
+	}
 }

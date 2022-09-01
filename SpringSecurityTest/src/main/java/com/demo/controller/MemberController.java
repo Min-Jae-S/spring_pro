@@ -61,6 +61,26 @@ public class MemberController {
 		
 		return "member/memberList";
 	}
+
+	@GetMapping("/memberInfo")
+	public String getMemberInfo() {
+		log.info("## getMemberInfo ##");
+		
+		return "member/memberInfo";
+	}
+	
+	@GetMapping("/updateForm")
+	public String updateForm() {
+		log.info("## updateForm ##");
+		
+		return "member/updateForm";
+	}
+
+	@PostMapping("/update")
+	public String update(MemberVO memberVO) {
+		
+		return "redirect:/member/memberInfo";
+	}
 	
 	@GetMapping("/access-denied")
 	public String accessDenied() {

@@ -1,8 +1,5 @@
 package com.demo.config;
 
-import javax.annotation.Resource;
-
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -13,26 +10,30 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
-import com.demo.service.UserDetailsServiceImpl;
-
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
-
+	
+	private UserDetailsService userDetailsService;
+	
+	public SecurityConfig(UserDetailsService userDetailsService) {
+		this.userDetailsService = userDetailsService;
+	}
+	
 	@Bean
 	public PasswordEncoder passwordEncoder() {
 		return new BCryptPasswordEncoder();
 	}
 
-	@Bean
-	public UserDetailsService userDatailsServiceImpl() {
-		return new UserDetailsServiceImpl();
-	}
+//	@Bean
+//	public UserDetailsService userDetailsService() {
+//		return new UserDetailsServiceImpl();
+//	}
 	
 	// AuthenticationProvider가 PasswordEncoder와 UserDetailsService를 사용한다.
 	@Override
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-		auth.userDetailsService(userDatailsServiceImpl()).passwordEncoder(passwordEncoder());
+		auth.userDetailsService(userDetailsService).passwordEncoder(passwordEncoder());
 	}
 	
 	
@@ -62,9 +63,14 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 				.loginProcessingUrl("/member/login")
 				.permitAll()
 				.and()
+			.logout()
+				.logoutUrl("/member/logout")
+				.logoutSuccessUrl("/")
+				.clearAuthentication(true)
+				.invalidateHttpSession(true)
+				.and()
 			.exceptionHandling()
 				.accessDeniedPage("/member/access-denied");
 	}
-	
 	
 }
