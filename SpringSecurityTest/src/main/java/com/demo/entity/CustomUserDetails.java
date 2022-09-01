@@ -8,6 +8,9 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 
+import lombok.Data;
+import lombok.extern.log4j.Log4j;
+
 public class CustomUserDetails implements UserDetails {
 
 	// Composition
@@ -20,7 +23,6 @@ public class CustomUserDetails implements UserDetails {
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
 		Collection<GrantedAuthority> collect = new ArrayList<>();
-		
 		collect.add(new SimpleGrantedAuthority(memberVO.getMemberRole()));
 		
 		return collect;

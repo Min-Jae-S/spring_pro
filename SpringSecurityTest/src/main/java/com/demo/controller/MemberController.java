@@ -38,7 +38,8 @@ public class MemberController {
 	
 	@PostMapping("/join")
 	public String join(MemberVO memberVO) {
-		log.info("join : " + memberVO);
+		log.info("## join ##");
+		log.info("memberVO : " + memberVO);
 		
 		String rawPassword = memberVO.getMemberPassword();
 		String encPassword = passwordEncoder.encode(rawPassword);
@@ -51,6 +52,8 @@ public class MemberController {
 	
 	@GetMapping("/memberList")
 	public String getMemberList(Model model) {
+		log.info("## getMemberList ##");
+		
 		List<MemberVO> list = memberMapper.getMemberList();
 		log.info("list : " + list);
 		

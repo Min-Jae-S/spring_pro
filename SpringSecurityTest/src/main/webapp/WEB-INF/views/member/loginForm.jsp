@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <c:set var="contextPath" value="${pageContext.request.contextPath}"/>
 <!DOCTYPE html>
 <html lang="en">
@@ -18,7 +20,7 @@
 <div class="container pt-5">
   <h3><strong>로그인</strong></h3>
   <br>
-  <form action="${contextPath}/member/login" method="post">
+  <form action="${contextPath}/member/login" method="POST">
     <div class="form-group">
       <label for="memberId">아이디:</label>
       <input type="text" class="form-control" id="memberId" placeholder="아이디를 입력하세요." name="memberId">
