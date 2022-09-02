@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
-<c:set var="contextPath" value="${pageContext.request.contextPath}"/>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags"%>
+<c:set var="contextPath" value="${pageContext.request.contextPath}" />
 <c:set var="principal" value="${sessionScope.SPRING_SECURITY_CONTEXT.authentication.principal}" />
 <!DOCTYPE html>
 <html lang="en">
@@ -16,45 +17,39 @@
 <body>
 	<c:import url="/WEB-INF/views/common/header.jsp" />
 	<div class="container pt-4">
-		<div style="padding: 16px;">
-			<h3><strong>회원가입</strong></h3>
-			<br>
-			<form action="${contextPath}/member/join" method="POST">
-				<div class="form-group">
-					<label for="memberId">아이디:</label> 
-					<input type="text" class="form-control" id="memberId" name="memberId" placeholder="아이디를 입력하세요.">
-				</div>
-				<div class="form-group">
-					<label for="memberPassword">비밀번호:</label>
-					<input type="password" class="form-control" id="memberPassword" name="memberPassword" placeholder="비밀번호를 입력하세요.">
-				</div>
-				<div class="form-group">
-					<label for="memberName">이름:</label> 
-					<input type="text" class="form-control" id="memberName" name="memberName" placeholder="이름을 입력하세요.">
-				</div>
-				<div class="form-group">
-					<label for="memberEmail">이메일:</label> 
-					<input type="text" class="form-control" id="memberEmail" name="memberEmail" placeholder="이메일을 입력하세요.">
-				</div>
-				<div class="form-check-inline">
-					<label class="form-check-label">
-						<input type="radio" class="form-check-input" name="memberRole" value="USER" checked>일반회원
-					</label>
-				</div>
-				<div class="form-check-inline">
-					<label class="form-check-label">
-						<input type="radio" class="form-check-input" name="memberRole" value="MANAGER">매니저
-					</label>
-				</div>
-				<div class="form-check-inline">
-					<label class="form-check-label">
-						<input type="radio" class="form-check-input" name="memberRole" value="ADMIN">관리자
-					</label>
-				</div>
-				<hr>
-				<br>
-				<button type="submit" class="btn btn-primary">가입</button>
-			</form>
+		<div class="card">
+			<div class="card-header font-weight-bold h5">프로필 편집</div>
+			<div class="card-body">
+				<form action="${contextPath}/member/update" method="POST" id="updateForm">
+					<div class="form-group row">
+						<label class="col-sm-2 col-form-label">아이디</label>
+						<div class="col-sm-10">
+							<input type="text" class="form-control-plaintext" name="memberId" value="${principal.memberVO.memberId}" readonly>
+						</div>
+					</div>
+					<div class="form-group row">
+						<label class="col-sm-2 col-form-label">이름</label>
+						<div class="col-sm-10">
+							<input type="text" class="form-control" name="memberEmail" value="${principal.memberVO.memberName}">
+						</div>
+					</div>
+					<div class="form-group row">
+						<label class="col-sm-2 col-form-label">이메일</label>
+						<div class="col-sm-10">
+							<input type="text" class="form-control" name="memberEmail" value="${principal.memberVO.memberEmail}">
+						</div>
+					</div>
+					<div class="form-group row">
+						<label class="col-sm-2 col-form-label">권한</label>
+						<div class="col-sm-10">
+							<input type="text" class="form-control-plaintext" value="" readonly>
+						</div>
+					</div>
+				</form>
+			</div>
+			<div class="card-footer">
+				<button type="button" class="btn btn-primary" onclick="document.getElementById('updateForm').submit()">수정하기</button>
+			</div>
 		</div>
 	</div>
 </body>

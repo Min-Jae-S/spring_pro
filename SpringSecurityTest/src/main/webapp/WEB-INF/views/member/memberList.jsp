@@ -16,35 +16,36 @@
 <body>
 	<c:import url="/WEB-INF/views/common/header.jsp" />
 	<div class="container pt-4">
-		<div style="padding: 16px;">
-			<h3><strong>회원관리</strong></h3>
-			<br>
-			<table class="table table-bordered">
-				<thead class="thead-light text-center">
-					<tr>
-						<th>No</th>
-						<th>아이디</th>
-						<th>이름</th>
-						<th>이메일</th>
-						<th>권한</th>
-					</tr>
-				</thead>
-				<tbody>
-					<c:forEach items="${list}" var="memberVO">
+		<div class="card">
+			<div class="card-header font-weight-bold">회원 목록</div>
+			<div class="card-body">
+				<table class="table table-bordered">
+					<thead class="thead-light text-center">
 						<tr>
-							<td>${memberVO.memberIdx}</td>
-							<td>${memberVO.memberId}</td>
-							<td>${memberVO.memberName}</td>
-							<td>${memberVO.memberEmail}</td>
-							<td>
-								<c:if test="${memberVO.memberRole eq 'ROLE_USER'}">일반</c:if>
-								<c:if test="${memberVO.memberRole eq 'ROLE_MANAGE'}">매니저</c:if>
-								<c:if test="${memberVO.memberRole eq 'ROLE_ADMIN'}">관리자</c:if>
-							</td>
+							<th>No</th>
+							<th>아이디</th>
+							<th>이름</th>
+							<th>이메일</th>
+							<th>권한</th>
 						</tr>
-					</c:forEach>
-				</tbody>
-			</table>
+					</thead>
+					<tbody>
+						<c:forEach items="${list}" var="memberVO">
+							<tr>
+								<td>${memberVO.memberIdx}</td>
+								<td>${memberVO.memberId}</td>
+								<td>${memberVO.memberName}</td>
+								<td>${memberVO.memberEmail}</td>
+								<td>
+									<c:if test="${memberVO.memberRole eq 'ROLE_USER'}">일반</c:if>
+									<c:if test="${memberVO.memberRole eq 'ROLE_MANAGE'}">매니저</c:if>
+									<c:if test="${memberVO.memberRole eq 'ROLE_ADMIN'}">관리자</c:if>
+								</td>
+							</tr>
+						</c:forEach>
+					</tbody>
+				</table>
+			</div>
 		</div>
 	</div>
 </body>

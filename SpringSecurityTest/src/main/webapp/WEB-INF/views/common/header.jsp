@@ -5,11 +5,9 @@
 <c:set var="contextPath" value="${pageContext.request.contextPath}"/>
 <c:set var="principal" value="${sessionScope.SPRING_SECURITY_CONTEXT.authentication.principal}" />
 <script>
-	$(document).ready(function() {
-	
-	});
+
 </script>
-<div class="container">
+<div class="container mb-4">
 	<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
 		<a class="navbar-brand" href="${contextPath}/">
 			<img class="d-inline-block align-top mr-2" src="${contextPath}/resources/image/mokoko.png" width="30" height="30">HOME
@@ -36,5 +34,5 @@
 				</li>
 			</sec:authorize>
 		</ul>
-</nav>
+	</nav>
 </div>

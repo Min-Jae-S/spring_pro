@@ -15,22 +15,29 @@
 <body>
 	<c:import url="/WEB-INF/views/common/header.jsp" />
 	<div class="container pt-4">
-		<div style="padding: 16px;">
-			<h3><strong>로그인</strong></h3>
-			<br>
-			<form action="${contextPath}/member/login" method="POST">
-				<div class="form-group">
-					<label for="memberId">아이디</label>
-					<input type="text" class="form-control" id="memberId" name="memberId" placeholder="아이디를 입력하세요.">
-				</div>
-				<div class="form-group">
-					<label for="memberPassword">비밀번호</label>
-					<input type="password" class="form-control" id="memberPassword" name="memberPassword" placeholder="비밀번호를 입력하세요.">
-				</div>
-				<hr>
-				<button type="submit" class="btn btn-primary">로그인</button>
-			</form>
+		<div class="card">
+			<div class="card-header font-weight-bold h5">로그인</div>
+			<div class="card-body">
+				<form action="${contextPath}/member/login" method="POST" id="loginForm">
+					<div class="form-group row">
+						<label class="col-sm-2 col-form-label" for="memberId">아이디</label>
+						<div class="col-sm-10">
+							<input type="text" class="form-control" id="memberId" name="memberId" placeholder="아이디">
+						</div>
+					</div>
+					<div class="form-group row">
+						<label class="col-sm-2 col-form-label" for="memberPassword">비밀번호</label>
+						<div class="col-sm-10">
+							<input type="password" class="form-control" id="memberPassword" name="memberPassword" placeholder="비밀번호">
+						</div>
+					</div>
+				</form>
+			</div>
+			<div class="card-footer">
+				<button type="button" class="btn btn-primary" onclick="document.getElementById('loginForm').submit()">로그인</button>
+			</div>
 		</div>
+
 	</div>
 </body>
 </html>

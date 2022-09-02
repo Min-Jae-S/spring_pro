@@ -13,43 +13,41 @@
 <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.slim.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
-<style>
-	td:first-child {
-		width: 20%;
-		font-weight: bold;
-		text-align: center;
-		background-color: #fafaaa;
-	}
-</style>
 </head>
 <body>
 	<c:import url="/WEB-INF/views/common/header.jsp" />
 	<div class="container pt-4">
-		<div style="padding: 16px;">
-			<h3><strong>프로필 관리</strong></h3>
-			<br>
-			<table class="table table-bordered">
-				<tr>
-					<td>아이디</td>
-					<td>${principal.memberVO.memberId}</td>
-				</tr>
-				<tr>
-					<td>이름</td>
-					<td>${principal.memberVO.memberName}</td>
-				</tr>
-				<tr>
-					<td>이메일</td>
-					<td>${principal.memberVO.memberEmail}</td>
-				</tr>
-				<tr>
-					<td>권한</td>
-					<td>
-						<sec:authorize access="hasRole('USER')">일반</sec:authorize>
-						<sec:authorize access="hasRole('MANAGER')">매니저</sec:authorize>
-						<sec:authorize access="hasRole('ADMIN')">관리자</sec:authorize>
-					</td>
-				</tr>
-			</table>
+		<div class="card">
+			<div class="card-header font-weight-bold h5">프로필 관리</div>
+			<div class="card-body">
+				<div class="form-group row">
+					<label class="col-sm-2 col-form-label">아이디</label>
+					<div class="col-sm-10">
+						<input type="text" class="form-control-plaintext" value="${principal.memberVO.memberId}" readonly>
+					</div>
+				</div>
+				<div class="form-group row">
+					<label class="col-sm-2 col-form-label">이름</label>
+					<div class="col-sm-10">
+						<input type="text" class="form-control-plaintext" value="${principal.memberVO.memberName}" readonly>
+					</div>
+				</div>
+				<div class="form-group row">
+					<label class="col-sm-2 col-form-label">이메일</label>
+					<div class="col-sm-10">
+						<input type="text" class="form-control-plaintext" value="${principal.memberVO.memberEmail}" readonly>
+					</div>
+				</div>
+				<div class="form-group row">
+					<label class="col-sm-2 col-form-label">권한</label>
+					<div class="col-sm-10">
+						<input type="text" class="form-control-plaintext" value="" readonly>
+					</div>
+				</div>
+			</div>
+			<div class="card-footer">
+				<button type="button" class="btn btn-primary" onclick="location.href='${contextPath}/member/updateForm'">수정화면</button>
+			</div>
 		</div>
 	</div>
 </body>

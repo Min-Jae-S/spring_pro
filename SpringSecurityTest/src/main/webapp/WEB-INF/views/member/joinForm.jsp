@@ -15,44 +15,59 @@
 <body>
 	<c:import url="/WEB-INF/views/common/header.jsp" />
 	<div class="container pt-4">
-		<div style="padding: 16px;">
-			<h3><strong>회원가입</strong></h3>
-			<br>
-			<form action="${contextPath}/member/join" method="POST">
-				<div class="form-group">
-					<label for="memberId">아이디</label> 
-					<input type="text"class="form-control" id="memberId" name="memberId" placeholder="아이디를 입력하세요.">
-				</div>
-				<div class="form-group">
-					<label for="memberPassword">비밀번호</label>
-					<input type="password" class="form-control" id="memberPassword" name="memberPassword" placeholder="비밀번호를 입력하세요.">
-				</div>
-				<div class="form-group">
-					<label for="memberName">이름</label> 
-					<input type="text" class="form-control" id="memberName" name="memberName" placeholder="이름을 입력하세요.">
-				</div>
-				<div class="form-group">
-					<label for="memberEmail">이메일</label> 
-					<input type="text" class="form-control" id="memberEmail" name="memberEmail" placeholder="이메일을 입력하세요.">
-				</div>
-					<div class="form-check-inline">
-						<label class="form-check-label">
-							<input type="radio" class="form-check-input" name="memberRole" value="ROLE_USER" checked>일반회원
-						</label>
+		<div class="card">
+			<div class="card-header font-weight-bold h5">회원가입</div>
+			<div class="card-body">
+				<form action="${contextPath}/member/join" method="POST" id="joinForm">
+					<div class="form-group row mb-4">
+						<label class="col-sm-2 col-form-label" for="memberId">아이디</label>
+						<div class="col-sm-10">
+							<input type="text" class="form-control" id="memberId" name="memberId" placeholder="아이디를 입력하세요.">
+						</div>
 					</div>
-					<div class="form-check-inline">
-						<label class="form-check-label">
-							<input type="radio" class="form-check-input" name="memberRole" value="ROLE_MANAGER">매니저
-						</label>
+					<div class="form-group row mb-4">
+						<label class="col-sm-2 col-form-label" for="memberPassword">비밀번호</label>
+						<div class="col-sm-10">
+							<input type="password" class="form-control" id="memberPassword" name=memberPassword placeholder="비밀번호를 입력하세요.">
+						</div>
 					</div>
-					<div class="form-check-inline">
-						<label class="form-check-label">
-							<input type="radio" class="form-check-input" name="memberRole" value="ROLE_ADMIN">관리자
-						</label>
+					<div class="form-group row mb-4">
+						<label class="col-sm-2 col-form-label" for="memberName">이름</label>
+						<div class="col-sm-10">
+							<input type="text" class="form-control" id="memberName" name="memberName" placeholder="이름을 입력하세요.">
+						</div>
 					</div>
-				<hr>
-				<button type="submit" class="btn btn-primary">가입</button>
-			</form>
+					<div class="form-group row mb-4">
+						<label class="col-sm-2 col-form-label" for="memberEmail">이메일</label>
+						<div class="col-sm-10">
+							<input type="text" class="form-control" id="memberEmail" name="memberEmail" placeholder="이메일을 입력하세요.">
+						</div>
+					</div>
+					<div class="form-group row align-items-center">
+						<label class="col-sm-2 col-form-label">권한</label>
+						<div class="col-sm-10">
+							<div class="form-check-inline">
+								<label class="form-check-label">
+									<input type="radio" class="form-check-input" name="memberRole" value="ROLE_USER" checked>일반회원
+								</label>
+							</div>
+							<div class="form-check-inline">
+								<label class="form-check-label"> 
+									<input type="radio" class="form-check-input" name="memberRole" value="ROLE_MANAGER">매니저
+								</label>
+							</div>
+							<div class="form-check-inline">
+								<label class="form-check-label">
+									<input type="radio" class="form-check-input" name="memberRole" value="ROLE_ADMIN">관리자
+								</label>
+							</div>
+						</div>
+					</div>
+				</form>
+			</div>
+			<div class="card-footer">
+				<button type="button" class="btn btn-primary" onclick="document.getElementById('joinForm').submit()">회원가입</button>
+			</div>
 		</div>
 	</div>
 </body>

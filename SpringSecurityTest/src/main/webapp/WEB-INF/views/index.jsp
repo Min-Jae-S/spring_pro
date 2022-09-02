@@ -14,8 +14,5 @@
 </head>
 <body>
 	<c:import url="/WEB-INF/views/common/header.jsp" />
-	<div class='container pt-5'>
-		<h3>HOME</h3>
-	</div>
 </body>
 </html>
