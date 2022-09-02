@@ -6,8 +6,8 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
-import com.demo.entity.CustomUserDetails;
-import com.demo.entity.MemberVO;
+import com.demo.domain.CustomUserDetails;
+import com.demo.domain.MemberVO;
 import com.demo.mapper.MemberMapper;
 
 import lombok.extern.log4j.Log4j;

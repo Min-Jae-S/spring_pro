@@ -4,7 +4,7 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
 
-import com.demo.entity.MemberVO;
+import com.demo.domain.MemberVO;
 
 @Mapper
 public interface MemberMapper {

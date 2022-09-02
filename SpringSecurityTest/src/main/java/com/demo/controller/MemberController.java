@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.demo.entity.MemberVO;
+import com.demo.domain.MemberVO;
 import com.demo.mapper.MemberMapper;
 
 import lombok.extern.slf4j.Slf4j;
@@ -28,11 +28,13 @@ public class MemberController {
 	
 	@GetMapping("/loginForm")
 	public String loginForm() {
+		log.info("## loginForm ##");
 		return "member/loginForm";
 	}
 
 	@GetMapping("/joinForm")
 	public String joinForm() {
+		log.info("## joinForm ##");
 		return "member/joinForm";
 	}
 	
@@ -78,6 +80,8 @@ public class MemberController {
 
 	@PostMapping("/update")
 	public String update(MemberVO memberVO) {
+		log.info("## updateForm ##");
+		log.info("memberVO : " + memberVO);
 		
 		return "redirect:/member/memberInfo";
 	}
