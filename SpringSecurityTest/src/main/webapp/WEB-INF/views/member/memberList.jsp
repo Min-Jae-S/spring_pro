@@ -17,10 +17,10 @@
 	<c:import url="/WEB-INF/views/common/header.jsp" />
 	<div class="container pt-4">
 		<div class="card">
-			<div class="card-header font-weight-bold">회원 목록</div>
+			<div class="card-header font-weight-bold h5">회원 목록</div>
 			<div class="card-body">
-				<table class="table table-bordered">
-					<thead class="thead-light text-center">
+				<table class="table table-hover table-bordered">
+					<thead class="text-center">
 						<tr>
 							<th>No</th>
 							<th>아이디</th>
@@ -38,7 +38,7 @@
 								<td>${memberVO.memberEmail}</td>
 								<td>
 									<c:if test="${memberVO.memberRole eq 'ROLE_USER'}">일반</c:if>
-									<c:if test="${memberVO.memberRole eq 'ROLE_MANAGE'}">매니저</c:if>
+									<c:if test="${memberVO.memberRole eq 'ROLE_MANAGER'}">매니저</c:if>
 									<c:if test="${memberVO.memberRole eq 'ROLE_ADMIN'}">관리자</c:if>
 								</td>
 							</tr>

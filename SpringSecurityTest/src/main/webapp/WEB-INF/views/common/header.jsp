@@ -13,7 +13,7 @@
 			<img class="d-inline-block align-top mr-2" src="${contextPath}/resources/image/mokoko.png" width="30" height="30">HOME
 		</a>
 		<ul class="navbar-nav ml-auto">
-			<sec:authorize access="hasRole('ADMIN')">
+			<sec:authorize access="hasAnyRole('ADMIN', 'MANAGER')">
 				<li class="nav-item"><a class="nav-link" href="${contextPath}/member/memberList">회원목록</a></li>
 			</sec:authorize>
 
