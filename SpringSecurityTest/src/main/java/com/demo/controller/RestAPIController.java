@@ -12,29 +12,25 @@ public class RestAPIController {
 	
 	@GetMapping("/all")
 	public String all() {
-		log.info("all can access");
-		
+		log.info("ALL CAN ACCESS");
 		return "all";
 	}
 
 	@GetMapping("/user")
 	public String user() {
-		log.info("user only");
-		
+		log.info("USER ONLY");
 		return "user";
 	}
 	
 	@GetMapping("/manager")
 	public String manager() {
-		log.info("manager only");
-		
+		log.info("MANAGER ONLY");
 		return "manager";
 	}
 	
 	@GetMapping("/admin")
 	public String admin() {
-		log.info("admin only");
-		
+		log.info("ADMIN ONLY");
 		return "admin";
 	}
 }
