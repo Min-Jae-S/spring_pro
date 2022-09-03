@@ -16,12 +16,10 @@
 			<sec:authorize access="hasAnyRole('MANAGER', 'ADMIN')">
 				<li class="nav-item"><a class="nav-link" href="${contextPath}/member/memberList">회원목록</a></li>
 			</sec:authorize>
-
 			<sec:authorize access="isAnonymous()">
 				<li class="nav-item"><a class="nav-link" href="${contextPath}/member/joinForm">회원가입</a></li>
 				<li class="nav-item"><a class="nav-link" href="${contextPath}/member/loginForm">로그인</a></li>
 			</sec:authorize>
-			
 			<sec:authorize access="isAuthenticated()">
 				<li class="nav-item"><a class="nav-link" href="${contextPath}/member/memberInfo">프로필 관리</a></li>
 				<li class="nav-item"><a class="nav-link" href="${contextPath}/member/logout">로그아웃</a></li>
