@@ -29,12 +29,14 @@ public class MemberController {
 	@GetMapping("/loginForm")
 	public String loginForm() {
 		log.info("## loginForm ##");
+		
 		return "member/loginForm";
 	}
 
 	@GetMapping("/joinForm")
 	public String joinForm() {
 		log.info("## joinForm ##");
+		
 		return "member/joinForm";
 	}
 	
