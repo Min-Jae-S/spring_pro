@@ -4,7 +4,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>HOME</title>
+<title>Spring Security</title>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
@@ -15,18 +15,10 @@
 <body>
 	<c:import url="/WEB-INF/views/common/header.jsp" />
 	<div class="container text-center mt-5 mb-5">
-    	<h1>Spring Security</h1>
+    	<h1>Member Only</h1>
     </div>
     <div class="container text-center col-2">
-    	<p>
-            User : <security:authentication property="principal.username" />
-            <br><br>
-            Role(s) : <security:authentication property="principal.authorities"/>
-        </p>
-        <a href="${contextPath}/roles/all" role="button" class="btn btn-outline-secondary btn-block">ALL</a>
-        <a href="${contextPath}/roles/memberOnly" role="button" class="btn btn-outline-secondary btn-block">MEMBER</a>
-        <a href="${contextPath}/roles/managerOnly" role="button" class="btn btn-outline-secondary btn-block">MANAGER</a>
-        <a href="${contextPath}/roles/adminOnly" role="button" class="btn btn-outline-secondary btn-block">ADMIN</a>
+        <a href="${contextPath}/" role="button" class="btn btn-outline-primary btn-block">HOME</a>
     </div>
 </body>
 </html>
