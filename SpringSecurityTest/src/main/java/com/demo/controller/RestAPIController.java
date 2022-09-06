@@ -16,19 +16,19 @@ public class RestAPIController {
 		return "all";
 	}
 
-	@GetMapping("/user")
+	@GetMapping("/memberOnly")
 	public String user() {
 		log.info("USER ONLY");
 		return "user";
 	}
 	
-	@GetMapping("/manager")
+	@GetMapping("/managerOnly")
 	public String manager() {
 		log.info("MANAGER ONLY");
 		return "manager";
 	}
 	
-	@GetMapping("/admin")
+	@GetMapping("/adminOnly")
 	public String admin() {
 		log.info("ADMIN ONLY");
 		return "admin";
