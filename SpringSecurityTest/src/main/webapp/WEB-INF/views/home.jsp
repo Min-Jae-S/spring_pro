@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags"%>
 <c:set var="contextPath" value="${pageContext.request.contextPath}"/>
+<c:set var="principal" value="${sessionScope.SPRING_SECURITY_CONTEXT.authentication.principal}" />
 <!DOCTYPE html>
 <html>
 <head>
@@ -18,15 +20,17 @@
     	<h1>Spring Security</h1>
     </div>
     <div class="container text-center col-2">
-    	<p>
-            User : <security:authentication property="principal.username" />
-            <br><br>
-            Role(s) : <security:authentication property="principal.authorities"/>
-        </p>
-        <a href="${contextPath}/roles/all" role="button" class="btn btn-outline-secondary btn-block">ALL</a>
-        <a href="${contextPath}/roles/memberOnly" role="button" class="btn btn-outline-secondary btn-block">MEMBER</a>
-        <a href="${contextPath}/roles/managerOnly" role="button" class="btn btn-outline-secondary btn-block">MANAGER</a>
-        <a href="${contextPath}/roles/adminOnly" role="button" class="btn btn-outline-secondary btn-block">ADMIN</a>
+    	<sec:authorize access="isAuthenticated()">
+	    	<p>
+	            User : ${principal.memberVO.memberId}
+	            <br><br>
+	            Role(s) : ${principal.memberVO.memberRole}
+	        </p>
+    	</sec:authorize>
+        <a href="${contextPath}/all" role="button" class="btn btn-outline-secondary btn-block">ALL</a>
+        <a href="${contextPath}/memberOnly" role="button" class="btn btn-outline-secondary btn-block">MEMBER</a>
+        <a href="${contextPath}/managerOnly" role="button" class="btn btn-outline-secondary btn-block">MANAGER</a>
+        <a href="${contextPath}/adminOnly" role="button" class="btn btn-outline-secondary btn-block">ADMIN</a>
     </div>
 </body>
 </html>

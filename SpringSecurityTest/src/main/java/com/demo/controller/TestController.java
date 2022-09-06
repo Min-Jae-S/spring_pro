@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.RestController;
 import lombok.extern.log4j.Log4j;
 
 @Log4j
-@RequestMapping("/roles")
 @Controller
 public class TestController {
 	

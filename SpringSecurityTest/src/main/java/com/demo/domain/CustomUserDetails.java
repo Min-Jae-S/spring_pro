@@ -58,7 +58,7 @@ public class CustomUserDetails implements UserDetails {
 		return true;
 	}
 
-	public MemberVO getMemberVO() {
-		return memberVO;
-	}
+//	public MemberVO getMemberVO() {
+//		return memberVO;
+//	}
 }

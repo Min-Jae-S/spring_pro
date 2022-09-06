@@ -18,7 +18,7 @@
     	<h1>Member Only</h1>
     </div>
     <div class="container text-center col-2">
-        <a href="${contextPath}/" role="button" class="btn btn-outline-primary btn-block">HOME</a>
+        <a href="${contextPath}/" role="button" class="btn btn-primary">HOME</a>
     </div>
 </body>
 </html>
