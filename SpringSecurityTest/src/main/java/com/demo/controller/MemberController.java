@@ -28,22 +28,17 @@ public class MemberController {
 	
 	@GetMapping("/loginForm")
 	public String loginForm() {
-		log.info("## loginForm ##");
-		
 		return "member/loginForm";
 	}
 
 	@GetMapping("/joinForm")
 	public String joinForm() {
-		log.info("## joinForm ##");
-		
 		return "member/joinForm";
 	}
 	
 	@PostMapping("/join")
 	public String join(MemberVO memberVO) {
-		log.info("## join ##");
-		log.info("memberVO : " + memberVO);
+		log.info("memberVO : {}", memberVO);
 		
 		String rawPassword = memberVO.getMemberPassword();
 		String encPassword = passwordEncoder.encode(rawPassword);
@@ -56,10 +51,8 @@ public class MemberController {
 	
 	@GetMapping("/memberList")
 	public String getMemberList(Model model) {
-		log.info("## getMemberList ##");
-		
 		List<MemberVO> list = memberMapper.getMemberList();
-		log.info("list : " + list);
+		log.info("list : {}", list);
 		
 		model.addAttribute("list", list);
 		
@@ -68,22 +61,17 @@ public class MemberController {
 
 	@GetMapping("/memberInfo")
 	public String getMemberInfo() {
-		log.info("## getMemberInfo ##");
-		
 		return "member/memberInfo";
 	}
 	
 	@GetMapping("/updateForm")
 	public String updateForm() {
-		log.info("## updateForm ##");
-		
 		return "member/updateForm";
 	}
 
 	@PostMapping("/update")
 	public String update(MemberVO memberVO) {
-		log.info("## updateForm ##");
-		log.info("memberVO : " + memberVO);
+		log.info("memberVO : {}", memberVO);
 		
 		return "redirect:/member/memberInfo";
 	}
