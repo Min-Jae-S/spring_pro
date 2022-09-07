@@ -2,6 +2,8 @@ package com.demo.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
@@ -28,7 +30,9 @@ public class MemberController {
 	PasswordEncoder passwordEncoder;
 	
 	@GetMapping("/loginForm")
-	public String loginForm() {
+	public String loginForm(HttpServletRequest request) {
+		String uri = request.getHeader("Referer");
+		
 		return "member/loginForm";
 	}
 

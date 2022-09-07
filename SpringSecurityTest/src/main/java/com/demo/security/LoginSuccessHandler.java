@@ -47,21 +47,22 @@ public class LoginSuccessHandler implements AuthenticationSuccessHandler {
 			log.info("attrNames : {}", attrNames.nextElement());
 		}
 		
-		SavedRequest savedRequest =(SavedRequest) session.getAttribute("SPRING_SECURITY_SAVED_REQUEST");
+		SavedRequest savedRequest = (SavedRequest) session.getAttribute("SPRING_SECURITY_SAVED_REQUEST");
 		//SavedRequest savedRequest = requestCache.getRequest(request, response);
 		
-		String uri = null;
+		String uri = "/";
 		
 		if(savedRequest != null) {
 			uri = savedRequest.getRedirectUrl();
-			log.info("uri : {}", uri);
+			log.info("savedRequest(SPRING_SECURITY_SAVED_REQUEST) is NOT NULL");
 			
 			RequestCache requestCache = new HttpSessionRequestCache();
 			requestCache.removeRequest(request, response);
-			response.sendRedirect(uri);
+		} else {
+			uri = request.getContextPath();
+			log.info("savedRequest(SPRING_SECURITY_SAVED_REQUEST) is NULL");
 		}
 		
-		uri = request.getContextPath();
 		log.info("uri : {}", uri);
 		response.sendRedirect(uri);
 	}
