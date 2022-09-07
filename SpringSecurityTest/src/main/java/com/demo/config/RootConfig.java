@@ -23,8 +23,8 @@ import com.zaxxer.hikari.HikariDataSource;
 // <mybatis-spring:scan ... />
 
 @Configuration
-@ComponentScan(basePackages = {"com.demo.service"})
-@MapperScan(basePackages = {"com.demo.mapper"})
+@ComponentScan(basePackages = "com.demo.security")
+@MapperScan(basePackages = "com.demo.mapper")
 @PropertySource({"classpath:db.properties"})
 public class RootConfig {
 
