@@ -22,7 +22,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 	
 	@Override
 	public UserDetails loadUserByUsername(String memberId) throws UsernameNotFoundException {
-		log.info("memberId : {}", memberId);
+		log.info("loadUserByUsername, memberId : {}", memberId);
 		
 		MemberVO memberVO = memberMapper.checkLogin(memberId);
 		log.info("memberVO : {}", memberVO);

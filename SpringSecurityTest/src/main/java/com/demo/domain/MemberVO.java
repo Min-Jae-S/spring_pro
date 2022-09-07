@@ -11,5 +11,6 @@ public class MemberVO {
 	private String memberName;
 	private String memberEmail;
 	private String memberRole;
-	
+	private String regdate;
+	private String moddate;
 }
