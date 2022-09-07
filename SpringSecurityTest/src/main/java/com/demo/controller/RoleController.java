@@ -8,9 +8,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import lombok.extern.log4j.Log4j;
 
-@Log4j
 @Controller
-public class TestController {
+public class RoleController {
 	
 	@GetMapping("/all")
 	public String all() {

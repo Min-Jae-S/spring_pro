@@ -13,14 +13,6 @@
 <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.slim.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
-<script>
-	$(function() {
-		$("input[readonly]").on("click", function(e) {
-			e.stopPropagation();
-			e.preventDefault();
-		});
-	});
-</script>
 </head>
 <body>
 	<c:import url="/WEB-INF/views/common/header.jsp" />
@@ -57,6 +49,7 @@
 			</div>
 			<div class="card-footer">
 				<button type="button" class="btn btn-primary" onclick="document.getElementById('updateForm').submit()">수정하기</button>
+				<button type="button" class="btn btn-secondary" onclick="document.getElementById('updateForm').reset()">취소</button>
 			</div>
 		</div>
 	</div>

@@ -43,7 +43,7 @@
 							<input type="text" class="form-control" id="memberEmail" name="memberEmail" placeholder="이메일을 입력하세요.">
 						</div>
 					</div>
-					<div class="form-group row align-items-center">
+					<div class="form-group row">
 						<label class="col-sm-2 col-form-label">권한</label>
 						<div class="col-sm-10">
 							<div class="form-check-inline">
@@ -67,6 +67,7 @@
 			</div>
 			<div class="card-footer">
 				<button type="button" class="btn btn-primary" onclick="document.getElementById('joinForm').submit()">회원가입</button>
+				<button type="button" class="btn btn-secondary" onclick="document.getElementById('joinForm').reset()">취소</button>
 			</div>
 		</div>
 	</div>

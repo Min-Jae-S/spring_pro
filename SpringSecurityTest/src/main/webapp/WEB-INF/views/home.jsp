@@ -25,9 +25,8 @@
 	            User : ${principal.memberVO.memberId}
 	            <br>
 	            Role(s) : ${principal.memberVO.memberRole}
-	        </p>
+	        </p><br>
     	</sec:authorize>
-    	<br>
         <a href="${contextPath}/all" role="button" class="btn btn-outline-secondary btn-block">ALL</a>
         <a href="${contextPath}/memberOnly" role="button" class="btn btn-outline-secondary btn-block">MEMBER</a>
         <a href="${contextPath}/managerOnly" role="button" class="btn btn-outline-secondary btn-block">MANAGER</a>

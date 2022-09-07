@@ -35,6 +35,7 @@
 			</div>
 			<div class="card-footer">
 				<button type="button" class="btn btn-primary" onclick="document.getElementById('loginForm').submit()">로그인</button>
+				<button type="button" class="btn btn-secondary" onclick="document.getElementById('loginForm').reset()">취소</button>
 			</div>
 		</div>
 

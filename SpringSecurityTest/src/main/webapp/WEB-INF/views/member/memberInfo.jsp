@@ -41,7 +41,21 @@
 				<div class="form-group row">
 					<label class="col-sm-2 col-form-label">권한</label>
 					<div class="col-sm-10">
-						<input type="text" class="form-control-plaintext" value="" readonly>
+						<div class="form-check-inline">
+							<label class="form-check-label">
+								<input type="radio" class="form-check-input" name="memberRole" value="ROLE_MEMBER">일반회원
+							</label>
+						</div>
+						<div class="form-check-inline">
+							<label class="form-check-label"> 
+								<input type="radio" class="form-check-input" name="memberRole" value="ROLE_MANAGER">매니저
+							</label>
+						</div>
+						<div class="form-check-inline">
+							<label class="form-check-label">
+								<input type="radio" class="form-check-input" name="memberRole" value="ROLE_ADMIN">관리자
+							</label>
+						</div>
 					</div>
 				</div>
 			</div>
