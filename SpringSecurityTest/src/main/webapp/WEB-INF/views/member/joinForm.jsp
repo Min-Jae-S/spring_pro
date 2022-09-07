@@ -48,7 +48,7 @@
 						<div class="col-sm-10">
 							<div class="form-check-inline">
 								<label class="form-check-label">
-									<input type="radio" class="form-check-input" name="memberRole" value="ROLE_USER" checked>일반회원
+									<input type="radio" class="form-check-input" name="memberRole" value="ROLE_MEMBER" checked>일반회원
 								</label>
 							</div>
 							<div class="form-check-inline">

@@ -25,7 +25,7 @@
 				<li class="nav-item"><a class="nav-link" href="${contextPath}/member/logout">로그아웃</a></li>
 				<li class="nav-item">
 					<span class="nav-link text-white">${principal.memberVO.memberId}(<!--  
-						--><sec:authorize access="hasRole('USER')">일반</sec:authorize><!-- 
+						--><sec:authorize access="hasRole('MEMBER')">일반</sec:authorize><!-- 
 						--><sec:authorize access="hasRole('MANAGER')">매니저</sec:authorize><!-- 
 						--><sec:authorize access="hasRole('ADMIN')">관리자</sec:authorize>)<!-- 
 					--></span>

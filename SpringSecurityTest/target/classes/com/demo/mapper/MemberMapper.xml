@@ -47,7 +47,23 @@
 	</insert>
 	
 	<select id="readMemberList" resultMap="result">
-		SELECT * FROM members_tbl ORDER BY member_idx DESC
+		SELECT 
+			a.member_idx,
+			a.member_id,
+			a.member_password,
+			a.member_name,
+			a.member_email,
+			TO_CHAR(a.regdate, 'YYYY-MM-DD') AS regdate,
+			TO_CHAR(a.moddate, 'YYYY-MM-DD') AS moddate,
+			b.auth AS member_role
+		FROM 
+			members_tbl a
+		INNER JOIN
+			authority_tbl b
+		ON
+			a.member_id = b.member_id
+		ORDER BY 
+			a.member_idx DESC
 	</select>
 	
 	<select id="checkLogin" parameterType="java.lang.String" resultMap="result">
@@ -63,7 +79,7 @@
 		FROM 
 			members_tbl a
 		INNER JOIN
-			 authority_tbl b
+			authority_tbl b
 		ON
 			a.member_id = b.member_id
 		WHERE 

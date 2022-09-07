@@ -27,6 +27,8 @@
 							<th>이름</th>
 							<th>이메일</th>
 							<th>권한</th>
+							<th>등록일</th>
+							<th>수정일</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -37,10 +39,12 @@
 								<td>${memberVO.memberName}</td>
 								<td>${memberVO.memberEmail}</td>
 								<td>
-									<c:if test="${memberVO.memberRole eq 'ROLE_USER'}">일반</c:if>
+									<c:if test="${memberVO.memberRole eq 'ROLE_MEMBER'}">일반</c:if>
 									<c:if test="${memberVO.memberRole eq 'ROLE_MANAGER'}">매니저</c:if>
 									<c:if test="${memberVO.memberRole eq 'ROLE_ADMIN'}">관리자</c:if>
 								</td>
+								<td>${memberVO.regdate}</td>
+								<td>${memberVO.moddate}</td>
 							</tr>
 						</c:forEach>
 					</tbody>
