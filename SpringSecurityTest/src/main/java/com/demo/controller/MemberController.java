@@ -39,7 +39,7 @@ public class MemberController {
 	
 	@PostMapping("/join")
 	public String join(MemberVO memberVO) {
-		log.info("Join, memberVO : {}", memberVO);
+		log.info("Join; memberVO : {}", memberVO);
 		
 		String rawPassword = memberVO.getMemberPassword();
 		String encPassword = passwordEncoder.encode(rawPassword);
@@ -61,7 +61,7 @@ public class MemberController {
 	@GetMapping("/memberList")
 	public String readMemberList(Model model) {
 		List<MemberVO> list = memberMapper.readMemberList();
-		log.info("ReadMemberList, list : {}", list);
+		log.info("ReadMemberList; list : {}", list);
 		
 		model.addAttribute("list", list);
 		
@@ -80,7 +80,7 @@ public class MemberController {
 
 	@PostMapping("/update")
 	public String update(MemberVO memberVO) {
-		log.info("Update, memberVO : {}", memberVO);
+		log.info("Update; memberVO : {}", memberVO);
 		
 		return "redirect:/member/memberInfo";
 	}
