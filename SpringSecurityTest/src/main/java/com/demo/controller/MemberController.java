@@ -3,6 +3,7 @@ package com.demo.controller;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -32,6 +33,10 @@ public class MemberController {
 	@GetMapping("/loginForm")
 	public String loginForm(HttpServletRequest request) {
 		String uri = request.getHeader("Referer");
+		
+		if(uri != null && !uri.contains("/loginForm")) {
+			request.getSession().setAttribute("prevPage", uri);
+		}
 		
 		return "member/loginForm";
 	}

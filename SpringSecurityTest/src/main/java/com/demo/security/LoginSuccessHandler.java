@@ -30,40 +30,45 @@ public class LoginSuccessHandler implements AuthenticationSuccessHandler {
 											Authentication authentication) throws IOException, ServletException {
 		log.info("Login Success");
 		
-		WebAuthenticationDetails web = (WebAuthenticationDetails) authentication.getDetails();
-		log.info("IP : {}", web.getRemoteAddress());
-		log.info("Session ID : {}", web.getSessionId());
-		log.info("ID : {}", authentication.getName());
-		log.info("Password: {}", authentication.getCredentials());
+		//WebAuthenticationDetails web = (WebAuthenticationDetails) authentication.getDetails();
+		//log.info("IP : {}", web.getRemoteAddress());
+		//log.info("Session ID : {}", web.getSessionId());
+		//log.info("Id : {}", authentication.getName());
+		//log.info("Password: {}", authentication.getCredentials());
 		
 		List<GrantedAuthority> list = (List<GrantedAuthority>) authentication.getAuthorities();
+		
 		for(GrantedAuthority auth : list) {
 			log.info("Authority : {}", auth.getAuthority());
 		}
 		
 		HttpSession session = request.getSession();
+		
 		Enumeration<String> attrNames = session.getAttributeNames();
 		while (attrNames.hasMoreElements()) {
 			log.info("attrNames : {}", attrNames.nextElement());
 		}
-		
+
+		String uri = request.getContextPath();
 		SavedRequest savedRequest = (SavedRequest) session.getAttribute("SPRING_SECURITY_SAVED_REQUEST");
 		//SavedRequest savedRequest = requestCache.getRequest(request, response);
+		String prevPage = (String) session.getAttribute("prevPage");
 		
-		String uri = "/";
-		
-		if(savedRequest != null) {
-			uri = savedRequest.getRedirectUrl();
-			log.info("savedRequest(SPRING_SECURITY_SAVED_REQUEST) is NOT NULL");
-			
-			RequestCache requestCache = new HttpSessionRequestCache();
-			requestCache.removeRequest(request, response);
-		} else {
-			uri = request.getContextPath();
-			log.info("savedRequest(SPRING_SECURITY_SAVED_REQUEST) is NULL");
+		if(prevPage != null) {
+			uri = prevPage;
+			session.removeAttribute("prevPage");
 		}
 		
-		log.info("uri : {}", uri);
+		// 강제 redirect된 로그인 화면 --> 로그인 성공 
+		if(savedRequest != null) {
+			log.info("SPRING_SECURITY_SAVED_REQUEST is NOT NULL");
+			uri = savedRequest.getRedirectUrl();
+
+			RequestCache requestCache = new HttpSessionRequestCache();
+			requestCache.removeRequest(request, response);
+		}
+		
+		log.info("RedirectURI : {}", uri);
 		response.sendRedirect(uri);
 	}
 
