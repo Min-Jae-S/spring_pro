@@ -1,8 +1,6 @@
 package com.demo.config;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -14,33 +12,39 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.AuthenticationFailureHandler;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 
+import com.demo.security.LoginFailureHandler;
+import com.demo.security.LoginSuccessHandler;
+import com.demo.security.UserDetailsServiceImpl;
+
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	
-	@Autowired
-	private UserDetailsService userDetailsService;
-	
-	@Autowired
-	private AuthenticationSuccessHandler loginSuccessHandler;
-	
-	@Autowired
-	private AuthenticationFailureHandler loginFailureHandler;
 
 	@Bean
 	public PasswordEncoder passwordEncoder() {
 		return new BCryptPasswordEncoder();
 	}
+	
+	@Bean
+	public UserDetailsService userDetailsService() {
+		return new UserDetailsServiceImpl();
+	}
 
-//	@Bean
-//	public UserDetailsService userDetailsService() {
-//		return new UserDetailsServiceImpl();
-//	}
+	@Bean
+	public AuthenticationSuccessHandler authenticationSuccessHandler() {
+		return new LoginSuccessHandler();
+	}
+
+	@Bean
+	public AuthenticationFailureHandler authenticationFailureHandler() {
+		return new LoginFailureHandler();
+	}
 	
 	// AuthenticationProvider가 PasswordEncoder와 UserDetailsService를 사용한다.
 	@Override
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-		auth.userDetailsService(userDetailsService).passwordEncoder(passwordEncoder());
+		auth.userDetailsService(userDetailsService()).passwordEncoder(passwordEncoder());
 	}
 	
 	
@@ -68,8 +72,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 				.usernameParameter("memberId")
 				.passwordParameter("memberPassword")
 				.loginProcessingUrl("/member/login")
-				.successHandler(loginSuccessHandler)
-				.failureHandler(loginFailureHandler)
+				.successHandler(authenticationSuccessHandler())
+				.failureHandler(authenticationFailureHandler())
 				.permitAll()
 				.and()
 			.logout()

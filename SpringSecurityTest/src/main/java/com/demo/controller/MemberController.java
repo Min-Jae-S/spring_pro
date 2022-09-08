@@ -3,7 +3,6 @@ package com.demo.controller;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -12,6 +11,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.demo.domain.AuthVO;
 import com.demo.domain.MemberVO;
@@ -30,14 +30,15 @@ public class MemberController {
 	@Autowired
 	PasswordEncoder passwordEncoder;
 	
-	@GetMapping("/loginForm")
+	@RequestMapping("/loginForm")
 	public String loginForm(HttpServletRequest request) {
+		log.info("loginForm");
+
 		String uri = request.getHeader("Referer");
 		
 		if(uri != null && !uri.contains("/loginForm")) {
 			request.getSession().setAttribute("prevPage", uri);
 		}
-		
 		return "member/loginForm";
 	}
 

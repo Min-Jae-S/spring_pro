@@ -21,21 +21,33 @@ import org.springframework.stereotype.Service;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
-@Service
 public class LoginFailureHandler implements AuthenticationFailureHandler {
 	
 	private final String DEFAULT_FAILURE_URL = "/member/loginForm";
+	
+	/*
+	 * UsernameNotFoundException 	: 계정 없음
+	 * BadCredentialsException 		: 비밀번호 불일치
+	 * AccountExpiredException		: 계정만료
+	 * CredentialsExpiredException	: 비밀번호 만료
+	 * DisabledException			: 계정 비활성화
+	 * LockedException				: 계정 잠김
+	 * 
+	 * InternalAuthenticationServiceException은 아이디가 존재하지 않을때 뿐만아니라
+	 * 인증요청 대한 처리가 이루어질 때 발생하는 모든 시스템 에러에 대해 발생하는 예외입니다.
+	 * 출처: https://to-dy.tistory.com/92 [todyDev:티스토리]
+	 * 
+	 */
 	
 	@Override
 	public void onAuthenticationFailure(HttpServletRequest request, HttpServletResponse response,
 			AuthenticationException exception) throws IOException, ServletException {
 //		Object object = request.getSession().getAttribute("SPRING_SECURITY_LAST_EXCEPTION");
-
-		log.info("Login Fail");
+		
 		String loginFailMsg = null;
 		
 		if(exception instanceof BadCredentialsException || exception instanceof InternalAuthenticationServiceException) {
-			loginFailMsg = "아이디 또는 비밀번호가 다릅니다.";
+			loginFailMsg = "아이디 또는 비밀번호를 확인해주세요.";
 			
 //		} else if (exception instanceof AuthenticationServiceException) {
 //			loginFailMsg = "존재하지 않는 사용자입니다.";
@@ -52,7 +64,8 @@ public class LoginFailureHandler implements AuthenticationFailureHandler {
 		}
 		
 		request.setAttribute("loginFailMsg", loginFailMsg);
-		
+		log.info("Login Fail, loginFailMsg : {}", loginFailMsg);
+
 		RequestDispatcher dispatcher = request.getRequestDispatcher(DEFAULT_FAILURE_URL);
 		dispatcher.forward(request, response);
 	}

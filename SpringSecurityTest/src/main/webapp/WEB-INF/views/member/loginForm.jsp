@@ -34,6 +34,10 @@
 					<c:if test="${not empty requestScope.loginFailMsg}">
 						<p class="text-danger">${requestScope.loginFailMsg}</p>
 					</c:if>
+					
+					<p class="text-danger">
+						SPRING_SECURITY_LAST_EXCEPTION : ${sessionScope["SPRING_SECURITY_LAST_EXCEPTION"].message}
+					</p>
 				</form>
 			</div>
 			<div class="card-footer">
