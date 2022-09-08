@@ -31,6 +31,9 @@
 							<input type="password" class="form-control" id="memberPassword" name="memberPassword" placeholder="비밀번호를 입력하세요.">
 						</div>
 					</div>
+					<c:if test="${not empty requestScope.loginFailMsg}">
+						<p class="text-danger">${requestScope.loginFailMsg}</p>
+					</c:if>
 				</form>
 			</div>
 			<div class="card-footer">
