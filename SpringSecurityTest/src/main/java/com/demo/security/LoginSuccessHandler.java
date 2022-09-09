@@ -51,6 +51,7 @@ public class LoginSuccessHandler implements AuthenticationSuccessHandler {
 		String uri = request.getContextPath();
 		SavedRequest savedRequest = (SavedRequest) session.getAttribute("SPRING_SECURITY_SAVED_REQUEST");
 		//SavedRequest savedRequest = requestCache.getRequest(request, response);
+		
 		String prevPage = (String) session.getAttribute("prevPage");
 		
 		if(prevPage != null) {
