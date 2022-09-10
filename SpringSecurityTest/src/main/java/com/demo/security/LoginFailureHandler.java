@@ -35,7 +35,7 @@ public class LoginFailureHandler implements AuthenticationFailureHandler {
 	 * 
 	 * InternalAuthenticationServiceException은 아이디가 존재하지 않을때 뿐만아니라
 	 * 인증요청 대한 처리가 이루어질 때 발생하는 모든 시스템 에러에 대해 발생하는 예외입니다.
-	 * 출처: https://to-dy.tistory.com/92 [todyDev:티스토리]
+	 * 출처: https://to-dy.tistory.com/92 
 	 * 
 	 */
 	
@@ -52,10 +52,11 @@ public class LoginFailureHandler implements AuthenticationFailureHandler {
 //		} else if (exception instanceof AuthenticationServiceException) {
 //			loginFailMsg = "존재하지 않는 사용자입니다.";
 			
-		} else if(exception instanceof LockedException || exception instanceof DisabledException 
-					|| exception instanceof AccountExpiredException) {
+		} else if(exception instanceof LockedException || 
+				  exception instanceof DisabledException ||
+				  exception instanceof AccountExpiredException) {
 			loginFailMsg = "사용할 수 없는 계정입니다. 관리자에게 문의하세요.";
-
+			
 		} else if(exception instanceof CredentialsExpiredException) {
 			loginFailMsg = "비밀번호의 유효기간이 만료되었습니다. 관리자에게 문의하세요.";
 			
