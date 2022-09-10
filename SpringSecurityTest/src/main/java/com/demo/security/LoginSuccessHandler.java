@@ -42,8 +42,8 @@ public class LoginSuccessHandler implements AuthenticationSuccessHandler {
 		}
 		
 		HttpSession session = request.getSession();
-		
 		Enumeration<String> attrNames = session.getAttributeNames();
+		
 		while (attrNames.hasMoreElements()) {
 			log.info("attrNames : {}", attrNames.nextElement());
 		}
