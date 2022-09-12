@@ -33,6 +33,7 @@ public class MemberController {
 	@RequestMapping("/loginForm")
 	public String loginForm(HttpServletRequest request) {
 		log.info("loginForm");
+		
 		String uri = request.getHeader("Referer");
 		
 		if(uri != null && !uri.contains("/loginForm")) {

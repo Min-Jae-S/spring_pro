@@ -29,17 +29,19 @@ public class LoginSuccessHandler implements AuthenticationSuccessHandler {
 											Authentication authentication) throws IOException, ServletException {
 		log.info("Login Success");
 		
-		//WebAuthenticationDetails web = (WebAuthenticationDetails) authentication.getDetails();
-		//log.info("IP : {}", web.getRemoteAddress());
-		//log.info("Session ID : {}", web.getSessionId());
-		//log.info("Id : {}", authentication.getName());
-		//log.info("Password: {}", authentication.getCredentials());
+		/*
+		WebAuthenticationDetails web = (WebAuthenticationDetails) authentication.getDetails();
+		log.info("IP : {}", web.getRemoteAddress());
+		log.info("Session ID : {}", web.getSessionId());
+		log.info("Id : {}", authentication.getName());
+		log.info("Password: {}", authentication.getCredentials());
 		
 		List<GrantedAuthority> list = (List<GrantedAuthority>) authentication.getAuthorities();
 		
 		for(GrantedAuthority auth : list) {
 			log.info("Authority : {}", auth.getAuthority());
 		}
+		*/
 		
 		HttpSession session = request.getSession();
 		Enumeration<String> attrNames = session.getAttributeNames();
