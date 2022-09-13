@@ -31,14 +31,8 @@ public class MemberController {
 	PasswordEncoder passwordEncoder;
 	
 	@RequestMapping("/loginForm")
-	public String loginForm(HttpServletRequest request) {
+	public String loginForm() {
 		log.info("loginForm");
-		
-		String uri = request.getHeader("Referer");
-		
-		if(uri != null && !uri.contains("/loginForm")) {
-			request.getSession().setAttribute("prevPage", uri);
-		}
 		
 		return "member/loginForm";
 	}
