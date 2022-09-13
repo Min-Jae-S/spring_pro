@@ -42,33 +42,33 @@ public class LoginFailureHandler implements AuthenticationFailureHandler {
 	@Override
 	public void onAuthenticationFailure(HttpServletRequest request, HttpServletResponse response,
 			AuthenticationException exception) throws IOException, ServletException {
-//		Object object = request.getSession().getAttribute("SPRING_SECURITY_LAST_EXCEPTION");
+		log.info("Login Fail");
 		
-		String loginFailMsg = null;
+		String exceptionMessage = null;
 		
 		if(exception instanceof BadCredentialsException || exception instanceof InternalAuthenticationServiceException) {
-			loginFailMsg = "아이디 또는 비밀번호를 확인해주세요.";
+			exceptionMessage = "아이디 또는 비밀번호를 확인해주세요.";
 			
 //		} else if (exception instanceof AuthenticationServiceException) {
-//			loginFailMsg = "존재하지 않는 사용자입니다.";
+//			exceptionMessage = "존재하지 않는 사용자입니다.";
 			
 		} else if(exception instanceof LockedException || 
 				  exception instanceof DisabledException ||
 				  exception instanceof AccountExpiredException) {
-			loginFailMsg = "사용할 수 없는 계정입니다. 관리자에게 문의하세요.";
+			exceptionMessage = "사용할 수 없는 계정입니다. 관리자에게 문의하세요.";
 			
 		} else if(exception instanceof CredentialsExpiredException) {
-			loginFailMsg = "비밀번호의 유효기간이 만료되었습니다. 관리자에게 문의하세요.";
+			exceptionMessage = "비밀번호의 유효기간이 만료되었습니다. 관리자에게 문의하세요.";
 			
 		} else {
-			loginFailMsg = "오류가 발생하였습니다. 관리자에게 문의하세요.";
+			exceptionMessage = "오류가 발생하였습니다. 관리자에게 문의하세요.";
 		}
 		
-		request.setAttribute("loginFailMsg", loginFailMsg);
-		log.info("Login Fail, loginFailMsg : {}", loginFailMsg);
-
-		RequestDispatcher dispatcher = request.getRequestDispatcher(DEFAULT_FAILURE_URL);
-		dispatcher.forward(request, response);
+		request.setAttribute("exceptionMessage", exceptionMessage);
+		log.info("exceptionMessage : {}", exceptionMessage);
+		log.info("message : {}", exception.getMessage());
+		
+		request.getRequestDispatcher(DEFAULT_FAILURE_URL).forward(request, response);
 	}
 
 }

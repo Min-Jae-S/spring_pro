@@ -31,7 +31,7 @@ public class MemberController {
 	PasswordEncoder passwordEncoder;
 	
 	@RequestMapping("/loginForm")
-	public String loginForm() {
+	public String loginForm(HttpServletRequest request) {
 		log.info("loginForm");
 		
 		return "member/loginForm";

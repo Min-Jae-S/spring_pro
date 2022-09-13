@@ -31,13 +31,15 @@
 							<input type="password" class="form-control" id="memberPassword" name="memberPassword" placeholder="비밀번호를 입력하세요.">
 						</div>
 					</div>
-					<c:if test="${not empty requestScope.loginFailMsg}">
-						<p class="text-danger">${requestScope.loginFailMsg}</p>
+					<c:if test="${not empty requestScope.exceptionMessage}">
+						<p class="text-danger">${requestScope.exceptionMessage}</p>
 					</c:if>
-					
+					<!-- 
 					<p class="text-danger">
-						SPRING_SECURITY_LAST_EXCEPTION : ${sessionScope["SPRING_SECURITY_LAST_EXCEPTION"].message}
+						login Failed : ${sessionScope["SPRING_SECURITY_LAST_EXCEPTION"].message}
+						<c:remove var="SPRING_SECURITY_LAST_EXCEPTION" scope="session" />
 					</p>
+					-->
 				</form>
 			</div>
 			<div class="card-footer">
