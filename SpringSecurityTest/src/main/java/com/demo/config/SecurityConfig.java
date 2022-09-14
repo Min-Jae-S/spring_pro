@@ -1,7 +1,9 @@
 package com.demo.config;
 
+import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.support.ReloadableResourceBundleMessageSource;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -39,6 +41,14 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	@Bean
 	public AuthenticationFailureHandler authenticationFailureHandler() {
 		return new LoginFailureHandler();
+	}
+	
+	@Bean
+	public MessageSource messageSource() {
+		ReloadableResourceBundleMessageSource source = new ReloadableResourceBundleMessageSource();
+		source.setBasenames("/WEB-INF/properties/login_message");
+		
+		return source;
 	}
 	
 	// AuthenticationProvider가 PasswordEncoder와 UserDetailsService를 사용한다.
@@ -85,5 +95,4 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 			.exceptionHandling()
 				.accessDeniedPage("/member/access-denied");
 	}
-	
 }

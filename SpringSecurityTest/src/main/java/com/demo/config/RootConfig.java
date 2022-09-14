@@ -25,7 +25,7 @@ import com.zaxxer.hikari.HikariDataSource;
 @Configuration
 //@ComponentScan(basePackages = "com.demo.security")
 @MapperScan(basePackages = "com.demo.mapper")
-@PropertySource({"classpath:db.properties"})
+@PropertySource({"/WEB-INF/properties/db.properties"})
 public class RootConfig {
 
 	@Autowired

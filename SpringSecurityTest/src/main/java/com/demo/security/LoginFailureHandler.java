@@ -1,12 +1,15 @@
 package com.demo.security;
 
 import java.io.IOException;
+import java.util.Locale;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.MessageSource;
 import org.springframework.security.authentication.AccountExpiredException;
 import org.springframework.security.authentication.AuthenticationServiceException;
 import org.springframework.security.authentication.BadCredentialsException;
@@ -22,6 +25,9 @@ import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 public class LoginFailureHandler implements AuthenticationFailureHandler {
+	
+	@Autowired
+	MessageSource messageSource;
 	
 	private final String DEFAULT_FAILURE_URL = "/member/loginForm";
 	
@@ -47,20 +53,20 @@ public class LoginFailureHandler implements AuthenticationFailureHandler {
 		String exceptionMessage = null;
 		
 		if(exception instanceof BadCredentialsException || exception instanceof InternalAuthenticationServiceException) {
-			exceptionMessage = "아이디 또는 비밀번호를 확인해주세요.";
+			exceptionMessage = messageSource.getMessage("error.BadCredentials", null, Locale.getDefault());
 			
 //		} else if (exception instanceof AuthenticationServiceException) {
 //			exceptionMessage = "존재하지 않는 사용자입니다.";
 			
 		} else if(exception instanceof LockedException || exception instanceof DisabledException || 
 						exception instanceof AccountExpiredException) {
-			exceptionMessage = "사용할 수 없는 계정입니다. 관리자에게 문의하세요.";
+			exceptionMessage = messageSource.getMessage("errer.LockedDisabledAccountExpired", null, Locale.getDefault());
 			
 		} else if(exception instanceof CredentialsExpiredException) {
-			exceptionMessage = "비밀번호의 유효기간이 만료되었습니다. 관리자에게 문의하세요.";
+			exceptionMessage = messageSource.getMessage("error.CredentialsExpired", null, Locale.getDefault());
 			
 		} else {
-			exceptionMessage = "오류가 발생하였습니다. 관리자에게 문의하세요.";
+			exceptionMessage = messageSource.getMessage("error.Etc", null, Locale.getDefault());
 		}
 		
 		request.setAttribute("exceptionMessage", exceptionMessage);
