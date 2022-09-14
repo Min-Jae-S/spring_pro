@@ -29,8 +29,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 		if(memberVO != null) {
 			return new CustomUserDetails(memberVO);
 		} else {
-			log.info("this id does not exist.");
-			throw new UsernameNotFoundException("This ID does not exist.");
+			throw new UsernameNotFoundException("this id does not exist");
 		}
 	}
 
