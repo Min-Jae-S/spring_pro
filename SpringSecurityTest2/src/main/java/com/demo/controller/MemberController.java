@@ -32,7 +32,7 @@ public class MemberController {
 	
 	@RequestMapping("/loginForm")
 	public String loginForm() {
-		log.info("loginForm");
+		log.info("====================== loginForm ======================");
 		
 		return "member/loginForm";
 	}
@@ -44,7 +44,8 @@ public class MemberController {
 	
 	@PostMapping("/join")
 	public String join(MemberVO memberVO) {
-		log.info("Join; memberVO : {}", memberVO);
+		log.info("====================== join ======================");
+		log.info("memberVO : {}", memberVO);
 		
 		String rawPassword = memberVO.getMemberPassword();
 		String encPassword = passwordEncoder.encode(rawPassword);
@@ -65,8 +66,10 @@ public class MemberController {
 	
 	@GetMapping("/memberList")
 	public String readMemberList(Model model) {
+		log.info("====================== readMemberList ======================");
+		
 		List<MemberVO> list = memberMapper.readMemberList();
-		log.info("ReadMemberList; list : {}", list);
+		log.info("list : {}", list);
 		
 		model.addAttribute("list", list);
 		
@@ -85,7 +88,8 @@ public class MemberController {
 
 	@PostMapping("/update")
 	public String update(MemberVO memberVO) {
-		log.info("Update; memberVO : {}", memberVO);
+		log.info("====================== update ======================");
+		log.info("memberVO : {}", memberVO);
 		
 		return "redirect:/member/memberInfo";
 	}
