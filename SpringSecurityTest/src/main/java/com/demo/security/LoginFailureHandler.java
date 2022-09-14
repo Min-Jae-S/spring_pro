@@ -23,7 +23,7 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class LoginFailureHandler implements AuthenticationFailureHandler {
 	
-	private final String DEFAULT_FAILURE_URL = "/member/loginForm?fail=true";
+	private final String DEFAULT_FAILURE_URL = "/member/loginForm";
 	
 	/*
 	 * UsernameNotFoundException 	: 계정 없음

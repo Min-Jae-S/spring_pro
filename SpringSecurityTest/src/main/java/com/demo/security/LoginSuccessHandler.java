@@ -49,8 +49,7 @@ public class LoginSuccessHandler implements AuthenticationSuccessHandler {
 	
  	// Redirect Url
  	// case1 : session에 저장된 Url | 인증을 하지 않은 상태에서 권한이 필요한 화면에 접근한 경우	  						
-	// case2 : 이전 Url				| 일반 화면에서 로그인 링크를 통해 이동한 경우
- 	// case3 : default Url 		   	| 사용자가 직접 로그인 화면으로 이동한 경우(즐겨찾기, 주소 등) 
+ 	// case2 : default Url 		   	| 사용자가 직접 로그인 화면으로 이동한 경우
 	private String decideRedirectUrl(HttpServletRequest request, HttpServletResponse response) {
 		String redirectUrl = request.getContextPath();
 
@@ -60,13 +59,7 @@ public class LoginSuccessHandler implements AuthenticationSuccessHandler {
 		if(savedRequest != null) {
 			redirectUrl = savedRequest.getRedirectUrl();
 			requestCache.removeRequest(request, response);
-		} else {
-			String refererUrl = (String) request.getSession().getAttribute("refererUrl");
-			
-			if(refererUrl != null) {
-				redirectUrl = refererUrl;
-			}
-		}
+		} 
 		
 		return redirectUrl;
 	}
@@ -74,10 +67,8 @@ public class LoginSuccessHandler implements AuthenticationSuccessHandler {
 	private void clearAuthenticationAttributes(HttpServletRequest request) {
 		HttpSession session = request.getSession(false);
 		
-		if(session == null) {
-			return;
+		if(session != null) {
+			session.removeAttribute(WebAttributes.AUTHENTICATION_EXCEPTION);
 		}
-		
-		session.removeAttribute(WebAttributes.AUTHENTICATION_EXCEPTION);
 	}
 }
