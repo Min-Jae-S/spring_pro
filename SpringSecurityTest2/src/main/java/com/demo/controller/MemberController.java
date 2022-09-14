@@ -33,21 +33,21 @@ public class MemberController {
 	
 	@RequestMapping("/loginForm")
 	public String loginForm() {
-		log.info("====================== loginForm ======================");
+		log.info("====================== loginForm	======================");
 		
 		return "member/loginForm";
 	}
 	
 	@GetMapping("/joinForm")
 	public String joinForm() {
-		log.info("====================== joinForm ======================");
+		log.info("====================== joinForm	======================");
 		
 		return "member/joinForm";
 	}
 	
 	@PostMapping("/join")
 	public String join(MemberVO memberVO) {
-		log.info("====================== join ======================");
+		log.info("====================== join 	======================");
 		log.info("memberVO : {}", memberVO);
 		
 		String rawPassword = memberVO.getMemberPassword();
@@ -69,7 +69,7 @@ public class MemberController {
 	
 	@GetMapping("/memberList")
 	public String readMemberList(Model model) {
-		log.info("====================== readMemberList ======================");
+		log.info("====================== readMemberList	======================");
 		
 		List<MemberVO> list = memberMapper.readMemberList();
 		log.info("list : {}", list);
@@ -91,7 +91,7 @@ public class MemberController {
 
 	@PostMapping("/update")
 	public String update(MemberVO memberVO) {
-		log.info("====================== update ======================");
+		log.info("====================== update	======================");
 		log.info("memberVO : {}", memberVO);
 		
 		return "redirect:/member/memberInfo";
