@@ -23,7 +23,7 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class LoginFailureHandler implements AuthenticationFailureHandler {
 	
-	private final String DEFAULT_FAILURE_URL = "/member/loginForm";
+	private final String DEFAULT_FAILURE_URL = "/member/loginForm?fail=true";
 	
 	/*
 	 * UsernameNotFoundException 	: 계정 없음
@@ -52,9 +52,8 @@ public class LoginFailureHandler implements AuthenticationFailureHandler {
 //		} else if (exception instanceof AuthenticationServiceException) {
 //			exceptionMessage = "존재하지 않는 사용자입니다.";
 			
-		} else if(exception instanceof LockedException || 
-				  exception instanceof DisabledException ||
-				  exception instanceof AccountExpiredException) {
+		} else if(exception instanceof LockedException || exception instanceof DisabledException || 
+						exception instanceof AccountExpiredException) {
 			exceptionMessage = "사용할 수 없는 계정입니다. 관리자에게 문의하세요.";
 			
 		} else if(exception instanceof CredentialsExpiredException) {

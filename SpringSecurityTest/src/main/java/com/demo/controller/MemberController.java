@@ -31,8 +31,15 @@ public class MemberController {
 	PasswordEncoder passwordEncoder;
 	
 	@RequestMapping("/loginForm")
-	public String loginForm(HttpServletRequest request) {
-		log.info("loginForm");
+	public String loginForm(HttpServletRequest request, @RequestParam(required = false) boolean fail) {
+		log.info("loginForm, fail = {}", fail);
+		
+		String refererUrl = request.getHeader("REFERER");
+		log.info("refererUrl : {}", refererUrl);
+		
+		if(fail) {
+			request.getSession().setAttribute("refererUrl", refererUrl);
+		}
 		
 		return "member/loginForm";
 	}

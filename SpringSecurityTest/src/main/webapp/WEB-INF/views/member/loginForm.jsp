@@ -11,6 +11,25 @@
 <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.slim.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
+<script type="text/javascript">
+	$(function() {
+		$("#btnLogin").on("click", function() {
+			if($("#memberId").val() == "") {
+				alert("아이디를 입력하세요.");
+				$("#memberId").focus();
+				return;
+			}
+			
+			if($("#memberPassword").val() == "") {
+				alert("비밀번호를 입력하세요.");
+				$("#memberPassword").focus();
+				return;
+			}
+			
+			$("#loginForm").submit();
+		});
+	});
+</script>
 </head>
 <body>
 	<c:import url="/WEB-INF/views/common/header.jsp" />
@@ -43,7 +62,7 @@
 				</form>
 			</div>
 			<div class="card-footer">
-				<button type="button" class="btn btn-primary" onclick="document.getElementById('loginForm').submit()">로그인</button>
+				<button type="button" class="btn btn-primary" id="btnLogin">로그인</button>
 				<button type="button" class="btn btn-secondary" onclick="document.getElementById('loginForm').reset()">취소</button>
 			</div>
 		</div>
