@@ -81,11 +81,13 @@ public class MemberController {
 
 	@GetMapping("/memberInfo")
 	public String getMemberInfo() {
+		log.info("====================== getMemberInfo	======================");
 		return "member/memberInfo";
 	}
 	
 	@GetMapping("/updateForm")
 	public String updateForm() {
+		log.info("====================== updateForm	======================");
 		return "member/updateForm";
 	}
 
