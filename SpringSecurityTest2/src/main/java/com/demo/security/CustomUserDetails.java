@@ -11,6 +11,8 @@ import com.demo.domain.MemberVO;
 
 public class CustomUserDetails implements UserDetails {
 
+	private static final long serialVersionUID = 1L;
+	
 	// Composition
 	private MemberVO memberVO;
 

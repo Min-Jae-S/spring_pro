@@ -101,6 +101,7 @@ public class MemberController {
 	
 	@GetMapping("/access-denied")
 	public String accessDenied() {
+		log.info("====================== accessDenied	======================");
 		return "error/access-denied";
 	}
 	
