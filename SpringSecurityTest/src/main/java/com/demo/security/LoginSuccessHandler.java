@@ -37,6 +37,7 @@ public class LoginSuccessHandler implements AuthenticationSuccessHandler {
 		log.info("Authenticated memberVO : {}", customUserDetails.getMemberVO());
 		
 		String redirectUrl = decideRedirectUrl(request, response);
+		log.info("redirectUrl : {}", redirectUrl);
 		
 		//RedirectStrategy redirectStrategy = new DefaultRedirectStrategy();
 		//redirectStrategy.sendRedirect(request, response, redirectUrl);
