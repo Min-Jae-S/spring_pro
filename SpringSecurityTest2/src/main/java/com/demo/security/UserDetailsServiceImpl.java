@@ -21,16 +21,17 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 	@Override
 	public UserDetails loadUserByUsername(String memberId) throws UsernameNotFoundException {
 		log.info("====================== loadUserByUsername	======================");
+		System.out.println("====================== loadUserByUsername	======================");
 		log.info("memberId : {}", memberId);
 
 		MemberVO memberVO = memberMapper.checkLogin(memberId);
 		log.info("memberVO : {}", memberVO);
 
-		if(memberVO != null) {
-			return new CustomUserDetails(memberVO);
-		} else {
-			throw new UsernameNotFoundException("this id does not exist");
+		if(memberVO == null) {
+			throw new UsernameNotFoundException("유효하지 않은 아이디 입니다.");
 		}
+		
+		return new CustomUserDetails(memberVO);
 	}
 
 }

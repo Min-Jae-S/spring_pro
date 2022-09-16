@@ -12,7 +12,7 @@
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
 <script>
-	$(function() {
+	/* $(function() {
 		$("#btnLogin").on("click", function() {
 			if($("#memberId").val() == "") {
 				alert("아이디를 입력하세요.");
@@ -26,25 +26,26 @@
 				return;
 			}
 			
-			//$("#loginForm").submit();
+			var loginData = {
+				memberId : $("#memberId").val(),
+				memberPassword : $("#memberPassword").val()
+			};
+			
 			$.ajax({
 				url : "${contextPath}/member/login",
 				type : "POST",
-				dataType : "json",
-				data : JSON.stringify({
-					memberId : $("#memberId").val(),
-					memberPassword : $("#memberPassword").val()
-				}),
+				dataType : "text",
+				data : JSON.stringify(loginData),
 				success : function(data) {
 					console.log(data);
 				},
-				error : function() {
-					alert('error');
+				error : function(request, status, error) {
+					console.log("status : " + request.status + ", error : " + error);
 				}
 				
 			});
 		});
-	});
+	}); */
 </script>
 </head>
 <body>
@@ -78,7 +79,7 @@
 				</form>
 			</div>
 			<div class="card-footer">
-				<button type="button" class="btn btn-primary" id="btnLogin">로그인</button>
+				<button type="button" class="btn btn-primary" id="btnLogin" onclick="document.getElementById('loginForm').submit()">로그인</button>
 				<button type="button" class="btn btn-secondary" onclick="document.getElementById('loginForm').reset()">취소</button>
 			</div>
 		</div>
