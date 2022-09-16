@@ -30,11 +30,11 @@ public class LoginSuccessHandler implements AuthenticationSuccessHandler {
 	@Override
 	public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response,
 																	Authentication authentication) throws IOException {
-		log.info("====================== Login Success ======================");
+		log.info("====================== LoginSuccessHandler ======================");
 		clearAuthenticationAttributes(request);
 		
 		CustomUserDetails customUserDetails = (CustomUserDetails) authentication.getPrincipal();
-		log.info("authenticated memberVO : {}", customUserDetails.getMemberVO());
+		log.info("Authenticated memberVO : {}", customUserDetails.getMemberVO());
 		
 		String redirectUrl = decideRedirectUrl(request, response);
 		

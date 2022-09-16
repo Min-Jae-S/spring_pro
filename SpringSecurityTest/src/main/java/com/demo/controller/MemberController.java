@@ -33,21 +33,21 @@ public class MemberController {
 	
 	@RequestMapping("/loginForm")
 	public String loginForm() {
-		log.info("====================== loginForm ======================");
+		log.info("====================== LoginForm ======================");
 		
 		return "member/loginForm";
 	}
 	
 	@GetMapping("/joinForm")
 	public String joinForm() {
-		log.info("====================== joinForm ======================");
+		log.info("====================== JoinForm ======================");
 		
 		return "member/joinForm";
 	}
 	
 	@PostMapping("/join")
 	public String join(MemberVO memberVO) {
-		log.info("====================== join ======================");
+		log.info("====================== Join ======================");
 		log.info("memberVO : {}", memberVO);
 		
 		String rawPassword = memberVO.getMemberPassword();
@@ -69,7 +69,7 @@ public class MemberController {
 	
 	@GetMapping("/memberList")
 	public String readMemberList(Model model) {
-		log.info("====================== readMemberList ======================");
+		log.info("====================== ReadMemberList ======================");
 		
 		List<MemberVO> list = memberMapper.readMemberList();
 		log.info("list : {}", list);
@@ -81,19 +81,19 @@ public class MemberController {
 
 	@GetMapping("/memberInfo")
 	public String getMemberInfo() {
-		log.info("====================== getMemberInfo ======================");
+		log.info("====================== GetMemberInfo ======================");
 		return "member/memberInfo";
 	}
 	
 	@GetMapping("/updateForm")
 	public String updateForm() {
-		log.info("====================== updateForm ======================");
+		log.info("====================== UpdateForm ======================");
 		return "member/updateForm";
 	}
 
 	@PostMapping("/update")
 	public String update(MemberVO memberVO) {
-		log.info("====================== update ======================");
+		log.info("====================== Update ======================");
 		log.info("memberVO : {}", memberVO);
 		
 		return "redirect:/member/memberInfo";
@@ -101,7 +101,7 @@ public class MemberController {
 	
 	@GetMapping("/access-denied")
 	public String accessDenied() {
-		log.info("====================== accessDenied ======================");
+		log.info("====================== AccessDenied ======================");
 		return "error/access-denied";
 	}
 	
