@@ -48,7 +48,7 @@ public class LoginFailureHandler implements AuthenticationFailureHandler {
 	@Override
 	public void onAuthenticationFailure(HttpServletRequest request, HttpServletResponse response,
 			AuthenticationException exception) throws IOException, ServletException {
-		log.info("====================== Login Fail	======================");
+		log.info("====================== Login Fail ======================");
 		
 		String exceptionMessage = null;
 		
