@@ -14,24 +14,24 @@ import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 public class UserDetailsServiceImpl implements UserDetailsService {
-	
+
 	@Autowired
 	private MemberMapper memberMapper;
-	
+
 	@Override
 	public UserDetails loadUserByUsername(String memberId) throws UsernameNotFoundException {
-		log.info("loadUserByUsername; memberId : {}", memberId);
-		
+		log.info("====================== loadUserByUsername	======================");
+		System.out.println("====================== loadUserByUsername	======================");
+		log.info("memberId : {}", memberId);
+
 		MemberVO memberVO = memberMapper.checkLogin(memberId);
 		log.info("memberVO : {}", memberVO);
-		
-		if(memberVO != null) {
-			return new CustomUserDetails(memberVO);
-		} else {
-			log.info("This ID does not exist.");
-			throw new UsernameNotFoundException("This ID does not exist.");
+
+		if(memberVO == null) {
+			throw new UsernameNotFoundException("유효하지 않은 아이디 입니다.");
 		}
-			
+		
+		return new CustomUserDetails(memberVO);
 	}
 
 }

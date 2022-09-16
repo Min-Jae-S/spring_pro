@@ -30,7 +30,7 @@ public class LoginSuccessHandler implements AuthenticationSuccessHandler {
 	@Override
 	public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response,
 																	Authentication authentication) throws IOException {
-		log.info("Login Success");
+		log.info("====================== Login Success	======================");
 		clearAuthenticationAttributes(request);
 		
 		CustomUserDetails customUserDetails = (CustomUserDetails) authentication.getPrincipal();
