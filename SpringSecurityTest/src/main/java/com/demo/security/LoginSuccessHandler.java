@@ -48,8 +48,8 @@ public class LoginSuccessHandler implements AuthenticationSuccessHandler {
 	// 이 때, 로그인 화면을 띄우기 전 요청된 정보를 세션에 저장하게 된다. (이전 요청 URL 등)
 	
  	// Redirect Url
- 	// case1 : session에 저장된 Url | 인증을 하지 않은 상태에서 권한이 필요한 화면에 접근한 경우	  						
- 	// case2 : default Url 		   	| 사용자가 직접 로그인 화면으로 이동한 경우
+ 	// case1 : session에 저장된 Url || 인증을 하지 않은 상태에서 권한이 필요한 화면에 접근한 경우	  						
+ 	// case2 : default Url 		   	|| 사용자가 직접 로그인 화면으로 이동한 경우
 	private String decideRedirectUrl(HttpServletRequest request, HttpServletResponse response) {
 		String redirectUrl = request.getContextPath();
 
