@@ -44,7 +44,8 @@ public class LoginSuccessHandler implements AuthenticationSuccessHandler {
 		response.sendRedirect(redirectUrl);
 	}
 	
-	// 인증을 하지 않은 상태에서 권한이 필요한 화면에 접근하려 할 경우, Spring Security는 로그인 화면으로 redirect 한다.
+	// 인증을 하지 않은 상태에서 권한이 필요한 화면에 접근하려 할 경우, 
+	// Spring Security는 로그인 화면으로 redirect 한다.
 	// 이 때, 로그인 화면을 띄우기 전 요청된 정보를 세션에 저장하게 된다. (이전 요청 URL 등)
 	
  	// Redirect Url
